@@ -2,13 +2,9 @@ import { TBABadge } from "@/components/ui/TBABadge";
 import { Shield, Zap, Store, Calendar } from "lucide-react";
 
 const items = [
-<<<<<<< HEAD
+
   { icon: Zap, label: "Chain", value: "TBA" },
   { icon: Store, label: "Mint Venue", value: "TBA" },
-=======
-  { icon: Zap, label: "Chain", value: "Solana" },
-  { icon: Store, label: "Mint Venue", value: "Magic Eden Only" },
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
   { icon: Shield, label: "Supply", value: null },
   { icon: Calendar, label: "Mint Date", value: null },
 ];

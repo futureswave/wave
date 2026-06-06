@@ -44,11 +44,8 @@ export function WhatIsVanth() {
         <p className="text-xs font-mono tracking-widest uppercase text-white/30 mb-3">The Collection</p>
         <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">What is VANTH?</h2>
         <p className="text-white/40 max-w-xl mx-auto text-lg">
-<<<<<<< HEAD
+
           A collection where anime art, cyberpunk culture, and the power community intersect.
-=======
-          A collection at the intersection of anime art, cyberpunk culture, and Solana&apos;s speed.
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
         </p>
       </div>
 

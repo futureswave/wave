@@ -1,16 +1,10 @@
 "use client";
 
 import Link from "next/link";
-<<<<<<< HEAD
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-=======
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X, Zap } from "lucide-react";
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
 import { motion, AnimatePresence } from "framer-motion";
 import { ComingSoonBadge } from "@/components/ui/TBABadge";
 
@@ -28,14 +22,11 @@ export function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Don't render sidebar on admin pages
   if (pathname.startsWith("/admin")) return null;
 
   return (
     <>
-      {/* Fixed sidebar strip */}
       <aside className="fixed left-0 top-0 h-screen w-14 bg-[#0a0a0a] border-r border-white/[0.06] z-50 flex flex-col items-center py-5">
-        {/* Hamburger */}
         <button
           onClick={() => setOpen(true)}
           className="p-2 text-white/40 hover:text-white transition-colors"
@@ -44,8 +35,6 @@ export function Sidebar() {
           <Menu className="w-5 h-5" />
         </button>
 
-        {/* Logo */}
-<<<<<<< HEAD
         <Link href="/" className="mt-4 block hover:opacity-80 transition-opacity">
           <Image
             src="/images/gallery/logo.png"
@@ -54,13 +43,8 @@ export function Sidebar() {
             height={32}
             className="w-8 h-8 object-contain"
           />
-=======
-        <Link href="/" className="mt-4 text-white/60 hover:text-white transition-colors">
-          <Zap className="w-4 h-4" />
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
         </Link>
 
-        {/* Nav dots — active page indicator */}
         <nav className="flex-1 flex flex-col items-center justify-center gap-3 mt-4">
           {NAV_LINKS.map((link) => (
             <Link
@@ -76,19 +60,17 @@ export function Sidebar() {
           ))}
         </nav>
 
-        {/* Bottom: stake + social */}
         <div className="flex flex-col items-center gap-3 pb-1">
           <Link
             href="/stake"
             title="Stake"
-            className="text-[9px] font-mono text-white/25 hover:text-white/50 transition-colors tracking-widest uppercase rotate-0"
+            className="text-[9px] font-mono text-white/25 hover:text-white/50 transition-colors tracking-widest uppercase"
           >
             STK
           </Link>
         </div>
       </aside>
 
-      {/* Full-screen overlay menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -98,7 +80,6 @@ export function Sidebar() {
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="fixed inset-0 z-[100] bg-[#0a0a0a] flex"
           >
-            {/* Close button */}
             <button
               onClick={() => setOpen(false)}
               className="absolute top-5 right-6 p-2 text-white/40 hover:text-white transition-colors"
@@ -107,8 +88,6 @@ export function Sidebar() {
               <X className="w-6 h-6" />
             </button>
 
-            {/* VANTH logo top-left */}
-<<<<<<< HEAD
             <Link
               href="/"
               onClick={() => setOpen(false)}
@@ -125,16 +104,7 @@ export function Sidebar() {
                 VANTH
               </span>
             </Link>
-=======
-            <div className="absolute top-5 left-6 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-white/60" />
-              <span className="text-sm font-black tracking-[0.3em] text-white/60 font-mono">
-                VANTH
-              </span>
-            </div>
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
 
-            {/* Nav links — left side */}
             <nav className="flex flex-col justify-center pl-10 sm:pl-16 gap-1">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
@@ -158,7 +128,6 @@ export function Sidebar() {
               ))}
             </nav>
 
-            {/* Bottom CTAs */}
             <div className="absolute bottom-8 left-10 sm:left-16 flex items-center gap-4">
               <Link
                 href="/stake"
@@ -167,6 +136,7 @@ export function Sidebar() {
               >
                 Stake <ComingSoonBadge />
               </Link>
+
               <Link
                 href="/whitelist"
                 onClick={() => setOpen(false)}

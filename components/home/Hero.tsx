@@ -7,11 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-<<<<<<< HEAD
     <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-transparent">
-=======
-    <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
       {/* Particles background */}
       <Particles
         className="absolute inset-0 z-0"
@@ -26,36 +22,31 @@ export function Hero() {
       <div
         className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)`,
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24 flex flex-col items-center">
-
         {/* Logo */}
         <div className="mb-10 select-none">
           <Image
             src="/images/gallery/logo.png"
             alt="VANTH"
-<<<<<<< HEAD
             width={1024}
             height={1024}
             unoptimized
             className="w-[200px] sm:w-[280px] md:w-[320px] h-auto mx-auto opacity-90 mix-blend-screen"
-=======
-            width={480}
-            height={160}
-            className="w-auto h-auto max-w-[280px] sm:max-w-[400px] mx-auto opacity-90"
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
             priority
           />
         </div>
 
         {/* Tagline */}
         <p className="text-base sm:text-lg text-white/40 max-w-2xl mx-auto mb-12 leading-relaxed font-mono">
-          Vanth is a web3 focused project inspired by the best with an innovative and dynamic style.
+          Vanth is a web3 focused project inspired by the best with an
+          innovative and dynamic style.
         </p>
 
         {/* CTAs */}
@@ -78,20 +69,21 @@ export function Hero() {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
 
-<<<<<<< HEAD
-=======
           {/* Tertiary */}
           <span className="flex items-center gap-2 px-8 py-4 rounded border border-white/5 text-white/20 text-base cursor-not-allowed select-none">
             Magic Eden
-            <span className="text-xs bg-white/5 text-white/30 rounded px-2 py-0.5 font-mono">Soon</span>
+            <span className="text-xs bg-white/5 text-white/30 rounded px-2 py-0.5 font-mono">
+              Soon
+            </span>
           </span>
->>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
         </div>
 
         {/* Scroll hint */}
         <div className="mt-20 flex flex-col items-center gap-2 opacity-30">
           <div className="w-px h-12 bg-gradient-to-b from-transparent via-white to-transparent animate-pulse" />
-          <span className="text-xs text-white/40 tracking-widest uppercase font-mono">Scroll</span>
+          <span className="text-xs text-white/40 tracking-widest uppercase font-mono">
+            Scroll
+          </span>
         </div>
       </div>
     </section>
