@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} antialiased`}>
         <IntroScreen />
         <Sidebar />
-        <div className="pl-14 flex flex-col min-h-screen">
+        <div className="relative z-10 pl-14 flex flex-col min-h-screen">
           <main className="flex-1">
             {children}
           </main>

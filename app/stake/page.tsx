@@ -44,7 +44,7 @@ function useWalletSimulator() {
 }
 
 const STAKING_STEPS = [
-  { icon: Wallet, label: "Connect", description: "Connect your Solana wallet (Phantom or Solflare)" },
+  { icon: Wallet, label: "Connect", description: "Connect your wallet (Metamask)" },
   { icon: Grid3x3, label: "Select NFTs", description: "Choose which VANTH NFTs you want to stake" },
   { icon: TrendingUp, label: "Stake", description: "Stake your selected NFTs to start earning VNTH" },
   { icon: TrendingUp, label: "Track", description: "Monitor your staking rewards in real time" },

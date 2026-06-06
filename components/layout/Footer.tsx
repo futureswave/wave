@@ -4,7 +4,7 @@ import { SOCIAL_LINKS, SITE_CONFIG } from "@/lib/config/links";
 
 export function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] border-t border-white/5 mt-auto">
+    <footer className="relative z-20 bg-[#0a0a0a] border-t border-white/5 mt-auto">
       {/* Scam warning strip */}
       <div className="bg-white/[0.03] border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
