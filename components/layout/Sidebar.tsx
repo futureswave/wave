@@ -1,10 +1,16 @@
 "use client";
 
 import Link from "next/link";
+<<<<<<< HEAD
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+=======
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Menu, X, Zap } from "lucide-react";
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
 import { motion, AnimatePresence } from "framer-motion";
 import { ComingSoonBadge } from "@/components/ui/TBABadge";
 
@@ -39,6 +45,7 @@ export function Sidebar() {
         </button>
 
         {/* Logo */}
+<<<<<<< HEAD
         <Link href="/" className="mt-4 block hover:opacity-80 transition-opacity">
           <Image
             src="/images/gallery/logo.png"
@@ -47,6 +54,10 @@ export function Sidebar() {
             height={32}
             className="w-8 h-8 object-contain"
           />
+=======
+        <Link href="/" className="mt-4 text-white/60 hover:text-white transition-colors">
+          <Zap className="w-4 h-4" />
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
         </Link>
 
         {/* Nav dots — active page indicator */}
@@ -97,6 +108,7 @@ export function Sidebar() {
             </button>
 
             {/* VANTH logo top-left */}
+<<<<<<< HEAD
             <Link
               href="/"
               onClick={() => setOpen(false)}
@@ -113,6 +125,14 @@ export function Sidebar() {
                 VANTH
               </span>
             </Link>
+=======
+            <div className="absolute top-5 left-6 flex items-center gap-2">
+              <Zap className="w-5 h-5 text-white/60" />
+              <span className="text-sm font-black tracking-[0.3em] text-white/60 font-mono">
+                VANTH
+              </span>
+            </div>
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
 
             {/* Nav links — left side */}
             <nav className="flex flex-col justify-center pl-10 sm:pl-16 gap-1">

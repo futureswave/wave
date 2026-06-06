@@ -78,6 +78,14 @@ export function Footer() {
                   <ExternalLink className="w-3 h-3" /> GitBook
                 </a>
               </li>
+<<<<<<< HEAD
+=======
+              <li>
+                <span className="flex items-center gap-2 text-white/15 text-sm cursor-not-allowed">
+                  <ExternalLink className="w-3 h-3" /> Magic Eden (Soon)
+                </span>
+              </li>
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
             </ul>
           </div>
 
@@ -107,10 +115,17 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/15 text-xs font-mono">
+<<<<<<< HEAD
             © 2026 VANTH · All rights reserved
           </p>
           <p className="text-white/10 text-xs font-mono">
             Mint Venue: TBA
+=======
+            © 2026 VANTH · All rights reserved · Built on Solana
+          </p>
+          <p className="text-white/10 text-xs font-mono">
+            Minting only on Magic Eden
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
           </p>
         </div>
       </div>

@@ -1,7 +1,11 @@
 import { ExternalLink } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/config/links";
 import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
+<<<<<<< HEAD
 import { TBABadge } from "@/components/ui/TBABadge";
+=======
+import { ComingSoonBadge } from "@/components/ui/TBABadge";
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
 
 export const metadata = {
   title: "Official Links — VANTH NFT",
@@ -31,10 +35,17 @@ const links = [
     available: true,
   },
   {
+<<<<<<< HEAD
     label: SOCIAL_LINKS.mintVenue.label,
     description: "Minting platform details will be announced before launch.",
     url: SOCIAL_LINKS.mintVenue.url,
     handle: "TBA",
+=======
+    label: "Magic Eden",
+    description: "The only authorized minting and marketplace venue for VANTH NFTs.",
+    url: null,
+    handle: "Coming when collection is live",
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
     available: false,
   },
 ];
@@ -60,7 +71,11 @@ export default function SocialPage() {
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <h2 className="font-bold text-white/80">{link.label}</h2>
+<<<<<<< HEAD
                   {!link.available && <TBABadge />}
+=======
+                  {!link.available && <ComingSoonBadge />}
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
                 </div>
                 <p className="text-white/40 text-sm mb-2">{link.description}</p>
                 <p className="text-white/20 text-xs font-mono">{link.url || link.handle}</p>
@@ -76,8 +91,13 @@ export default function SocialPage() {
                   Visit
                 </a>
               ) : (
+<<<<<<< HEAD
                 <span className="shrink-0 cursor-not-allowed">
                   <TBABadge />
+=======
+                <span className="shrink-0 px-4 py-2 rounded border border-white/5 text-white/20 text-sm cursor-not-allowed font-mono">
+                  Soon
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
                 </span>
               )}
             </div>

@@ -7,7 +7,11 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
+<<<<<<< HEAD
     <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-transparent">
+=======
+    <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
       {/* Particles background */}
       <Particles
         className="absolute inset-0 z-0"
@@ -35,10 +39,16 @@ export function Hero() {
           <Image
             src="/images/gallery/logo.png"
             alt="VANTH"
+<<<<<<< HEAD
             width={1024}
             height={1024}
             unoptimized
             className="w-[200px] sm:w-[280px] md:w-[320px] h-auto mx-auto opacity-90 mix-blend-screen"
+=======
+            width={480}
+            height={160}
+            className="w-auto h-auto max-w-[280px] sm:max-w-[400px] mx-auto opacity-90"
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
             priority
           />
         </div>
@@ -68,6 +78,14 @@ export function Hero() {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
 
+<<<<<<< HEAD
+=======
+          {/* Tertiary */}
+          <span className="flex items-center gap-2 px-8 py-4 rounded border border-white/5 text-white/20 text-base cursor-not-allowed select-none">
+            Magic Eden
+            <span className="text-xs bg-white/5 text-white/30 rounded px-2 py-0.5 font-mono">Soon</span>
+          </span>
+>>>>>>> ce00058c012544fa08b4127b8be3e2c7e2963f8d
         </div>
 
         {/* Scroll hint */}
