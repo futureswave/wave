@@ -2,10 +2,8 @@ import Image from "next/image";
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
 import { WhatIsVanth } from "@/components/home/WhatIsVanth";
-import { GalleryPreview } from "@/components/home/GalleryPreview";
 import { RoadmapPreview } from "@/components/home/RoadmapPreview";
 import { FAQPreview } from "@/components/home/FAQPreview";
-import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
 import { Button } from "@/components/ui/Button";
 
 export default function HomePage() {
@@ -30,12 +28,7 @@ export default function HomePage() {
         <Hero />
         <TrustBar />
         <WhatIsVanth />
-        <GalleryPreview />
         <RoadmapPreview />
-
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <ScamWarningBanner />
-        </section>
 
         <FAQPreview />
 

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { validateWhitelistForm, normalizeXHandle, type FormErrors } from "@/lib/validation";
+import { SOCIAL_LINKS } from "@/lib/config/links";
 import { trackEvent } from "@/lib/analytics";
 
 type SubmitState = "idle" | "loading" | "success" | "duplicate" | "rate_limited" | "error";
@@ -80,9 +81,9 @@ export function WhitelistForm() {
         <h2 className="text-2xl font-bold text-white mb-2">You&apos;re on the list!</h2>
         <p className="text-slate-400 mb-6 text-sm leading-relaxed">
           Your whitelist submission has been received. Follow our official{" "}
-          <a href="https://x.com/vanth_nft" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">X</a>{" "}
+          <a href={SOCIAL_LINKS.x.url} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">X</a>{" "}
           and{" "}
-          <a href="https://discord.gg/vanth" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Discord</a>{" "}
+          <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Discord</a>{" "}
           for mint date announcements.
         </p>
         <p className="text-amber-400 text-xs">Remember: Minting will only happen on Magic Eden. Never mint from another source.</p>

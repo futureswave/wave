@@ -69,13 +69,6 @@ export function Hero() {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
 
-          {/* Tertiary */}
-          <span className="flex items-center gap-2 px-8 py-4 rounded border border-white/5 text-white/20 text-base cursor-not-allowed select-none">
-            Magic Eden
-            <span className="text-xs bg-white/5 text-white/30 rounded px-2 py-0.5 font-mono">
-              Soon
-            </span>
-          </span>
         </div>
 
         {/* Scroll hint */}

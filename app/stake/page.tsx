@@ -6,27 +6,22 @@ import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
 import { ComingSoonBadge, TBABadge } from "@/components/ui/TBABadge";
 import { trackEvent } from "@/lib/analytics";
 
-// Minimal wallet state simulation (no real transactions)
 function useWalletSimulator() {
   const [address, setAddress] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
 
-  async function connect(walletName: string) {
+  async function connect() {
     setConnecting(true);
     try {
-      // Try actual Phantom/Solflare connection
-      const win = window as unknown as { phantom?: { solana?: { connect: () => Promise<{ publicKey: { toString: () => string } }> } }; solflare?: { connect: () => Promise<void>; publicKey?: { toString: () => string } } };
-      if (walletName === "Phantom" && win.phantom?.solana) {
-        const resp = await win.phantom.solana.connect();
-        setAddress(resp.publicKey.toString());
-        trackEvent("wallet_connect_success");
-      } else if (walletName === "Solflare" && win.solflare) {
-        await win.solflare.connect();
-        setAddress(win.solflare.publicKey?.toString() ?? "Connected");
-        trackEvent("wallet_connect_success");
+      const win = window as unknown as { ethereum?: { request: (args: { method: string }) => Promise<string[]> } };
+      if (win.ethereum) {
+        const accounts = await win.ethereum.request({ method: "eth_requestAccounts" });
+        if (accounts[0]) {
+          setAddress(accounts[0]);
+          trackEvent("wallet_connect_success");
+        }
       } else {
-        // Wallet not installed
-        alert(`${walletName} wallet not detected. Please install it first.`);
+        alert("MetaMask not detected. Please install the MetaMask browser extension first.");
       }
     } catch {
       // User rejected or error
@@ -44,7 +39,7 @@ function useWalletSimulator() {
 }
 
 const STAKING_STEPS = [
-  { icon: Wallet, label: "Connect", description: "Connect your wallet (Metamask)" },
+  { icon: Wallet, label: "Connect", description: "Connect your MetaMask wallet" },
   { icon: Grid3x3, label: "Select NFTs", description: "Choose which VANTH NFTs you want to stake" },
   { icon: TrendingUp, label: "Stake", description: "Stake your selected NFTs to start earning VNTH" },
   { icon: TrendingUp, label: "Track", description: "Monitor your staking rewards in real time" },
@@ -55,7 +50,7 @@ export default function StakePage() {
   const { address, connecting, connect, disconnect } = useWalletSimulator();
 
   function truncate(addr: string) {
-    return `${addr.slice(0, 4)}...${addr.slice(-4)}`;
+    return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
   }
 
   return (
@@ -102,21 +97,16 @@ export default function StakePage() {
             </button>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div>
             <p className="text-white/35 text-sm mb-4">Connect your wallet to see your future staking position.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {["Phantom", "Solflare"].map((wallet) => (
-                <button
-                  key={wallet}
-                  onClick={() => connect(wallet)}
-                  disabled={connecting}
-                  className="flex items-center justify-between gap-3 bg-white/3 border border-white/10 hover:border-white/20 hover:bg-white/5 rounded px-4 py-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
-                >
-                  <span className="text-white font-semibold text-sm">{wallet}</span>
-                  <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white transition-colors" />
-                </button>
-              ))}
-            </div>
+            <button
+              onClick={connect}
+              disabled={connecting}
+              className="flex items-center justify-between gap-3 w-full bg-white/3 border border-white/10 hover:border-white/20 hover:bg-white/5 rounded px-4 py-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
+            >
+              <span className="text-white font-semibold text-sm">MetaMask</span>
+              <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white transition-colors" />
+            </button>
           </div>
         )}
       </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, ShieldAlert } from "lucide-react";
 import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
+import { SOCIAL_LINKS } from "@/lib/config/links";
 
 const FAQS = [
   {
@@ -116,7 +117,7 @@ export default function FAQPage() {
       <div className="mt-10 p-5 rounded bg-white/3 border border-white/8 text-center">
         <p className="text-white/35 text-sm">
           Still have questions?{" "}
-          <a href="https://discord.gg/vanth" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white hover:underline font-semibold transition-colors">
+          <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white hover:underline font-semibold transition-colors">
             Join our Discord
           </a>{" "}
           and ask the community or team.

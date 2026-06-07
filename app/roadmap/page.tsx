@@ -1,5 +1,6 @@
 import { TBABadge } from "@/components/ui/TBABadge";
 import { CheckCircle, Clock, Loader } from "lucide-react";
+import { SOCIAL_LINKS } from "@/lib/config/links";
 
 export const metadata = {
   title: "Roadmap — VANTH NFT Collection",
@@ -104,8 +105,8 @@ export default function RoadmapPage() {
         <p className="text-white/35 text-sm text-center font-mono">
           <span className="text-white/60 font-semibold">Transparency note:</span> This roadmap may evolve as the project develops.
           All changes will be announced on official{" "}
-          <a href="https://x.com/vanth_nft" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white hover:underline">X</a> and{" "}
-          <a href="https://discord.gg/vanth" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white hover:underline">Discord</a> channels before being reflected here.
+          <a href={SOCIAL_LINKS.x.url} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white hover:underline">X</a> and{" "}
+          <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white hover:underline">Discord</a> channels before being reflected here.
         </p>
       </div>
     </div>

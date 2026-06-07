@@ -47,38 +47,33 @@ And in exchange, the VANTH offered something rare in any dimension: *loyalty wit
 
 export default function StoryPage() {
   return (
-    <div>
-      {/* Full-width header */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
-        <div className="inline-flex items-center gap-2 bg-pink-500/10 border border-pink-500/30 rounded-full px-4 py-1.5 mb-6">
-          <span className="text-pink-400 text-xs font-semibold font-mono tracking-widest uppercase">Lore</span>
-        </div>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="text-center mb-16">
+        <p className="text-xs font-mono tracking-widest uppercase text-white/30 mb-3">Lore</p>
         <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">The Story of VANTH</h1>
-        <p className="text-slate-400">Where anime meets cyberpunk. Where art meets identity.</p>
+        <p className="text-white/40 max-w-xl mx-auto leading-relaxed">Where anime meets cyberpunk. Where art meets identity.</p>
       </div>
 
       {/* Table of contents */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <nav className="bg-[#10101e] border border-white/5 rounded-xl p-5">
-          <h2 className="text-xs font-semibold font-mono text-slate-500 uppercase tracking-wider mb-3">Contents</h2>
-          <ul className="space-y-1">
-            {CHAPTERS.map((ch) => (
-              <li key={ch.id}>
-                <a
-                  href={`#${ch.id}`}
-                  className="flex items-center gap-3 text-sm text-slate-400 hover:text-purple-400 transition-colors py-1"
-                >
-                  <span className="text-slate-600 text-xs font-mono">{ch.number}</span>
-                  {ch.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <div className="bg-[#111111] border border-white/5 rounded p-5 mb-16">
+        <h2 className="text-xs font-semibold font-mono text-white/20 uppercase tracking-wider mb-3">Contents</h2>
+        <ul className="space-y-1">
+          {CHAPTERS.map((ch) => (
+            <li key={ch.id}>
+              <a
+                href={`#${ch.id}`}
+                className="flex items-center gap-3 text-sm text-white/40 hover:text-white transition-colors py-1"
+              >
+                <span className="text-white/20 text-xs font-mono">{ch.number}</span>
+                {ch.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Chapters — alternating split layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 mb-24">
+      {/* Chapters */}
+      <div className="space-y-24 mb-24">
         {CHAPTERS.map((ch) => (
           <section key={ch.id} id={ch.id} className="scroll-mt-24">
             <div
@@ -86,7 +81,7 @@ export default function StoryPage() {
             >
               {/* Image */}
               <div className="w-full lg:w-1/2">
-                <div className="relative h-80 lg:h-[520px] rounded-xl overflow-hidden">
+                <div className="relative h-80 lg:h-[520px] rounded overflow-hidden">
                   <Image
                     src={`/images/gallery/${ch.image}`}
                     fill
@@ -100,13 +95,13 @@ export default function StoryPage() {
               {/* Content */}
               <div className="w-full lg:w-1/2 space-y-5">
                 <div className="flex items-center gap-4 mb-2">
-                  <span className="text-purple-500/60 text-sm font-mono">{ch.number}</span>
+                  <span className="text-white/30 text-sm font-mono">{ch.number}</span>
                   <div className="flex-1 h-px bg-white/5" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white">{ch.title}</h2>
                 <div className="space-y-4">
                   {ch.content.split("\n\n").map((para, i) => (
-                    <p key={i} className="text-slate-400 leading-relaxed text-base italic">
+                    <p key={i} className="text-white/40 leading-relaxed text-base italic">
                       {para.trim()}
                     </p>
                   ))}
@@ -117,19 +112,17 @@ export default function StoryPage() {
         ))}
       </div>
 
-      {/* Full-width CTA */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="p-8 rounded-xl bg-gradient-to-br from-purple-900/20 to-cyan-900/10 border border-purple-500/20 text-center">
-          <p className="text-slate-400 text-sm mb-1">The story continues.</p>
-          <p className="text-slate-500 text-xs mb-6">More chapters coming as the collection evolves.</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button href="/gallery" variant="secondary" size="sm">
-              View the Art
-            </Button>
-            <Button href="/whitelist" variant="primary" size="sm">
-              Request Access
-            </Button>
-          </div>
+      {/* CTA */}
+      <div className="bg-white/[0.04] border border-white/8 rounded p-8 text-center">
+        <p className="text-white/40 text-sm mb-1">The story continues.</p>
+        <p className="text-white/25 text-xs mb-6">More chapters coming as the collection evolves.</p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Button href="/gallery" variant="secondary" size="sm">
+            View the Art
+          </Button>
+          <Button href="/whitelist" variant="primary" size="sm">
+            Request Access
+          </Button>
         </div>
       </div>
     </div>

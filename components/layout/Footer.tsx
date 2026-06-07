@@ -1,30 +1,19 @@
 import Link from "next/link";
-import { ExternalLink, Zap, ShieldAlert } from "lucide-react";
+import { ExternalLink, Zap } from "lucide-react";
 import { SOCIAL_LINKS, SITE_CONFIG } from "@/lib/config/links";
 
 export function Footer() {
   return (
     <footer className="relative z-20 bg-[#0a0a0a] border-t border-white/5 mt-auto">
-      {/* Scam warning strip */}
-      <div className="bg-white/[0.03] border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center gap-2 text-sm">
-            <ShieldAlert className="w-3.5 h-3.5 shrink-0 text-white/40" />
-            <span className="font-semibold text-white/50 font-mono text-xs">{SITE_CONFIG.scamWarning.title}:</span>
-            <span className="text-white/25 text-xs font-mono">{SITE_CONFIG.scamWarning.body}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-8 mb-8">
           {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="flex-1 max-w-xs">
+            <div className="flex items-center gap-2 mb-3">
               <Zap className="w-4 h-4 text-white/50" />
               <span className="text-lg font-black tracking-[0.2em] text-white/80 font-mono">VANTH</span>
             </div>
-            <p className="text-white/25 text-sm leading-relaxed mb-5 max-w-xs">
+            <p className="text-white/25 text-sm leading-relaxed mb-4">
               {SITE_CONFIG.tagline}
             </p>
             <Link
@@ -35,77 +24,63 @@ export function Footer() {
             </Link>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-4">Navigation</h4>
-            <ul className="space-y-2.5">
-              {[
-                ["Gallery", "/gallery"],
-                ["Roadmap", "/roadmap"],
-                ["Story", "/story"],
-                ["Vision", "/vision"],
-                ["About", "/about"],
-                ["FAQ", "/faq"],
-              ].map(([label, href]) => (
-                <li key={href}>
-                  <Link href={href} className="text-white/30 hover:text-white text-sm transition-colors">
-                    {label}
+          {/* Links */}
+          <div className="flex gap-12">
+            {/* Navigation */}
+            <div>
+              <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-3">Pages</h4>
+              <ul className="space-y-2">
+                {[
+                  ["Gallery", "/gallery"],
+                  ["Roadmap", "/roadmap"],
+                  ["Story", "/story"],
+                  ["Vision", "/vision"],
+                  ["About", "/about"],
+                  ["FAQ", "/faq"],
+                ].map(([label, href]) => (
+                  <li key={href}>
+                    <Link href={href} className="text-white/30 hover:text-white text-sm transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Community */}
+            <div>
+              <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-3">Community</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href={SOCIAL_LINKS.x.url} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
+                    <ExternalLink className="w-3 h-3" /> X (Twitter)
+                  </a>
+                </li>
+                <li>
+                  <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
+                    <ExternalLink className="w-3 h-3" /> Discord
+                  </a>
+                </li>
+                <li>
+                  <a href={SOCIAL_LINKS.gitbook.meetVanth.url} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
+                    <ExternalLink className="w-3 h-3" /> GitBook
+                  </a>
+                </li>
+                <li>
+                  <Link href="/social" className="text-white/30 hover:text-white text-sm transition-colors">
+                    Official Links
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Community */}
-          <div>
-            <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-4">Community</h4>
-            <ul className="space-y-2.5">
-              <li>
-                <a href={SOCIAL_LINKS.x.url} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
-                  <ExternalLink className="w-3 h-3" /> X (Twitter)
-                </a>
-              </li>
-              <li>
-                <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
-                  <ExternalLink className="w-3 h-3" /> Discord
-                </a>
-              </li>
-              <li>
-                <a href={SOCIAL_LINKS.gitbook.meetVanth.url} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
-                  <ExternalLink className="w-3 h-3" /> GitBook
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Safety */}
-          <div>
-            <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-4">Safety</h4>
-            <ul className="space-y-2.5">
-              <li>
-                <Link href="/social" className="text-white/30 hover:text-white text-sm transition-colors">
-                  Official Links
-                </Link>
-              </li>
-              <li>
-                <Link href="/whitelist#privacy" className="text-white/30 hover:text-white text-sm transition-colors">
-                  Privacy Notice
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq#scam" className="text-white/30 hover:text-white text-sm transition-colors">
-                  Anti-Scam Guide
-                </Link>
-              </li>
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="pt-5 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-white/15 text-xs font-mono">
             © 2026 VANTH · All rights reserved
           </p>
