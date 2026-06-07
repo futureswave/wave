@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 
 export const metadata = {
   title: "Gallery — VANTH NFT Collection",
-  description: "Explore the full VANTH NFT art gallery. Anime + cyberpunk digital art on Solana.",
+  description: "Explore the full VANTH NFT art gallery. Anime + cyberpunk digital art.",
 };
 
 export default function GalleryPage() {
@@ -13,7 +13,7 @@ export default function GalleryPage() {
       <div className="text-center mb-12">
         <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">Gallery</h1>
         <p className="text-white/40 max-w-lg mx-auto">
-          The VANTH universe in full view. Anime meets cyberpunk on the Solana blockchain.
+          The VANTH universe in full view. Anime meets cyberpunk.
         </p>
       </div>
 

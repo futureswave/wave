@@ -1,10 +1,10 @@
 const STATUS_CONFIG: Record<string, { label: string; className: string }> = {
-  SUBMITTED: { label: "Submitted", className: "bg-white/8 text-white/60 border-white/15" },
-  UNDER_REVIEW: { label: "Under Review", className: "bg-white/6 text-white/50 border-white/12" },
-  PENDING: { label: "Pending", className: "bg-white/6 text-white/50 border-white/10" },
-  APPROVED: { label: "Approved", className: "bg-white/10 text-white/80 border-white/20" },
-  REJECTED: { label: "Rejected", className: "bg-white/4 text-white/30 border-white/8" },
-  FLAGGED: { label: "Flagged", className: "bg-white/6 text-white/45 border-white/12" },
+  SUBMITTED:    { label: "Submitted",    className: "bg-blue-500/15 text-blue-300 border-blue-500/25" },
+  UNDER_REVIEW: { label: "Under Review", className: "bg-amber-500/15 text-amber-300 border-amber-500/25" },
+  PENDING:      { label: "Pending",      className: "bg-amber-500/10 text-amber-400/70 border-amber-500/15" },
+  APPROVED:     { label: "Approved",     className: "bg-green-500/15 text-green-300 border-green-500/25" },
+  REJECTED:     { label: "Rejected",     className: "bg-red-500/12 text-red-400 border-red-500/20" },
+  FLAGGED:      { label: "Flagged",      className: "bg-orange-500/15 text-orange-300 border-orange-500/25" },
 };
 
 export function StatusBadge({ status }: { status: string }) {

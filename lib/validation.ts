@@ -1,14 +1,13 @@
 // Validation functions for whitelist form fields
 // Mirrors server-side validation in api/whitelist/submit/route.ts
 
-const BASE58_REGEX = /^[1-9A-HJ-NP-Za-km-z]+$/;
+const EVM_ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/;
 
-export function validateSolanaWallet(address: string): string | null {
+export function validateEthereumWallet(address: string): string | null {
   const trimmed = address.trim();
   if (!trimmed) return "Wallet address is required.";
-  if (!BASE58_REGEX.test(trimmed)) return "Invalid wallet address format.";
-  if (trimmed.length < 32 || trimmed.length > 44) return "Invalid wallet address length.";
-  return null; // valid
+  if (!EVM_ADDRESS_REGEX.test(trimmed)) return "Invalid Ethereum wallet address (must start with 0x and be 42 characters).";
+  return null;
 }
 
 export function validateXHandle(handle: string): string | null {
@@ -58,7 +57,7 @@ export interface FormErrors {
 
 export function validateWhitelistForm(data: WhitelistFormData): FormErrors {
   const errors: FormErrors = {};
-  const walletErr = validateSolanaWallet(data.wallet_address);
+  const walletErr = validateEthereumWallet(data.wallet_address);
   if (walletErr) errors.wallet_address = walletErr;
   const xErr = validateXHandle(data.twitter_handle);
   if (xErr) errors.twitter_handle = xErr;

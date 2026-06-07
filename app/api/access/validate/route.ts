@@ -28,6 +28,11 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ valid: false, message: "No code provided." }, { status: 400 });
   }
 
+  // Dev bypass: accept test code without database
+  if (process.env.NODE_ENV === "development" && code === "VANTH-TEST-0000") {
+    return NextResponse.json({ valid: true, state: "AVAILABLE", message: "Code accepted. You may apply." });
+  }
+
   const supabase = createServiceClient();
   const { data, error } = await supabase
     .from("access_codes")

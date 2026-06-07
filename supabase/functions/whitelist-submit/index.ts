@@ -24,9 +24,8 @@ function checkRateLimit(ip: string): boolean {
 }
 
 function validateWallet(address: string): boolean {
-  const BASE58_REGEX = /^[1-9A-HJ-NP-Za-km-z]+$/;
-  const trimmed = address.trim();
-  return BASE58_REGEX.test(trimmed) && trimmed.length >= 32 && trimmed.length <= 44;
+  const EVM_ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/;
+  return EVM_ADDRESS_REGEX.test(address.trim());
 }
 
 function validateXHandle(handle: string): boolean {
@@ -59,7 +58,7 @@ Deno.serve(async (req) => {
     // Validations
     if (!wallet_address || !validateWallet(wallet_address)) {
       return new Response(
-        JSON.stringify({ error: "Invalid Solana wallet address." }),
+        JSON.stringify({ error: "Invalid Ethereum wallet address." }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }

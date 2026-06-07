@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
 import { createServiceClient } from "@/lib/supabase";
-import { validateSolanaWallet, validateXHandle, validateDiscordHandle, normalizeXHandle, validateEssay } from "@/lib/validation";
+import { validateEthereumWallet, validateXHandle, validateDiscordHandle, normalizeXHandle } from "@/lib/validation";
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 3;
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Access code is required." }, { status: 400 });
     }
 
-    const walletErr = validateSolanaWallet(wallet_address ?? "");
+    const walletErr = validateEthereumWallet(wallet_address ?? "");
     if (walletErr) return NextResponse.json({ error: walletErr }, { status: 400 });
 
     const xErr = validateXHandle(twitter_handle ?? "");
@@ -58,17 +58,8 @@ export async function POST(req: NextRequest) {
     const discordErr = validateDiscordHandle(discord_handle ?? "");
     if (discordErr) return NextResponse.json({ error: discordErr }, { status: 400 });
 
-    const essay1Err = validateEssay(essay_alignment ?? "");
-    if (essay1Err) return NextResponse.json({ error: `Essay 1: ${essay1Err}` }, { status: 400 });
-
-    const essay2Err = validateEssay(essay_reputation ?? "");
-    if (essay2Err) return NextResponse.json({ error: `Essay 2: ${essay2Err}` }, { status: 400 });
-
-    const essay3Err = validateEssay(essay_value ?? "");
-    if (essay3Err) return NextResponse.json({ error: `Essay 3: ${essay3Err}` }, { status: 400 });
-
     if (!ack_magiceden_only) {
-      return NextResponse.json({ error: "You must acknowledge that minting happens on Magic Eden only." }, { status: 400 });
+      return NextResponse.json({ error: "You must acknowledge the minting safety notice." }, { status: 400 });
     }
 
     if (reference_links !== undefined && reference_links !== null) {

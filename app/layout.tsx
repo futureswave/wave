@@ -22,10 +22,18 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VANTH — NFT Collection on Solana",
-  description: "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style. Anime + cyberpunk NFT collection on Solana.",
+  title: {
+    default: "VANTH",
+    template: "%s — VANTH",
+  },
+  description: "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style. Anime + cyberpunk NFT collection.",
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
-    title: "VANTH — NFT Collection on Solana",
+    title: "VANTH",
     description: "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style.",
     type: "website",
   },

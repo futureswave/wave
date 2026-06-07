@@ -8,11 +8,11 @@ import { SOCIAL_LINKS } from "@/lib/config/links";
 const FAQS = [
   {
     q: "What is VANTH?",
-    a: "VANTH is an anime + cyberpunk NFT collection built on the Solana blockchain. It combines striking digital art with a long-term community and utility vision — including future staking and the VNTH token.",
+    a: "VANTH is an anime + cyberpunk NFT collection. It combines striking digital art with a long-term community and utility vision — including future staking and the VNTH token.",
   },
   {
     q: "Which blockchain is VANTH on?",
-    a: "VANTH is on Solana — fast, low transaction fees, and built for scale. No Ethereum gas wars here.",
+    a: "The blockchain details for VANTH are TBA. Follow official channels for announcements.",
   },
   {
     q: "Where do I mint?",
@@ -28,11 +28,11 @@ const FAQS = [
   },
   {
     q: "How do I join the whitelist?",
-    a: "Visit the Whitelist page on this site and fill out the form with your Solana wallet address, X username, and Discord username. No wallet connection required — just the address.",
+    a: "Visit the Whitelist page on this site and fill out the form with your Ethereum wallet address (MetaMask), X username, and Discord username. No wallet connection required — just the address.",
   },
   {
     q: "Do I need to connect my wallet to join the whitelist?",
-    a: "No. The whitelist form only requires your Solana wallet address (text input). You do not need to connect your wallet to any site to join the whitelist.",
+    a: "No. The whitelist form only requires your Ethereum wallet address (text input). You do not need to connect your wallet to any site to join the whitelist.",
   },
   {
     q: "Is staking live?",
@@ -48,7 +48,7 @@ const FAQS = [
   },
   {
     q: "What wallets are supported?",
-    a: "Phantom and Solflare are the recommended Solana wallets for VANTH. Both are supported for wallet connect on the Stake page (coming soon).",
+    a: "MetaMask is the recommended wallet for VANTH. It is supported on the Stake page (coming soon).",
   },
   {
     q: "Will there be royalties?",

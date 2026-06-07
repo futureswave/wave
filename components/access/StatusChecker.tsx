@@ -45,7 +45,7 @@ export function StatusChecker() {
         <input
           value={wallet}
           onChange={(e) => { setWallet(e.target.value); setState("idle"); }}
-          placeholder="Your Solana wallet address"
+          placeholder="Your Ethereum wallet address (0x...)"
           className="flex-1 bg-white/5 border border-white/10 rounded px-4 py-3 text-white placeholder:text-white/20 font-mono text-sm focus:outline-none focus:border-white/20 transition-colors"
           onKeyDown={(e) => e.key === "Enter" && handleCheck()}
         />

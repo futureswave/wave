@@ -7,11 +7,11 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 const TOP_FAQS = [
   {
     q: "What is VANTH?",
-    a: "VANTH is an anime + cyberpunk NFT collection on the Solana blockchain. It combines striking digital art with a long-term community and utility vision.",
+    a: "VANTH is an anime + cyberpunk NFT collection. It combines striking digital art with a long-term community and utility vision.",
   },
   {
     q: "Which blockchain is VANTH on?",
-    a: "VANTH is on Solana — fast, low-fee, and built for scale.",
+    a: "The blockchain details for VANTH are TBA. Follow official channels for announcements.",
   },
   {
     q: "Where do I mint?",

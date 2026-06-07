@@ -126,7 +126,7 @@ export function WhitelistForm() {
       {/* Wallet */}
       <div>
         <label htmlFor="wallet_address" className="block text-sm font-semibold text-slate-300 mb-1.5">
-          Solana Wallet Address <span className="text-red-400">*</span>
+          Ethereum Wallet Address <span className="text-red-400">*</span>
         </label>
         <input
           id="wallet_address"
@@ -134,7 +134,7 @@ export function WhitelistForm() {
           type="text"
           value={form.wallet_address}
           onChange={handleChange}
-          placeholder="e.g. 7xKXtg2CW..."
+          placeholder="0x..."
           className={`w-full bg-[#10101e] border rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:ring-2 transition-colors font-mono ${
             errors.wallet_address
               ? "border-red-500/60 focus:ring-red-500/40"
