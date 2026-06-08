@@ -34,7 +34,6 @@ export function Footer() {
                 {[
                   ["Roadmap", "/roadmap"],
                   ["Story", "/story"],
-                  ["Vision", "/vision"],
                   ["About", "/about"],
                   ["FAQ", "/faq"],
                 ].map(([label, href]) => (

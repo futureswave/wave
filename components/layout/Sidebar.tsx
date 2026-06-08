@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/roadmap", label: "Roadmap" },
   { href: "/story", label: "Story" },
-  { href: "/vision", label: "Vision" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
 ];
