@@ -13,85 +13,88 @@ const TEAM = [
   { role: "Developer", description: "Frontend, backend, and Web3 integrations. Builds the tools holders use." },
 ];
 
-
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      {/* Hero */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-20">
-        <div>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-6">About VANTH</h1>
-          <p className="text-white/50 leading-relaxed text-lg">
+    <div>
+      {/* Full-width banner hero */}
+      <div className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
+        <Image
+          src="/images/gallery/about.png"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          alt="About VANTH"
+          priority
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent" />
+        {/* Text overlay */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-10 lg:px-16 pb-12">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-wide text-white mb-4">About VANTH</h1>
+          <p className="text-white/60 max-w-2xl leading-relaxed text-base sm:text-lg">
             Vanth is a brand that defies conventions while staying true to the decentralized spirit of Web3. It doesn&apos;t just follow innovations—it aims to shape them. By transcending the boundaries of the digital realm, it seeks to touch your physical world as well.
           </p>
         </div>
-        <div className="relative h-72 sm:h-96 lg:h-full min-h-[320px] rounded-lg overflow-hidden">
-          <Image
-            src="/images/gallery/about.png"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-center"
-            alt="About VANTH"
-            priority
-          />
-        </div>
       </div>
 
-      {/* Content */}
-      <section className="mb-16 space-y-6">
-        <div className="bg-[#111111] border border-white/5 rounded p-6">
-          <p className="text-white/60 leading-relaxed">
-            For us, leadership is not a goal, but a responsibility. Because leadership requires vision, courage, and continuous growth.
-          </p>
-        </div>
-        <div className="bg-[#111111] border border-white/5 rounded p-6">
-          <p className="text-white/60 leading-relaxed">
-            A high-quality appearance equates to high-quality brand value. That is why Vanth was created with a professional artistic approach to ensure the highest quality.
-          </p>
-        </div>
-        <div className="bg-[#111111] border border-white/5 rounded p-6">
-          <p className="text-white/60 leading-relaxed">
-            We are proud to passionately deliver game integrations, reward-focused events, AI tools, and even more revolutionary experiences.
-          </p>
-        </div>
-        <div className="bg-[#111111] border border-white/5 rounded p-6">
-          <p className="text-white/60 leading-relaxed">
-            Owning Vanth is not merely about owning an asset. It means possessing your digital passport to the Vanth universe. This passport is the key to accessing countless opportunities, experiences, and privileges within our ecosystem.
-          </p>
-        </div>
-      </section>
+      {/* Page content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Content */}
+        <section className="mb-16 space-y-6">
+          <div className="bg-[#111111] border border-white/5 rounded p-6">
+            <p className="text-white/60 leading-relaxed">
+              For us, leadership is not a goal, but a responsibility. Because leadership requires vision, courage, and continuous growth.
+            </p>
+          </div>
+          <div className="bg-[#111111] border border-white/5 rounded p-6">
+            <p className="text-white/60 leading-relaxed">
+              A high-quality appearance equates to high-quality brand value. That is why Vanth was created with a professional artistic approach to ensure the highest quality.
+            </p>
+          </div>
+          <div className="bg-[#111111] border border-white/5 rounded p-6">
+            <p className="text-white/60 leading-relaxed">
+              We are proud to passionately deliver game integrations, reward-focused events, AI tools, and even more revolutionary experiences.
+            </p>
+          </div>
+          <div className="bg-[#111111] border border-white/5 rounded p-6">
+            <p className="text-white/60 leading-relaxed">
+              Owning Vanth is not merely about owning an asset. It means possessing your digital passport to the Vanth universe. This passport is the key to accessing countless opportunities, experiences, and privileges within our ecosystem.
+            </p>
+          </div>
+        </section>
 
-      {/* Team */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-8">The Team</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {TEAM.map((member) => (
-            <div
-              key={member.role}
-              className="bg-[#111111] border border-white/5 rounded p-6"
-            >
-              <div className="inline-flex items-center px-3 py-1 rounded bg-white/5 border border-white/10 mb-3">
-                <span className="text-white/50 text-xs font-bold tracking-wider font-mono">{member.role}</span>
+        {/* Team */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold text-white mb-8">The Team</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {TEAM.map((member) => (
+              <div
+                key={member.role}
+                className="bg-[#111111] border border-white/5 rounded p-6"
+              >
+                <div className="inline-flex items-center px-3 py-1 rounded bg-white/5 border border-white/10 mb-3">
+                  <span className="text-white/50 text-xs font-bold tracking-wider font-mono">{member.role}</span>
+                </div>
+                <p className="text-white/40 text-sm leading-relaxed">{member.description}</p>
               </div>
-              <p className="text-white/40 text-sm leading-relaxed">{member.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
 
-      {/* CTA */}
-      <div className="bg-white/[0.04] border border-white/8 rounded p-8 text-center">
-        <h2 className="text-xl font-bold text-white mb-2">Verify Official Links</h2>
-        <p className="text-white/40 text-sm mb-6">
-          Always use links from this site. Never trust links from DMs or unofficial sources.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Button href="/social" variant="secondary" size="sm">
-            View Official Links
-          </Button>
-          <Button href="/whitelist" variant="primary" size="sm">
-            Request Access
-          </Button>
+        {/* CTA */}
+        <div className="bg-white/[0.04] border border-white/8 rounded p-8 text-center">
+          <h2 className="text-xl font-bold text-white mb-2">Verify Official Links</h2>
+          <p className="text-white/40 text-sm mb-6">
+            Always use links from this site. Never trust links from DMs or unofficial sources.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Button href="/social" variant="secondary" size="sm">
+              View Official Links
+            </Button>
+            <Button href="/whitelist" variant="primary" size="sm">
+              Request Access
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ExternalLink, Zap } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 import { SOCIAL_LINKS, SITE_CONFIG } from "@/lib/config/links";
 
 export function Footer() {
@@ -10,7 +11,7 @@ export function Footer() {
           {/* Brand */}
           <div className="flex-1 max-w-xs">
             <div className="flex items-center gap-2 mb-3">
-              <Zap className="w-4 h-4 text-white/50" />
+              <Image src="/images/gallery/logo.png" width={24} height={24} alt="VANTH" className="opacity-70" />
               <span className="text-lg font-black tracking-[0.2em] text-white/80 font-mono">VANTH</span>
             </div>
             <p className="text-white/25 text-sm leading-relaxed mb-4">
