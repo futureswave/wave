@@ -3,12 +3,12 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 const PREVIEW_CARDS = [
-  { num: "01", title: "Brand",     image: "/images/gallery/1.jpg" },
-  { num: "02", title: "Art",       image: "/images/gallery/2.jpg" },
-  { num: "03", title: "Community", image: "/images/gallery/3.jpg" },
-  { num: "04", title: "Token",     image: "/images/gallery/4.jpg" },
-  { num: "05", title: "AI & AR",   image: "/images/gallery/5.jpg" },
-  { num: "06", title: "Game",      image: "/images/gallery/6.jpg" },
+  { num: "01", title: "Brand",     image: "/images/gallery/vision1.png" },
+  { num: "02", title: "Art",       image: "/images/gallery/vision2.jpg" },
+  { num: "03", title: "Community", image: "/images/gallery/vision3.jpg" },
+  { num: "04", title: "Token",     image: "/images/gallery/vision4.jpg" },
+  { num: "05", title: "AI & AR",   image: "/images/gallery/vision5.png" },
+  { num: "06", title: "Game",      image: "/images/gallery/vision6.png" },
 ];
 
 export function RoadmapPreview() {
