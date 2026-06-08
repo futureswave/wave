@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Shield, Eye, Target } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export const metadata = {
@@ -14,45 +13,53 @@ const TEAM = [
   { role: "Developer", description: "Frontend, backend, and Web3 integrations. Builds the tools holders use." },
 ];
 
-const VALUES = [
-  {
-    icon: Eye,
-    title: "Transparency",
-    description: "We publish our roadmap, update it openly, and communicate changes before they happen — not after.",
-  },
-  {
-    icon: Shield,
-    title: "Safety-First Communication",
-    description: "We will never DM you first. Every official link is verified on this page. Anti-scam posture is core to our identity.",
-  },
-  {
-    icon: Target,
-    title: "Long-Term Focus",
-    description: "VANTH is not a quick flip. We are building art, community, and utility that holders value for the long haul.",
-  },
-];
 
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">About VANTH</h1>
-        <p className="text-white/40 max-w-xl mx-auto leading-relaxed">
-          VANTH is built by a small, focused team with a shared belief: that great NFT projects earn trust through transparency, not hype.
-        </p>
+      {/* Hero */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-20">
+        <div>
+          <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-6">About VANTH</h1>
+          <p className="text-white/50 leading-relaxed text-lg">
+            Vanth is a brand that defies conventions while staying true to the decentralized spirit of Web3. It doesn&apos;t just follow innovations—it aims to shape them. By transcending the boundaries of the digital realm, it seeks to touch your physical world as well.
+          </p>
+        </div>
+        <div className="relative h-72 sm:h-96 lg:h-full min-h-[320px] rounded-lg overflow-hidden">
+          <Image
+            src="/images/gallery/about.png"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-center"
+            alt="About VANTH"
+            priority
+          />
+        </div>
       </div>
 
-      {/* Image */}
-      <div className="relative h-64 sm:h-80 rounded overflow-hidden mb-16">
-        <Image
-          src="/images/gallery/1.jpg"
-          fill
-          sizes="100vw"
-          className="object-cover"
-          alt="VANTH NFT"
-          priority
-        />
-      </div>
+      {/* Content */}
+      <section className="mb-16 space-y-6">
+        <div className="bg-[#111111] border border-white/5 rounded p-6">
+          <p className="text-white/60 leading-relaxed">
+            For us, leadership is not a goal, but a responsibility. Because leadership requires vision, courage, and continuous growth.
+          </p>
+        </div>
+        <div className="bg-[#111111] border border-white/5 rounded p-6">
+          <p className="text-white/60 leading-relaxed">
+            A high-quality appearance equates to high-quality brand value. That is why Vanth was created with a professional artistic approach to ensure the highest quality.
+          </p>
+        </div>
+        <div className="bg-[#111111] border border-white/5 rounded p-6">
+          <p className="text-white/60 leading-relaxed">
+            We are proud to passionately deliver game integrations, reward-focused events, AI tools, and even more revolutionary experiences.
+          </p>
+        </div>
+        <div className="bg-[#111111] border border-white/5 rounded p-6">
+          <p className="text-white/60 leading-relaxed">
+            Owning Vanth is not merely about owning an asset. It means possessing your digital passport to the Vanth universe. This passport is the key to accessing countless opportunities, experiences, and privileges within our ecosystem.
+          </p>
+        </div>
+      </section>
 
       {/* Team */}
       <section className="mb-16">
@@ -67,25 +74,6 @@ export default function AboutPage() {
                 <span className="text-white/50 text-xs font-bold tracking-wider font-mono">{member.role}</span>
               </div>
               <p className="text-white/40 text-sm leading-relaxed">{member.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-8">Our Values</h2>
-        <div className="space-y-4">
-          {VALUES.map((val) => (
-            <div
-              key={val.title}
-              className="flex items-start gap-4 bg-[#111111] border border-white/5 rounded p-6"
-            >
-              <val.icon className="w-6 h-6 text-white/40 shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-bold text-white mb-1">{val.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{val.description}</p>
-              </div>
             </div>
           ))}
         </div>
