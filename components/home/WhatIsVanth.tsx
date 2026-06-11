@@ -16,9 +16,9 @@ const cards = [
   },
   {
     icon: Map,
-    title: "Transparent Roadmap",
+    title: "Transparent Vision",
     description:
-      "Clear milestones, measurable delivery. Our roadmap evolves openly — every update is published on official channels.",
+      "Clear milestones, measurable delivery. Our vision evolves openly — every update is published on official channels.",
     gradientColor: "#1a1a1a",
     beamFrom: "rgba(255,255,255,0.2)",
     beamTo: "rgba(255,255,255,0.04)",

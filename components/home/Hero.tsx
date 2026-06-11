@@ -60,15 +60,6 @@ export function Hero() {
             <ArrowRight className="w-4 h-4" />
           </Link>
 
-          {/* Secondary */}
-          <Link
-            href="/gallery"
-            className="group flex items-center gap-2 px-8 py-4 rounded border border-white/12 text-white/60 font-medium text-base hover:border-white/25 hover:text-white transition-all duration-200"
-          >
-            View Gallery
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-
         </div>
 
         {/* Scroll hint */}

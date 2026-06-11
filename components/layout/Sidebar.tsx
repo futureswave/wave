@@ -10,7 +10,7 @@ import { ComingSoonBadge } from "@/components/ui/TBABadge";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/roadmap", label: "Roadmap" },
+  { href: "/roadmap", label: "Our Vision" },
   { href: "/story", label: "Story" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
@@ -71,79 +71,90 @@ export function Sidebar() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="fixed inset-0 z-[100] bg-[#0a0a0a] flex"
-          >
-            <button
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="fixed inset-0 z-[99] bg-black/50"
               onClick={() => setOpen(false)}
-              className="absolute top-5 right-6 p-2 text-white/40 hover:text-white transition-colors"
-              aria-label="Close menu"
-            >
-              <X className="w-6 h-6" />
-            </button>
+            />
 
-            <Link
-              href="/"
-              onClick={() => setOpen(false)}
-              className="absolute top-5 left-6 flex items-center gap-2 hover:opacity-80 transition-opacity"
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="fixed inset-y-0 left-0 w-72 z-[100] bg-[#0a0a0a] border-r border-white/[0.06] flex flex-col"
             >
-              <Image
-                src="/images/gallery/logo.png"
-                alt="VANTH"
-                width={36}
-                height={36}
-                className="w-9 h-9 object-contain"
-              />
-              <span className="text-sm font-black tracking-[0.3em] text-white/60 font-mono">
-                VANTH
-              </span>
-            </Link>
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-5 right-4 p-2 text-white/40 hover:text-white transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
 
-            <nav className="flex flex-col justify-center pl-10 sm:pl-16 gap-1">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: i * 0.04 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className={`block text-5xl sm:text-6xl font-black tracking-tight leading-tight transition-colors duration-150 ${
-                      pathname === link.href
-                        ? "text-white"
-                        : "text-white/25 hover:text-white/70"
-                    }`}
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="absolute top-5 left-6 flex items-center gap-2 hover:opacity-80 transition-opacity"
+              >
+                <Image
+                  src="/images/gallery/logo.png"
+                  alt="VANTH"
+                  width={36}
+                  height={36}
+                  className="w-9 h-9 object-contain"
+                />
+                <span className="text-sm font-black tracking-[0.3em] text-white/60 font-mono">
+                  VANTH
+                </span>
+              </Link>
+
+              <nav className="flex flex-col justify-center pl-10 gap-1 flex-1">
+                {NAV_LINKS.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.04 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`block text-4xl font-black tracking-tight leading-tight transition-colors duration-150 ${
+                        pathname === link.href
+                          ? "text-white"
+                          : "text-white/25 hover:text-white/70"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
 
-            <div className="absolute bottom-8 left-10 sm:left-16 flex items-center gap-4">
-              <Link
-                href="/stake"
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-mono border border-white/10 text-white/40 hover:border-white/20 hover:text-white/60 transition-all rounded"
-              >
-                Stake <ComingSoonBadge />
-              </Link>
+              <div className="pb-8 pl-10 flex flex-col gap-3">
+                <Link
+                  href="/stake"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-mono border border-white/10 text-white/40 hover:border-white/20 hover:text-white/60 transition-all rounded w-fit"
+                >
+                  Stake <ComingSoonBadge />
+                </Link>
 
-              <Link
-                href="/whitelist"
-                onClick={() => setOpen(false)}
-                className="px-5 py-2 text-sm font-bold bg-white text-black hover:bg-white/90 transition-colors rounded"
-              >
-                Request Access
-              </Link>
-            </div>
-          </motion.div>
+                <Link
+                  href="/whitelist"
+                  onClick={() => setOpen(false)}
+                  className="px-5 py-2 text-sm font-bold bg-white text-black hover:bg-white/90 transition-colors rounded w-fit"
+                >
+                  Request Access
+                </Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

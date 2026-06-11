@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Shield } from "lucide-react";
 import { AccessFlow } from "@/components/access/AccessFlow";
 import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
@@ -9,8 +10,21 @@ export const metadata = {
 
 export default function WhitelistPage() {
   return (
-    <div className="min-h-screen">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
+    <div className="relative min-h-screen">
+      <div
+        className="pointer-events-none fixed top-0 right-0 bottom-0 left-14 z-0"
+        aria-hidden
+      >
+        <Image
+          src="/images/gallery/background.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0a]/75" />
+      </div>
+
+      <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
         {/* Header */}
         <div className="text-center mb-10">
           <p className="text-xs font-mono tracking-widest uppercase text-white/30 mb-3">

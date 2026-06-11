@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ChevronDown, ShieldAlert } from "lucide-react";
 import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
 import { SOCIAL_LINKS } from "@/lib/config/links";
@@ -96,7 +97,21 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function FAQPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="relative">
+      <div
+        className="pointer-events-none fixed top-0 right-0 bottom-0 left-14 z-0"
+        aria-hidden
+      >
+        <Image
+          src="/images/gallery/background.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0a]/75" />
+      </div>
+
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-12">
         <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">FAQ</h1>
         <p className="text-white/40 max-w-lg mx-auto">
@@ -122,6 +137,7 @@ export default function FAQPage() {
           </a>{" "}
           and ask the community or team.
         </p>
+      </div>
       </div>
     </div>
   );
