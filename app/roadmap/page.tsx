@@ -2,49 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const VISION_CARDS = [
-  {
-    num: "01",
-    title: "Brand",
-    image: "/images/gallery/vision1.png",
-    description: "A Web3 brand that defies conventions and shapes the future.",
-  },
-  {
-    num: "02",
-    title: "Art",
-    image: "/images/gallery/vision2.jpg",
-    description: "High-quality anime + cyberpunk artwork crafted with vision.",
-  },
-  {
-    num: "03",
-    title: "Community",
-    image: "/images/gallery/vision3.jpg",
-    description: "DAO, exclusive events, and reward-focused holder experiences.",
-  },
-  {
-    num: "04",
-    title: "Token",
-    image: "/images/gallery/vision4.jpg",
-    description: "VNTH Token airdrop and staking for long-term holders.",
-  },
-  {
-    num: "05",
-    title: "AI & AR",
-    image: "/images/gallery/vision5.png",
-    description: "Animate your NFT in the real world with AI and AR integration.",
-  },
-  {
-    num: "06",
-    title: "Game",
-    image: "/images/gallery/vision6.png",
-    description: "Play-to-earn game featuring NFTs as in-game characters.",
-  },
-];
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import { VISION_CARDS } from "@/lib/vision-cards";
+import { VisionModal } from "@/components/ui/VisionModal";
 
 export default function RoadmapPage() {
   const [active, setActive] = useState(0);
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
 
   const prev = () => setActive((i) => (i - 1 + VISION_CARDS.length) % VISION_CARDS.length);
   const next = () => setActive((i) => (i + 1) % VISION_CARDS.length);
@@ -71,7 +35,13 @@ export default function RoadmapPage() {
             return (
               <button
                 key={card.num}
-                onClick={() => setActive(i)}
+                onClick={() => {
+                  if (isActive) {
+                    setModalIndex(i);
+                  } else {
+                    setActive(i);
+                  }
+                }}
                 className={`relative shrink-0 rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer
                   ${isActive ? "w-[280px] sm:w-[300px] h-[420px] scale-105 z-10 ring-1 ring-white/20" : "w-[200px] sm:w-[220px] h-[340px] scale-95 opacity-50 z-0"}
                 `}
@@ -85,6 +55,13 @@ export default function RoadmapPage() {
                   alt={card.title}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+                {isActive && (
+                  <div className="absolute top-3 right-3 p-1.5 rounded-full bg-black/40 text-white/50">
+                    <Maximize2 className="w-3.5 h-3.5" />
+                  </div>
+                )}
+
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <p className="text-white/20 font-mono text-4xl font-black leading-none mb-2">{card.num}</p>
                   <h3 className="text-white font-black text-xl tracking-wide mb-1">{card.title}</h3>
@@ -125,6 +102,13 @@ export default function RoadmapPage() {
           ))}
         </div>
       </div>
+
+      {modalIndex !== null && (
+        <VisionModal
+          card={VISION_CARDS[modalIndex]}
+          onClose={() => setModalIndex(null)}
+        />
+      )}
     </div>
   );
 }
