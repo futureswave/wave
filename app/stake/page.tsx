@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Shield, Wallet, Grid3x3, TrendingUp, Gift, AlertTriangle, ChevronRight } from "lucide-react";
 import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
 import { ComingSoonBadge, TBABadge } from "@/components/ui/TBABadge";
@@ -54,7 +55,21 @@ export default function StakePage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="relative">
+      <div
+        className="pointer-events-none fixed top-0 right-0 bottom-0 left-14 z-0"
+        aria-hidden
+      >
+        <Image
+          src="/images/gallery/background.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0a]/75" />
+      </div>
+
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-2 mb-4">
           <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white">Stake</h1>
@@ -143,6 +158,7 @@ export default function StakePage() {
           <span className="text-white/70 font-semibold">Only trust the contract address published on this website.</span>{" "}
           We will never announce a staking contract address through DMs. Always verify here first.
         </p>
+      </div>
       </div>
     </div>
   );

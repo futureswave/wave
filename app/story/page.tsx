@@ -47,7 +47,21 @@ And in exchange, the VANTH offered something rare in any dimension: *loyalty wit
 
 export default function StoryPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="relative">
+      <div
+        className="pointer-events-none fixed top-0 right-0 bottom-0 left-14 z-0"
+        aria-hidden
+      >
+        <Image
+          src="/images/gallery/background.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0a]/75" />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-16">
         <p className="text-xs font-mono tracking-widest uppercase text-white/30 mb-3">Lore</p>
         <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">The Story of VANTH</h1>
@@ -124,6 +138,7 @@ export default function StoryPage() {
             Request Access
           </Button>
         </div>
+      </div>
       </div>
     </div>
   );

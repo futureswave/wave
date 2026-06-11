@@ -14,7 +14,21 @@ export default function RoadmapPage() {
   const next = () => setActive((i) => (i + 1) % VISION_CARDS.length);
 
   return (
-    <div>
+    <div className="relative">
+      <div
+        className="pointer-events-none fixed top-0 right-0 bottom-0 left-14 z-0"
+        aria-hidden
+      >
+        <Image
+          src="/images/gallery/background.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0a]/75" />
+      </div>
+
+      <div className="relative z-10">
       {/* Hero */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 text-center">
         <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">Our Vision</h1>
@@ -109,6 +123,7 @@ export default function RoadmapPage() {
           onClose={() => setModalIndex(null)}
         />
       )}
+      </div>
     </div>
   );
 }

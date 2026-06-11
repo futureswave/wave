@@ -15,7 +15,21 @@ const TEAM = [
 
 export default function AboutPage() {
   return (
-    <div>
+    <div className="relative">
+      <div
+        className="pointer-events-none fixed top-0 right-0 bottom-0 left-14 z-0"
+        aria-hidden
+      >
+        <Image
+          src="/images/gallery/background.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0a]/75" />
+      </div>
+
+      <div className="relative z-10">
       {/* Full-width banner hero */}
       <div className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
         <Image
@@ -96,6 +110,7 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
