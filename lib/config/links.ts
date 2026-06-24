@@ -4,8 +4,8 @@
 export const SOCIAL_LINKS = {
   x: {
     label: "X (Twitter)",
-    url: "https://x.com/joinvanth",
-    handle: "@joinvanth",
+    url: "https://x.com/vanthverse",
+    handle: "@vanthverse",
   },
   discord: {
     label: "Discord",
