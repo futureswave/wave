@@ -8,19 +8,19 @@ export const VISION_CARDS = [
   {
     num: "02",
     title: "Art",
-    image: "/images/gallery/vision2.jpg",
+    image: "/images/gallery/vision2.png",
     description: "High-quality anime + cyberpunk artwork crafted with vision.",
   },
   {
     num: "03",
     title: "Community",
-    image: "/images/gallery/vision3.jpg",
+    image: "/images/gallery/vision3.png",
     description: "DAO, exclusive events, and reward-focused holder experiences.",
   },
   {
     num: "04",
     title: "Token",
-    image: "/images/gallery/vision4.jpg",
+    image: "/images/gallery/vision4.png",
     description: "VNTH Token airdrop and staking for long-term holders.",
   },
   {
