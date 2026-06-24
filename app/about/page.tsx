@@ -6,13 +6,6 @@ export const metadata = {
   description: "Meet the VANTH team. Transparent, safety-first, long-term focused.",
 };
 
-const TEAM = [
-  { role: "CEO", description: "Vision, strategy, and community leadership. Oversees the project direction and partnerships." },
-  { role: "CTO", description: "Technical architecture, smart contracts, staking system, and website infrastructure." },
-  { role: "Designer", description: "Art direction, NFT design, and the unique anime + cyberpunk visual identity of VANTH." },
-  { role: "Developer", description: "Frontend, backend, and Web3 integrations. Builds the tools holders use." },
-];
-
 export default function AboutPage() {
   return (
     <div className="relative">
@@ -74,24 +67,6 @@ export default function AboutPage() {
             <p className="text-white/60 leading-relaxed">
               Owning Vanth is not merely about owning an asset. It means possessing your digital passport to the Vanth universe. This passport is the key to accessing countless opportunities, experiences, and privileges within our ecosystem.
             </p>
-          </div>
-        </section>
-
-        {/* Team */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-8">The Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {TEAM.map((member) => (
-              <div
-                key={member.role}
-                className="bg-[#111111] border border-white/5 rounded p-6"
-              >
-                <div className="inline-flex items-center px-3 py-1 rounded bg-white/5 border border-white/10 mb-3">
-                  <span className="text-white/50 text-xs font-bold tracking-wider font-mono">{member.role}</span>
-                </div>
-                <p className="text-white/40 text-sm leading-relaxed">{member.description}</p>
-              </div>
-            ))}
           </div>
         </section>
 
