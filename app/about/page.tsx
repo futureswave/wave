@@ -22,30 +22,41 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-[#0a0a0a]/75" />
       </div>
 
-      <div className="relative z-10">
-      {/* Full-width banner hero */}
-      <div className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
-        <Image
-          src="/images/gallery/about.png"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-          alt="About VANTH"
-          priority
-        />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent" />
-        {/* Text overlay */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-10 lg:px-16 pb-12">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-wide text-white mb-4">About VANTH</h1>
-          <p className="text-white/60 max-w-2xl leading-relaxed text-base sm:text-lg">
-            Vanth is a brand that defies conventions while staying true to the decentralized spirit of Web3. It doesn&apos;t just follow innovations—it aims to shape them. By transcending the boundaries of the digital realm, it seeks to touch your physical world as well.
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Minimal page header */}
+        <div className="pt-16 pb-10 text-center">
+          <span className="text-[10px] tracking-[0.35em] text-white/25 uppercase font-medium mb-5 block">
+            The Collective
+          </span>
+          <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-black tracking-wide text-white mb-6 leading-none">
+            About VANTH
+          </h1>
+          <div className="flex items-center justify-center gap-3 mb-7">
+            <div className="h-px w-16 bg-white/10" />
+            <div className="w-[3px] h-[3px] rounded-full bg-white/20" />
+            <div className="h-px w-16 bg-white/10" />
+          </div>
+          <p className="text-white/45 max-w-lg mx-auto text-base sm:text-lg leading-relaxed">
+            A brand that defies conventions while staying true to the decentralized spirit of Web3. It doesn&apos;t just follow innovations — it aims to shape them.
           </p>
         </div>
-      </div>
 
-      {/* Page content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Featured image — framed, contained */}
+        <div className="mb-16">
+          <div className="relative w-full aspect-[16/7] overflow-hidden rounded border border-white/[0.07] shadow-[0_8px_48px_rgba(0,0,0,0.7)]">
+            <Image
+              src="/images/gallery/about.png"
+              fill
+              sizes="(max-width: 768px) 100vw, 896px"
+              className="object-cover object-center"
+              alt="About VANTH"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/25 to-transparent" />
+          </div>
+        </div>
+
         {/* Content */}
         <section className="mb-16 space-y-6">
           <div className="bg-[#111111] border border-white/5 rounded p-6">
@@ -71,7 +82,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <div className="bg-white/[0.04] border border-white/8 rounded p-8 text-center">
+        <div className="bg-white/[0.04] border border-white/8 rounded p-8 text-center mb-16">
           <h2 className="text-xl font-bold text-white mb-2">Verify Official Links</h2>
           <p className="text-white/40 text-sm mb-6">
             Always use links from this site. Never trust links from DMs or unofficial sources.
@@ -85,7 +96,7 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
-      </div>
+
       </div>
     </div>
   );
