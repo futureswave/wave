@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
 import { createServiceClient } from "@/lib/supabase";
-import { validateEthereumWallet, validateXHandle, validateDiscordHandle, validateEssay, normalizeXHandle } from "@/lib/validation";
+import { validateEthereumWallet, validateXHandle, validateDiscordHandle, normalizeXHandle } from "@/lib/validation";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 function hashIp(ip: string): string {
@@ -43,14 +43,11 @@ export async function POST(req: NextRequest) {
     const discordErr = validateDiscordHandle(discord_handle ?? "");
     if (discordErr) return NextResponse.json({ error: discordErr }, { status: 400 });
 
-    const alignmentErr = validateEssay(typeof essay_alignment === "string" ? essay_alignment : "");
-    if (alignmentErr) return NextResponse.json({ error: `Alignment essay: ${alignmentErr}` }, { status: 400 });
-
-    const reputationErr = validateEssay(typeof essay_reputation === "string" ? essay_reputation : "");
-    if (reputationErr) return NextResponse.json({ error: `Reputation essay: ${reputationErr}` }, { status: 400 });
-
-    const valueErr = validateEssay(typeof essay_value === "string" ? essay_value : "");
-    if (valueErr) return NextResponse.json({ error: `Value essay: ${valueErr}` }, { status: 400 });
+    // Essays are optional in the current flow (the form no longer collects them).
+    // Coerce to safe strings so downstream .trim()/insert can't crash on undefined.
+    const essayAlignment = typeof essay_alignment === "string" ? essay_alignment : "";
+    const essayReputation = typeof essay_reputation === "string" ? essay_reputation : "";
+    const essayValue = typeof essay_value === "string" ? essay_value : "";
 
     if (!ack_magiceden_only) {
       return NextResponse.json({ error: "You must acknowledge the minting safety notice." }, { status: 400 });
@@ -103,9 +100,9 @@ export async function POST(req: NextRequest) {
         applicant_wallet: wallet_address.trim(),
         twitter_handle: normalizeXHandle(twitter_handle),
         discord_handle: discord_handle.trim(),
-        essay_alignment: essay_alignment.trim(),
-        essay_reputation: essay_reputation.trim(),
-        essay_value: essay_value.trim(),
+        essay_alignment: essayAlignment.trim(),
+        essay_reputation: essayReputation.trim(),
+        essay_value: essayValue.trim(),
         reference_links: reference_links ?? null,
         ip_hash: ipHash,
         user_agent: req.headers.get("user-agent")?.slice(0, 200) ?? null,
