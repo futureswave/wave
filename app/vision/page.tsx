@@ -1,110 +1,128 @@
-import { Palette, Users, Layers, XCircle } from "lucide-react";
-import { TBABadge } from "@/components/ui/TBABadge";
-import { Button } from "@/components/ui/Button";
+"use client";
 
-export const metadata = {
-  title: "Vision — VANTH NFT Collection",
-  description: "The long-term vision of VANTH. Art, community, and utility — without hype.",
-};
-
-const PILLARS = [
-  {
-    icon: Palette,
-    title: "Art & Identity Expansion",
-    description:
-      "VANTH's visual universe is designed to grow. New art, collaborations, and editions will deepen the collection's identity over time — always rooted in the anime + cyberpunk aesthetic that defines us.",
-    color: "text-white/60",
-    bg: "bg-white/3 border-white/8",
-  },
-  {
-    icon: Users,
-    title: "Community Experiences",
-    description:
-      "Holders are not just owners — they are the community. We envision events, community votes, and shared experiences that make holding a VANTH NFT meaningful beyond the art itself.",
-    color: "text-white/60",
-    bg: "bg-white/3 border-white/8",
-  },
-  {
-    icon: Layers,
-    title: "Utility Exploration",
-    description:
-      "Staking and the VNTH token are the first step. We approach utility with care — only shipping what we can stand behind. Mechanics are TBA, and we will not announce what we cannot deliver.",
-    color: "text-white/60",
-    bg: "bg-white/3 border-white/8",
-    badge: <TBABadge label="VNTH TBA" />,
-  },
-];
-
-const WONT_DO = [
-  "No hidden mints or surprise supply changes",
-  "No fake giveaways or airdrop scams",
-  "No promises of financial returns or investment advice",
-  "No DMs from the team asking you to connect your wallet",
-  "No rug — the team is public and accountable",
-];
+import { useState } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import { VISION_CARDS } from "@/lib/vision-cards";
+import { VisionModal } from "@/components/ui/VisionModal";
 
 export default function VisionPage() {
+  const [active, setActive] = useState(0);
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
+
+  const prev = () => setActive((i) => (i - 1 + VISION_CARDS.length) % VISION_CARDS.length);
+  const next = () => setActive((i) => (i + 1) % VISION_CARDS.length);
+
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="text-center mb-16">
+    <div className="relative">
+      <div
+        className="pointer-events-none fixed top-0 right-0 bottom-0 left-14 z-0"
+        aria-hidden
+      >
+        <Image
+          src="/images/gallery/background.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0a0a0a]/75" />
+      </div>
+
+      <div className="relative z-10">
+      {/* Hero */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 text-center">
         <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">Our Vision</h1>
         <p className="text-white/40 max-w-xl mx-auto leading-relaxed">
-          VANTH is a long-term project. We are building something that matters — not chasing short-term hype.
-          Here is what we are working toward, and what we commit to never doing.
+          Six pillars that define where Vanth is headed — and what we are building for our holders.
         </p>
       </div>
 
-      {/* Vision statement */}
-      <div className="bg-white/[0.04] border border-white/8 rounded p-8 mb-16 text-center">
-        <blockquote className="text-xl sm:text-2xl font-semibold text-white leading-relaxed">
-          &ldquo;To build an NFT ecosystem that earns its community&apos;s trust through consistent art, transparent operations, and utility that delivers on its promises.&rdquo;
-        </blockquote>
-        <p className="text-white/30 text-sm mt-4 font-mono">— VANTH Team</p>
-      </div>
+      {/* Carousel */}
+      <div className="relative px-4 sm:px-10 lg:px-20 pb-24">
+        <div className="flex items-center justify-center gap-4 overflow-hidden">
+          {VISION_CARDS.map((card, i) => {
+            const offset = i - active;
+            const isActive = offset === 0;
+            const isVisible = Math.abs(offset) <= 2;
+            if (!isVisible) return null;
 
-      {/* Pillars */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-8">Three Pillars</h2>
-        <div className="space-y-4">
-          {PILLARS.map((p) => (
-            <div key={p.title} className={`border rounded p-6 ${p.bg}`}>
-              <div className="flex items-start gap-4">
-                <p.icon className={`w-6 h-6 ${p.color} shrink-0 mt-0.5`} />
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="font-bold text-white">{p.title}</h3>
-                    {p.badge}
+            return (
+              <button
+                key={card.num}
+                onClick={() => {
+                  if (isActive) {
+                    setModalIndex(i);
+                  } else {
+                    setActive(i);
+                  }
+                }}
+                className={`relative shrink-0 rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer
+                  ${isActive ? "w-[280px] sm:w-[300px] h-[420px] scale-105 z-10 ring-1 ring-white/20" : "w-[200px] sm:w-[220px] h-[340px] scale-95 opacity-50 z-0"}
+                `}
+                style={{ outline: "none" }}
+              >
+                <Image
+                  src={card.image}
+                  fill
+                  sizes="300px"
+                  className="object-cover"
+                  alt={card.title}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+                {isActive && (
+                  <div className="absolute top-3 right-3 p-1.5 rounded-full bg-black/40 text-white/50">
+                    <Maximize2 className="w-3.5 h-3.5" />
                   </div>
-                  <p className="text-white/40 text-sm leading-relaxed">{p.description}</p>
+                )}
+
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="text-white/20 font-mono text-4xl font-black leading-none mb-2">{card.num}</p>
+                  <h3 className="text-white font-black text-xl tracking-wide mb-1">{card.title}</h3>
+                  {isActive && (
+                    <p className="text-white/50 text-xs leading-relaxed">{card.description}</p>
+                  )}
                 </div>
-              </div>
-            </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Prev / Next */}
+        <button
+          onClick={prev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-white/40 hover:text-white transition-colors"
+          aria-label="Previous"
+        >
+          <ChevronLeft className="w-7 h-7" />
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white/40 hover:text-white transition-colors"
+          aria-label="Next"
+        >
+          <ChevronRight className="w-7 h-7" />
+        </button>
+
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {VISION_CARDS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`rounded-full transition-all duration-300 ${i === active ? "w-6 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"}`}
+              aria-label={`Go to ${i + 1}`}
+            />
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* What we won't do */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-white mb-3">What We Won&apos;t Do</h2>
-        <p className="text-white/40 text-sm mb-6">
-          Trust is built by what you refuse to do as much as what you do. Here are our commitments.
-        </p>
-        <div className="bg-[#111111] border border-white/5 rounded p-6">
-          <ul className="space-y-3">
-            {WONT_DO.map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-white/25 shrink-0 mt-0.5" />
-                <span className="text-white/40 text-sm">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <div className="text-center">
-        <Button href="/whitelist" variant="primary" size="lg">
-          Request Access
-        </Button>
+      {modalIndex !== null && (
+        <VisionModal
+          card={VISION_CARDS[modalIndex]}
+          onClose={() => setModalIndex(null)}
+        />
+      )}
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export function RoadmapPreview() {
           <p className="text-white/35 text-base">Six pillars. One universe.</p>
         </div>
         <Link
-          href="/roadmap"
+          href="/vision"
           className="hidden sm:flex items-center gap-2 text-white/50 hover:text-white font-mono text-sm transition-colors group"
         >
           Explore Vision <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -50,7 +50,7 @@ export function RoadmapPreview() {
       </div>
 
       <div className="mt-8 text-center sm:hidden">
-        <Link href="/roadmap" className="inline-flex items-center gap-2 text-white/50 font-mono text-sm">
+        <Link href="/vision" className="inline-flex items-center gap-2 text-white/50 font-mono text-sm">
           Explore Vision <ArrowRight className="w-4 h-4" />
         </Link>
       </div>

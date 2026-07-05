@@ -9,7 +9,6 @@ const ROUTES = [
   "/story",
   "/vision",
   "/gallery",
-  "/roadmap",
   "/faq",
   "/social",
   "/stake",

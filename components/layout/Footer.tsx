@@ -32,7 +32,7 @@ export function Footer() {
               <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-3">Pages</h4>
               <ul className="space-y-2">
                 {[
-                  ["Roadmap", "/roadmap"],
+                  ["Vision", "/vision"],
                   ["About", "/about"],
                   ["FAQ", "/faq"],
                 ].map(([label, href]) => (
