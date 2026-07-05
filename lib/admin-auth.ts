@@ -1,8 +1,17 @@
 import { cookies } from "next/headers";
-import { createHmac } from "crypto";
+import { createHmac, timingSafeEqual } from "crypto";
+
+const TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 7; // 7 days
 
 function getSecret(): string {
-  return process.env.ADMIN_SECRET ?? "dev-fallback-secret-change-in-prod";
+  const secret = process.env.ADMIN_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("ADMIN_SECRET is not set. Refusing to run without a signing secret.");
+    }
+    return "dev-fallback-secret-change-in-prod";
+  }
+  return secret;
 }
 
 export function signAdminToken(): string {
@@ -17,7 +26,21 @@ export function verifyAdminToken(token: string): boolean {
   const payload = token.slice(0, dot);
   const sig = token.slice(dot + 1);
   const expected = createHmac("sha256", getSecret()).update(payload).digest("hex");
-  return sig === expected;
+
+  // Constant-time signature comparison
+  const sigBuf = Buffer.from(sig);
+  const expectedBuf = Buffer.from(expected);
+  if (sigBuf.length !== expectedBuf.length || !timingSafeEqual(sigBuf, expectedBuf)) {
+    return false;
+  }
+
+  // Reject expired tokens
+  const issuedAt = Number(payload);
+  if (!Number.isFinite(issuedAt) || Date.now() - issuedAt > TOKEN_TTL_MS) {
+    return false;
+  }
+
+  return true;
 }
 
 export async function isAdminAuthenticated(): Promise<boolean> {

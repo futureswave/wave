@@ -1,23 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
 import { createServiceClient } from "@/lib/supabase";
-import { validateEthereumWallet, validateXHandle, validateDiscordHandle, normalizeXHandle } from "@/lib/validation";
-
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT_MAX = 3;
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return true;
-  }
-  if (entry.count >= RATE_LIMIT_MAX) return false;
-  entry.count++;
-  return true;
-}
+import { validateEthereumWallet, validateXHandle, validateDiscordHandle, validateEssay, normalizeXHandle } from "@/lib/validation";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 function hashIp(ip: string): string {
   return createHash("sha256").update(ip + (process.env.SUPABASE_SERVICE_ROLE_KEY ?? "")).digest("hex").slice(0, 32);
@@ -25,10 +10,10 @@ function hashIp(ip: string): string {
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+    const ip = getClientIp(req.headers);
     const ipHash = hashIp(ip);
 
-    if (!checkRateLimit(ipHash)) {
+    if (!rateLimit(ipHash, { namespace: "access-apply", max: 3, windowMs: 10 * 60 * 1000 })) {
       return NextResponse.json({ error: "Too many requests. Please wait and try again." }, { status: 429 });
     }
 
@@ -58,6 +43,15 @@ export async function POST(req: NextRequest) {
     const discordErr = validateDiscordHandle(discord_handle ?? "");
     if (discordErr) return NextResponse.json({ error: discordErr }, { status: 400 });
 
+    const alignmentErr = validateEssay(typeof essay_alignment === "string" ? essay_alignment : "");
+    if (alignmentErr) return NextResponse.json({ error: `Alignment essay: ${alignmentErr}` }, { status: 400 });
+
+    const reputationErr = validateEssay(typeof essay_reputation === "string" ? essay_reputation : "");
+    if (reputationErr) return NextResponse.json({ error: `Reputation essay: ${reputationErr}` }, { status: 400 });
+
+    const valueErr = validateEssay(typeof essay_value === "string" ? essay_value : "");
+    if (valueErr) return NextResponse.json({ error: `Value essay: ${valueErr}` }, { status: 400 });
+
     if (!ack_magiceden_only) {
       return NextResponse.json({ error: "You must acknowledge the minting safety notice." }, { status: 400 });
     }
@@ -85,6 +79,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "This access code is no longer available." }, { status: 409 });
     }
 
+    // Atomically claim the code before inserting: the conditional update on
+    // state='AVAILABLE' ensures only one concurrent request can win. If no row
+    // is returned, another request already claimed it.
+    const { data: lockedCode, error: lockErr } = await supabase
+      .from("access_codes")
+      .update({ state: "LOCKED" })
+      .eq("id", codeData.id)
+      .eq("state", "AVAILABLE")
+      .select("id")
+      .maybeSingle();
+
+    if (lockErr) throw lockErr;
+    if (!lockedCode) {
+      return NextResponse.json({ error: "This access code is no longer available." }, { status: 409 });
+    }
+
     // Insert application
     const { data: appData, error: appErr } = await supabase
       .from("applications")
@@ -105,16 +115,21 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (appErr) {
+      // Release the code we just claimed so a valid retry can reuse it.
+      await supabase
+        .from("access_codes")
+        .update({ state: "AVAILABLE" })
+        .eq("id", codeData.id);
       if (appErr.code === "23505") {
         return NextResponse.json({ error: "This wallet has already submitted an application." }, { status: 409 });
       }
       throw appErr;
     }
 
-    // Lock the code
+    // Record which application redeemed the (already LOCKED) code
     await supabase
       .from("access_codes")
-      .update({ state: "LOCKED", redeemed_by_application_id: appData.id })
+      .update({ redeemed_by_application_id: appData.id })
       .eq("id", codeData.id);
 
     // Audit log

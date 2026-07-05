@@ -21,12 +21,17 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vanth.example.com";
+const DESCRIPTION =
+  "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style. Anime + cyberpunk NFT collection.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "VANTH",
     template: "%s — VANTH",
   },
-  description: "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style. Anime + cyberpunk NFT collection.",
+  description: DESCRIPTION,
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
     shortcut: "/icon.png",
@@ -34,8 +39,25 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "VANTH",
-    description: "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style.",
+    description: DESCRIPTION,
     type: "website",
+    url: SITE_URL,
+    siteName: "VANTH",
+    images: [
+      {
+        url: "/images/gallery/banner.png",
+        width: 1200,
+        height: 630,
+        alt: "VANTH — anime + cyberpunk NFT collection",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VANTH",
+    description: DESCRIPTION,
+    site: "@vanthverse",
+    images: ["/images/gallery/banner.png"],
   },
 };
 

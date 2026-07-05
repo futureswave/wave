@@ -2,37 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
 import { createServiceClient } from "@/lib/supabase";
 import { validateWhitelistForm, normalizeXHandle } from "@/lib/validation";
-
-// In-memory rate limit store (resets on server restart)
-// For production, replace with Upstash Redis or Vercel KV
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT_MAX = 3;
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
-
-function checkRateLimit(ipHash: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ipHash);
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ipHash, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return true;
-  }
-  if (entry.count >= RATE_LIMIT_MAX) return false;
-  entry.count++;
-  return true;
-}
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 function hashIp(ip: string): string {
-  return createHash("sha256").update(ip + process.env.SUPABASE_SERVICE_ROLE_KEY).digest("hex").slice(0, 32);
+  return createHash("sha256").update(ip + (process.env.SUPABASE_SERVICE_ROLE_KEY ?? "")).digest("hex").slice(0, 32);
 }
 
 export async function POST(req: NextRequest) {
   try {
     // Rate limiting
-    const forwarded = req.headers.get("x-forwarded-for");
-    const ip = forwarded ? forwarded.split(",")[0].trim() : "unknown";
+    const ip = getClientIp(req.headers);
     const ipHash = hashIp(ip);
 
-    if (!checkRateLimit(ipHash)) {
+    if (!rateLimit(ipHash, { namespace: "whitelist-submit", max: 3, windowMs: 10 * 60 * 1000 })) {
       return NextResponse.json({ error: "Too many requests. Please wait and try again." }, { status: 429 });
     }
 

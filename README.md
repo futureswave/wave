@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VANTH Website
+
+Marketing + community site for **VANTH**, an anime × cyberpunk NFT collection.
+Built with Next.js 16 (App Router), React 19, Tailwind CSS v4, framer-motion, and Supabase.
+
+## Features
+
+- Public marketing pages: home, about, story, vision, gallery, roadmap, FAQ, social, stake.
+- **Whitelist** form (`/whitelist`) → `POST /api/whitelist/submit`.
+- **Access / invite-code** application flow with referral codes, audit trail, and
+  race-safe code redemption.
+- **Admin committee dashboard** (`/admin`) to review, score, approve/reject applications
+  (HMAC-signed, expiring session cookie).
+
+Chain: **Ethereum (EVM)**. Wallet addresses are validated as `0x…` (42 chars).
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `.env.local` (see the placeholders already in that file):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server-only key used by API routes (bypasses RLS) |
+| `ADMIN_PASSWORD` | Password for the `/admin` login |
+| `ADMIN_SECRET` | HMAC signing secret for the admin session cookie (**required in production**) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (used by metadata, robots, sitemap) |
+| `TURNSTILE_SECRET_KEY` | *(optional)* Cloudflare Turnstile secret for whitelist captcha |
 
-## Learn More
+> In production the app **refuses to sign tokens** if `ADMIN_SECRET` is missing.
 
-To learn more about Next.js, take a look at the following resources:
+## Database (Supabase)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Schema and RLS live in `supabase/migrations/`. Every table has RLS enabled with
+**no policies** (deny-all for anon/authenticated); all reads/writes go through the
+service-role key in server Route Handlers.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Apply migrations:
 
-## Deploy on Vercel
+```bash
+npx supabase db push
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Tables: `members`, `access_codes`, `applications`, `whitelist_submissions`, `audit_events`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+
+## Deployment
+
+Deploys to Vercel. Set all environment variables above in the Vercel project
+settings. Rate limiting is currently in-memory (per instance); for production
+scale, back `lib/rate-limit.ts` with Upstash Redis / Vercel KV.
