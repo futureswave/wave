@@ -4,6 +4,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Footer } from "@/components/layout/Footer";
 import { IntroScreen } from "@/components/ui/IntroScreen";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +24,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vanth.example.com";
 const DESCRIPTION =
-  "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style. Anime + cyberpunk NFT collection.";
+  "Enter the VANTHVERSE — a collectible universe where anime, cyberpunk, and digital identity converge.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "VANTH",
+    default: "VANTH — Enter the Vanthverse",
     template: "%s — VANTH",
   },
   description: DESCRIPTION,
@@ -38,26 +39,26 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: "VANTH",
+    title: "VANTH — Enter the Vanthverse",
     description: DESCRIPTION,
     type: "website",
     url: SITE_URL,
     siteName: "VANTH",
     images: [
       {
-        url: "/images/gallery/banner.png",
+        url: "/images/optimized/banner.jpg",
         width: 1200,
         height: 630,
-        alt: "VANTH — anime + cyberpunk NFT collection",
+        alt: "VANTH — enter the Vanthverse",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "VANTH",
+    title: "VANTH — Enter the Vanthverse",
     description: DESCRIPTION,
     site: "@vanthverse",
-    images: ["/images/gallery/banner.png"],
+    images: ["/images/optimized/banner.jpg"],
   },
 };
 
@@ -69,6 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} ${ibmPlexMono.variable} antialiased`}>
+        <SmoothScroll />
         <IntroScreen />
         <Sidebar />
         <div className="relative z-10 pl-14 flex flex-col min-h-screen">

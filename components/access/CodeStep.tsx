@@ -52,7 +52,7 @@ export function CodeStep({ onValidCode }: CodeStepProps) {
               if (status !== "idle") setStatus("idle");
             }}
             placeholder="VANTH-XXXX-XXXX"
-            className="flex-1 bg-white/5 border border-white/10 rounded px-4 py-3 text-white placeholder:text-white/20 font-mono text-sm focus:outline-none focus:border-white/25 transition-colors"
+            className="flex-1 bg-white/5 border border-white/10 rounded px-4 py-3 text-white placeholder:text-white/35 font-mono text-sm focus:outline-none focus:border-white/25 transition-colors"
             onKeyDown={(e) => e.key === "Enter" && handleValidate()}
             disabled={status === "loading" || status === "valid"}
           />

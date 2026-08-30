@@ -61,7 +61,7 @@ export default function StakePage() {
         aria-hidden
       >
         <Image
-          src="/images/gallery/background.png"
+          src="/images/optimized/background.webp"
           alt=""
           fill
           className="object-cover object-center"

@@ -14,7 +14,7 @@ export function Footer() {
               <Image src="/images/gallery/logo.png" width={24} height={24} alt="VANTH" className="opacity-70" />
               <span className="text-lg font-black tracking-[0.2em] text-white/80 font-mono">VANTH</span>
             </div>
-            <p className="text-white/25 text-sm leading-relaxed mb-4">
+            <p className="text-white/50 text-sm leading-relaxed mb-4">
               {SITE_CONFIG.tagline}
             </p>
             <Link
@@ -29,15 +29,18 @@ export function Footer() {
           <div className="flex gap-12">
             {/* Navigation */}
             <div>
-              <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-3">Pages</h4>
+              <h4 className="text-xs font-mono text-white/40 uppercase tracking-widest mb-3">Pages</h4>
               <ul className="space-y-2">
                 {[
+                  ["Collection", "/collection"],
+                  ["Universe", "/universe"],
                   ["Vision", "/vision"],
+                  ["The Collective", "/collective"],
                   ["About", "/about"],
                   ["FAQ", "/faq"],
                 ].map(([label, href]) => (
                   <li key={href}>
-                    <Link href={href} className="text-white/30 hover:text-white text-sm transition-colors">
+                    <Link href={href} className="text-white/50 hover:text-white text-sm transition-colors">
                       {label}
                     </Link>
                   </li>
@@ -47,29 +50,34 @@ export function Footer() {
 
             {/* Community */}
             <div>
-              <h4 className="text-xs font-mono text-white/20 uppercase tracking-widest mb-3">Community</h4>
+              <h4 className="text-xs font-mono text-white/40 uppercase tracking-widest mb-3">Community</h4>
               <ul className="space-y-2">
                 <li>
                   <a href={SOCIAL_LINKS.x.url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
+                    className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors">
                     <ExternalLink className="w-3 h-3" /> X (Twitter)
                   </a>
                 </li>
                 <li>
                   <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
+                    className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors">
                     <ExternalLink className="w-3 h-3" /> Discord
                   </a>
                 </li>
                 <li>
                   <a href={SOCIAL_LINKS.gitbook.meetVanth.url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/30 hover:text-white text-sm transition-colors">
+                    className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors">
                     <ExternalLink className="w-3 h-3" /> GitBook
                   </a>
                 </li>
                 <li>
-                  <Link href="/social" className="text-white/30 hover:text-white text-sm transition-colors">
+                  <Link href="/social" className="text-white/50 hover:text-white text-sm transition-colors">
                     Official Links
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#security" className="text-white/50 hover:text-white text-sm transition-colors">
+                    Security
                   </Link>
                 </li>
               </ul>
@@ -79,10 +87,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-5 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-white/15 text-xs font-mono">
+          <p className="text-white/40 text-xs font-mono">
             © 2026 VANTH · All rights reserved
           </p>
-          <p className="text-white/10 text-xs font-mono">
+          <p className="text-white/35 text-xs font-mono">
             Mint Venue: TBA
           </p>
         </div>

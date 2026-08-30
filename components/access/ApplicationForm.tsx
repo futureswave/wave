@@ -84,7 +84,7 @@ export function ApplicationForm({ accessCode, onSuccess }: Props) {
     }
   }
 
-  const inputBase = "w-full bg-white/5 border rounded px-4 py-3 text-white placeholder:text-white/20 text-sm focus:outline-none transition-colors";
+  const inputBase = "w-full bg-white/5 border rounded px-4 py-3 text-white placeholder:text-white/35 text-sm focus:outline-none transition-colors";
   const inputOk = "border-white/10 focus:border-white/25";
   const inputErr = "border-red-500/40";
 
@@ -168,7 +168,7 @@ export function ApplicationForm({ accessCode, onSuccess }: Props) {
         ) : "Submit Application"}
       </button>
 
-      <p className="text-white/20 text-xs text-center font-mono">
+      <p className="text-white/45 text-xs text-center font-mono">
         Codes are limited. Having a code does not guarantee acceptance.
       </p>
     </form>

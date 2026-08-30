@@ -1,73 +1,57 @@
-import { Palette, Map, Coins } from "lucide-react";
-import { ComingSoonBadge } from "@/components/ui/TBABadge";
+import { Palette, Fingerprint, Globe } from "lucide-react";
 import { MagicCard } from "@/components/ui/magic-card";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
-const cards = [
+// PRD 7.03 — the three pillars.
+const PILLARS = [
   {
     icon: Palette,
-    title: "Art-First",
+    title: "Art",
     description:
-      "Striking anime + cyberpunk aesthetics crafted with a unique vision. Every piece is designed to stand out in any collection.",
-    gradientColor: "#1a1a1a",
-    beamFrom: "rgba(255,255,255,0.2)",
-    beamTo: "rgba(255,255,255,0.04)",
-    accent: "text-white/60",
+      "Anime brushwork rendered in neon against a fractured net. Every character is drawn to hold its own in any collection — the artwork always outranks the interface.",
   },
   {
-    icon: Map,
-    title: "Transparent Vision",
+    icon: Fingerprint,
+    title: "Identity",
     description:
-      "Clear milestones, measurable delivery. Our vision evolves openly — every update is published on official channels.",
-    gradientColor: "#1a1a1a",
-    beamFrom: "rgba(255,255,255,0.2)",
-    beamTo: "rgba(255,255,255,0.04)",
-    accent: "text-white/60",
+      "Your VANTH is not an avatar you borrow. It is a signature: a fixed point inside an unstable world, and the record of where you stand in it.",
   },
   {
-    icon: Coins,
-    title: "Future Staking → VNTH",
+    icon: Globe,
+    title: "Universe",
     description:
-      "Holders will be able to stake VANTH NFTs to earn VNTH, a future utility token. Details and mechanics are coming soon.",
-    gradientColor: "#1a1a1a",
-    beamFrom: "rgba(255,255,255,0.2)",
-    beamTo: "rgba(255,255,255,0.04)",
-    accent: "text-white/60",
-    badge: <ComingSoonBadge />,
+      "Districts, factions, and a lore that keeps expanding. The collection is the entry point, not the destination — the VANTHVERSE grows with the Collective.",
   },
 ];
 
 export function WhatIsVanth() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
-      <div className="text-center mb-16">
-        <p className="text-xs font-mono tracking-widest uppercase text-white/30 mb-3">The Collection</p>
-        <h2 className="text-3xl sm:text-5xl font-black text-white mb-4">What is VANTH?</h2>
-        <p className="text-white/40 max-w-xl mx-auto text-lg">
-
-          A collection where anime art, cyberpunk culture, and the power community intersect.
-        </p>
-      </div>
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 border-t border-white/5">
+      <SectionHeading
+        eyebrow="What is VANTH?"
+        title="More than a collection"
+        lead="VANTH is not just something you own. It is something you become part of."
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {cards.map((card) => (
+        {PILLARS.map((pillar) => (
           <MagicCard
-            key={card.title}
-            gradientColor={card.gradientColor}
+            key={pillar.title}
+            gradientColor="#1a1a1a"
             gradientOpacity={1}
             className="relative rounded border-white/8 bg-[#111111] overflow-hidden"
           >
             <div className="p-7">
-              <card.icon className={`w-8 h-8 ${card.accent} mb-5`} />
-              <div className="flex items-center gap-2 mb-3">
-                <h3 className="text-xl font-bold text-white">{card.title}</h3>
-                {card.badge}
-              </div>
-              <p className="text-white/40 leading-relaxed">{card.description}</p>
+              <pillar.icon className="w-8 h-8 text-white/70 mb-5" />
+              <h3 className="text-xl font-black text-white uppercase tracking-display mb-3">
+                {pillar.title}
+              </h3>
+              <p className="text-white/55 leading-relaxed">{pillar.description}</p>
             </div>
             <BorderBeam
-              colorFrom={card.beamFrom}
-              colorTo={card.beamTo}
+              colorFrom="rgba(255,255,255,0.2)"
+              colorTo="rgba(255,255,255,0.04)"
               size={150}
               duration={14}
               borderWidth={1}

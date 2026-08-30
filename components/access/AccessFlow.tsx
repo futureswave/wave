@@ -37,19 +37,22 @@ export function AccessFlow() {
       {/* Main card */}
       {step === "success" ? (
         <div className="relative bg-[#111111] border border-white/10 rounded p-8 text-center overflow-hidden">
-          <CheckCircle2 className="w-12 h-12 text-white/50 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-white mb-3">Application Submitted</h2>
-          <p className="text-white/40 leading-relaxed mb-6">
-            Your application is under review. We read every application carefully — there is no set ETA.
-          </p>
-          <div className="bg-white/3 rounded p-4 text-left space-y-2 mb-4">
-            <p className="text-xs text-white/25 font-mono uppercase tracking-wider mb-2">What happens next?</p>
-            <p className="text-white/40 text-sm">· Committee reviews manually, one by one.</p>
-            <p className="text-white/40 text-sm">· You may be moved to PENDING with no max duration.</p>
-            <p className="text-white/40 text-sm">· Decision is final. Rejected applicants cannot reapply.</p>
-            <p className="text-white/40 text-sm">· If approved, you will receive invite rights (3 codes).</p>
+          <CheckCircle2 className="w-12 h-12 text-white/60 mx-auto mb-6" />
+          {/* PRD 9 — the transmission-received screen. */}
+          <div className="space-y-1.5 mb-8 font-mono text-sm uppercase tracking-[0.2em]">
+            <p className="text-white">Transmission received.</p>
+            <p className="text-white/60">Your request has been logged.</p>
+            <p className="text-white/60">Watch the signals.</p>
+            <p className="text-white">Welcome to the Collective.</p>
           </div>
-          <p className="text-white/25 text-sm">Use the status checker below to track your application.</p>
+          <div className="bg-white/3 rounded p-4 text-left space-y-2 mb-4">
+            <p className="text-xs text-white/40 font-mono uppercase tracking-wider mb-2">What happens next?</p>
+            <p className="text-white/55 text-sm">· Committee reviews manually, one by one.</p>
+            <p className="text-white/55 text-sm">· You may be moved to PENDING with no max duration.</p>
+            <p className="text-white/55 text-sm">· Decision is final. Rejected applicants cannot reapply.</p>
+            <p className="text-white/55 text-sm">· If approved, you will receive invite rights (3 codes).</p>
+          </div>
+          <p className="text-white/45 text-sm">Use the status checker below to track your request.</p>
           <BorderBeam colorFrom="rgba(255,255,255,0.3)" colorTo="rgba(255,255,255,0.06)" size={200} duration={12} borderWidth={1.5} />
         </div>
       ) : (

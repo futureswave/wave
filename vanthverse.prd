@@ -1,0 +1,1090 @@
+# VANTHVERSE WEBSITE V2 — PRODUCT REQUIREMENTS DOCUMENT
+
+## 1. Proje Özeti
+
+### Proje Adı
+
+VANTHVERSE Website V2
+
+### Amaç
+
+VANTHVERSE web sitesinin mevcut NFT collection landing page yapısından çıkarılarak;
+
+* güçlü bir marka hikâyesine,
+* yaşayan bir dijital evrene,
+* karakter odaklı bir koleksiyon deneyimine,
+* topluluk dönüşüm sistemine,
+* premium Web3 kullanıcı deneyimine
+
+sahip bir platforma dönüştürülmesi.
+
+Ana hedef, ziyaretçinin yalnızca:
+
+> “Güzel bir NFT koleksiyonu.”
+
+demesi değil;
+
+> “Bu evrenin bir parçası olmak istiyorum.”
+
+hissini yaşamasıdır.
+
+---
+
+# 2. Ana Marka Konumlandırması
+
+## Core Positioning
+
+> **VANTH is not just a collection.**
+>
+> **It is a digital identity inside an expanding universe.**
+
+VANTH'ın Web3 dünyasındaki konumu klasik NFT utility yaklaşımından ayrıştırılmalıdır.
+
+NFT sahipliği aşağıdaki kavramlarla ilişkilendirilmelidir:
+
+* Digital Identity
+* Digital Passport
+* Community Membership
+* Access
+* Experiences
+* Character
+
+---
+
+# 3. Ana Marka Mesajları
+
+## Primary
+
+### ENTER THE VANTHVERSE
+
+Ana giriş mesajı.
+
+Ziyaretçiye bir web sitesine değil, keşfedilecek bir evrene girdiği hissini vermelidir.
+
+---
+
+## Secondary
+
+### YOUR DIGITAL PASSPORT TO THE VANTHVERSE
+
+VANTH ownership kavramının ana açıklaması.
+
+NFT:
+
+> Sadece sahip olunan bir asset değil, VANTHVERSE içerisindeki dijital kimlik ve erişim aracıdır.
+
+---
+
+## Community
+
+### THE COLLECTIVE IS FORMING
+
+Community odaklı ana mesaj.
+
+Topluluk yalnızca izleyen bir kitle değil, evrenin gelişiminin parçasıdır.
+
+---
+
+# 4. Hedef Kullanıcılar
+
+## Persona 1 — NFT Collector
+
+Beklentileri:
+
+* Güçlü artwork
+* Unique character design
+* Rarity
+* Community
+* Long-term vision
+
+---
+
+## Persona 2 — Anime / Cyberpunk Fan
+
+Beklentileri:
+
+* Estetik dünya
+* Karakter hikâyeleri
+* Lore
+* World building
+* Görsel deneyim
+
+---
+
+## Persona 3 — Web3 Explorer
+
+Beklentileri:
+
+* Güvenilirlik
+* Official links
+* Roadmap
+* Community
+* Utility
+
+---
+
+# 5. Ana Kullanıcı Akışı
+
+Önerilen kullanıcı yolculuğu:
+
+```text
+LANDING
+
+↓
+
+ENTER THE VANTHVERSE
+
+↓
+
+DISCOVER THE COLLECTION
+
+↓
+
+MEET THE CHARACTERS
+
+↓
+
+DISCOVER THE LORE
+
+↓
+
+UNDERSTAND THE DIGITAL PASSPORT
+
+↓
+
+JOIN THE COLLECTIVE
+
+↓
+
+REQUEST ACCESS
+```
+
+Ana amaç:
+
+**Scroll → Curiosity → Discovery → Connection → Community**
+
+---
+
+# 6. WEBSITE INFORMATION ARCHITECTURE
+
+Önerilen ana menü:
+
+```text
+VANTH LOGO
+
+HOME
+COLLECTION
+UNIVERSE
+VISION
+THE COLLECTIVE
+
+[ REQUEST ACCESS ]
+```
+
+Footer:
+
+```text
+VANTHVERSE
+
+X / TWITTER
+DISCORD
+
+FAQ
+SECURITY
+OFFICIAL LINKS
+
+© VANTHVERSE
+```
+
+---
+
+# 7. HOMEPAGE WIREFRAME
+
+---
+
+## SECTION 01 — HERO
+
+### Amaç
+
+İlk 5 saniyede ziyaretçiye:
+
+* marka atmosferini,
+* VANTHVERSE konseptini,
+* koleksiyonun premium hissini
+
+aktarmak.
+
+---
+
+### Wireframe
+
+```text
+┌──────────────────────────────────────┐
+│                                      │
+│              VANTH                   │
+│                                      │
+│        ENTER THE VANTHVERSE          │
+│                                      │
+│  A collectible universe where anime  │
+│  cyberpunk and digital identity      │
+│  converge.                           │
+│                                      │
+│ [ EXPLORE COLLECTION ]               │
+│ [ JOIN THE COLLECTIVE ]              │
+│                                      │
+│          ↓ SCROLL TO ENTER           │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+---
+
+### Visual Direction
+
+* Fullscreen character artwork
+* Cinematic lighting
+* Subtle animated particles
+* Background movement
+* Parallax effect
+* Eye glow animation
+* Film grain
+* Ambient cyberpunk atmosphere
+
+---
+
+### Animation
+
+Site açıldığında:
+
+```text
+SYSTEM INITIALIZING...
+
+CONNECTING...
+
+ACCESS GRANTED.
+
+WELCOME TO VANTHVERSE.
+```
+
+Ardından Hero section açılır.
+
+---
+
+# SECTION 02 — COLLECTION PREVIEW
+
+## Başlık
+
+### THE FIRST GENERATION
+
+Alt metin:
+
+> Every VANTH carries a unique identity.
+
+---
+
+### Wireframe
+
+```text
+┌──────────┬──────────┬──────────┐
+│          │          │          │
+│ VANTH 01 │ VANTH 02 │ VANTH 03 │
+│          │          │          │
+├──────────┼──────────┼──────────┤
+│          │          │          │
+│ VANTH 04 │ VANTH 05 │ VANTH 06 │
+│          │          │          │
+└──────────┴──────────┴──────────┘
+
+        [ EXPLORE COLLECTION ]
+```
+
+---
+
+### NFT Card Interaction
+
+Hover olduğunda:
+
+```text
+VANTH #021
+
+SECTOR
+NEO ARCADIA
+
+CLASS
+UNKNOWN
+
+STATUS
+GENESIS
+
+[ VIEW PROFILE ]
+```
+
+Ek efektler:
+
+* Image zoom
+* Parallax
+* Background movement
+* Character eye glow
+* Information reveal
+
+---
+
+# SECTION 03 — WHAT IS VANTH?
+
+## Başlık
+
+### MORE THAN A COLLECTION
+
+Ana metin:
+
+> VANTH is not just something you own.
+>
+> It is something you become part of.
+
+Altında 3 ana pillar:
+
+```text
+ART
+
+IDENTITY
+
+UNIVERSE
+```
+
+---
+
+### Wireframe
+
+```text
+        MORE THAN A COLLECTION
+
+   VANTH is not just something you own.
+   It is something you become part of.
+
+
+      [ ART ] [ IDENTITY ] [ UNIVERSE ]
+```
+
+---
+
+# SECTION 04 — ENTER THE UNIVERSE
+
+## Amaç
+
+Lore ve world-building katmanını tanıtmak.
+
+---
+
+## Başlık
+
+### THE VANTHVERSE AWAITS
+
+Alt metin:
+
+> Beyond the collection exists a universe waiting to be discovered.
+
+---
+
+### Interactive Navigation
+
+```text
+             THE VANTHVERSE
+
+
+        [ THE ORIGIN ]
+
+[ THE DISTRICTS ]     [ THE FACTIONS ]
+
+        [ THE COLLECTIVE ]
+```
+
+---
+
+## Alt Bölümler
+
+### THE ORIGIN
+
+VANTHVERSE nasıl ortaya çıktı?
+
+---
+
+### THE DISTRICTS
+
+Cyberpunk şehirleri ve bölgeler.
+
+Örnek:
+
+* Neo Arcadia
+* Sector Zero
+* The Underground
+* Outer Grid
+
+---
+
+### THE FACTIONS
+
+Karakter grupları.
+
+Örnek:
+
+* Rebels
+* Synths
+* Guardians
+* Unknown
+
+---
+
+### THE COLLECTIVE
+
+Community'nin evrendeki rolü.
+
+---
+
+# SECTION 05 — YOUR DIGITAL PASSPORT
+
+Bu bölüm Website V2'nin en önemli bölümlerinden biri olmalı.
+
+## Başlık
+
+### YOUR DIGITAL PASSPORT TO THE VANTHVERSE
+
+Ana mesaj:
+
+> Owning a VANTH is not simply ownership.
+>
+> It is access to an evolving digital universe.
+
+---
+
+### Wireframe
+
+```text
+              VANTH PASSPORT
+
+                   IDENTITY
+
+                     ↓
+
+                   ACCESS
+
+                     ↓
+
+                 COMMUNITY
+
+                     ↓
+
+                 EXPERIENCES
+```
+
+---
+
+## Açıklamalar
+
+### IDENTITY
+
+Your VANTH represents your place inside the universe.
+
+### ACCESS
+
+Unlock future experiences and opportunities.
+
+### COMMUNITY
+
+Become part of The Collective.
+
+### EXPERIENCES
+
+Explore the evolving world beyond ownership.
+
+---
+
+# SECTION 06 — THE COLLECTIVE
+
+## Başlık
+
+### THE COLLECTIVE IS FORMING
+
+Ana metin:
+
+> Early members won't just watch VANTH being built.
+>
+> They'll help shape it.
+
+---
+
+### Community Benefits
+
+```text
+◉ Early Announcements
+
+◉ Exclusive Previews
+
+◉ Community Discussions
+
+◉ Access Opportunities
+
+◉ Future Experiences
+```
+
+---
+
+### CTA
+
+# ENTER THE DISCORD
+
+---
+
+# SECTION 07 — THE VANTH EVOLUTION
+
+Klasik roadmap yerine.
+
+---
+
+## NOW
+
+### BUILDING THE FOUNDATION
+
+* Art development
+* Universe development
+* Community formation
+* Brand identity
+
+---
+
+## NEXT
+
+### EXPANDING THE COLLECTIVE
+
+* Collection reveal
+* Community activations
+* Partnerships
+* Holder access
+
+---
+
+## FUTURE
+
+### BEYOND THE COLLECTION
+
+* Digital experiences
+* Interactive concepts
+* Digital identity
+* Experimental ecosystem features
+
+---
+
+### Wireframe
+
+```text
+NOW ─────────── NEXT ─────────── FUTURE
+
+●────────────────●────────────────●
+
+BUILDING          EXPANDING        EVOLVING
+```
+
+Scroll ilerledikçe timeline animate olabilir.
+
+---
+
+# SECTION 08 — ART & CRAFT
+
+## Başlık
+
+### BUILT FROM THE FIRST LINE
+
+Amaç:
+
+Artwork üretim sürecini göstermek.
+
+---
+
+### Process
+
+```text
+SKETCH
+
+↓
+
+CONCEPT
+
+↓
+
+DETAIL
+
+↓
+
+FINAL VANTH
+```
+
+---
+
+### Visual Experience
+
+Kullanıcı slider kullanarak:
+
+```text
+SKETCH  ←────────────→ FINAL
+```
+
+arasında geçiş yapabilir.
+
+Bu bölüm sanat odaklı güven oluşturur.
+
+---
+
+# SECTION 09 — REQUEST ACCESS
+
+## Amaç
+
+Waitlist + community funnel.
+
+---
+
+## Başlık
+
+### REQUEST ACCESS TO THE VANTHVERSE
+
+Alt metin:
+
+> Join the early collective.
+
+---
+
+### Form
+
+```text
+X USERNAME
+
+DISCORD USERNAME
+
+EMAIL (OPTIONAL)
+
+[ REQUEST ACCESS ]
+```
+
+---
+
+### Success Screen
+
+```text
+TRANSMISSION RECEIVED.
+
+YOUR REQUEST HAS BEEN LOGGED.
+
+WATCH THE SIGNALS.
+
+WELCOME TO THE COLLECTIVE.
+```
+
+---
+
+# SECTION 10 — SECURITY
+
+## Başlık
+
+### VERIFY VANTH
+
+Web3 projelerinde güvenlik bölümü kritik.
+
+---
+
+### Official Links
+
+```text
+OFFICIAL WEBSITE
+
+OFFICIAL X
+
+OFFICIAL DISCORD
+
+OFFICIAL MINT
+```
+
+---
+
+### Warning
+
+> Never trust unofficial links.
+>
+> VANTH will never ask for your seed phrase.
+
+---
+
+# SECTION 11 — FAQ
+
+Accordion yapısı.
+
+Önerilen sorular:
+
+* What is VANTH?
+* What is the VANTHVERSE?
+* When is the mint?
+* Which blockchain?
+* What is the supply?
+* How can I join?
+* What is Request Access?
+* Will there be holder benefits?
+* Where are the official links?
+* How can I avoid scams?
+
+---
+
+# 8. COLLECTION PAGE PRD
+
+## Page Goal
+
+NFT'lerin yalnızca grid içerisinde gösterilmesi değil, karakter olarak keşfedilmesi.
+
+---
+
+### Layout
+
+```text
+COLLECTION
+
+FILTER
+
+ALL
+GENESIS
+FACTION
+RARITY
+
+────────────────────
+
+NFT GRID
+
+[ #001 ] [ #002 ] [ #003 ]
+
+[ #004 ] [ #005 ] [ #006 ]
+```
+
+---
+
+### NFT Detail Page
+
+```text
+VANTH #021
+
+FULL ARTWORK
+
+
+NAME
+UNKNOWN
+
+SECTOR
+NEO ARCADIA
+
+CLASS
+GENESIS
+
+FACTION
+UNKNOWN
+
+
+LORE
+
+"Short character story..."
+
+
+TRAITS
+━━━━━━━━━━━━
+
+[ TRAIT ]
+[ TRAIT ]
+[ TRAIT ]
+```
+
+---
+
+# 9. UNIVERSE PAGE PRD
+
+Bu sayfa VANTHVERSE'in en immersive bölümü olmalı.
+
+## Navigation
+
+```text
+THE ORIGIN
+
+↓
+
+THE DISTRICTS
+
+↓
+
+THE FACTIONS
+
+↓
+
+THE CHARACTERS
+```
+
+---
+
+### Experience
+
+Normal web page yerine:
+
+**Interactive digital map experience** önerilir.
+
+Kullanıcı bir şehir haritası üzerinde:
+
+```text
+NEO ARCADIA
+
+SECTOR ZERO
+
+THE UNDERGROUND
+
+OUTER GRID
+```
+
+bölgelerine tıklayabilir.
+
+Bu yapı ileride lore büyüdükçe genişletilebilir.
+
+---
+
+# 10. UI DESIGN SYSTEM
+
+## Visual Identity
+
+### Mood
+
+* Dark
+* Futuristic
+* Cinematic
+* Premium
+* Mysterious
+* Cyberpunk
+
+---
+
+## Typography
+
+Başlıklar:
+
+* Bold
+* Geometric
+* Wide spacing
+
+Body:
+
+* Clean
+* Minimal
+* High readability
+
+---
+
+## UI Principles
+
+### 1. Less but Stronger
+
+Çok fazla Web3 efekti kullanılmamalı.
+
+---
+
+### 2. Art First
+
+Artwork her zaman UI'dan daha önemli olmalı.
+
+---
+
+### 3. Cinematic Motion
+
+Küçük ama kaliteli animasyonlar.
+
+---
+
+### 4. Mystery
+
+Her şeyi ilk ekranda açıklama.
+
+Kullanıcı keşfetmeye teşvik edilmeli.
+
+---
+
+# 11. ANIMATION REQUIREMENTS
+
+Önerilen teknolojiler:
+
+* Framer Motion
+* GSAP
+* Lenis Smooth Scroll
+* Three.js / React Three Fiber (gerektiğinde)
+
+---
+
+## Animation Ideas
+
+### Hero
+
+* Character parallax
+* Particle movement
+* Eye glow
+* Background distortion
+
+### Scroll
+
+* Section reveal
+* Text mask animation
+* Image parallax
+
+### Cards
+
+* Hover zoom
+* Data reveal
+* Light effects
+
+### Loading
+
+```text
+INITIALIZING VANTHVERSE
+
+12%
+
+38%
+
+67%
+
+100%
+
+ACCESS GRANTED
+```
+
+---
+
+# 12. TECHNICAL RECOMMENDATION
+
+## Frontend
+
+Next.js
+
+## Styling
+
+Tailwind CSS
+
+## Animation
+
+Framer Motion + GSAP
+
+## Smooth Scroll
+
+Lenis
+
+## CMS
+
+Sanity veya Contentful
+
+Alternatif olarak başlangıçta:
+
+JSON / MDX content structure
+
+---
+
+# 13. MOBILE EXPERIENCE
+
+Mobil deneyim kesinlikle desktop'ın küçültülmüş versiyonu olmamalı.
+
+Öncelikler:
+
+* Fast loading
+* Vertical storytelling
+* Swipe gallery
+* Large touch targets
+* Simplified animations
+
+---
+
+### Mobile Hero
+
+```text
+VANTH
+
+ENTER THE
+VANTHVERSE
+
+[ EXPLORE ]
+
+[ JOIN ]
+```
+
+---
+
+# 14. WEBSITE SUCCESS METRICS
+
+Website V2 sonrasında takip edilmesi gereken metrikler:
+
+### Engagement
+
+* Average session duration
+* Scroll depth
+* Collection interaction rate
+
+### Community
+
+* Discord conversion
+* X conversion
+* Request Access submissions
+
+### Brand
+
+* Returning visitors
+* Direct traffic
+* Social referrals
+
+---
+
+# 15. MVP PRIORITIES
+
+## PHASE 1 — CORE EXPERIENCE
+
+Mutlaka yapılmalı:
+
+* Yeni Hero
+* Collection Preview
+* What is VANTH
+* Digital Passport
+* Community section
+* Now / Next / Future
+* Security
+* FAQ
+
+---
+
+## PHASE 2 — UNIVERSE
+
+* Lore
+* Districts
+* Factions
+* Character profiles
+
+---
+
+## PHASE 3 — IMMERSIVE EXPERIENCE
+
+* Interactive map
+* Advanced animations
+* 3D elements
+* Hidden interactions
+* Audio
+
+---
+
+# FINAL PRODUCT VISION
+
+VANTHVERSE Website V2'nin hedefi:
+
+> Bir NFT projesinin web sitesi olmak değil.
+
+Hedef:
+
+> Ziyaretçinin ilk kez girdiğinde keşfetmek istediği, tekrar dönmek istediği ve bir parçası olmak istediği yaşayan bir dijital evren yaratmak.
+
+Ana kullanıcı deneyimi şu hissi vermeli:
+
+```text
+I didn't just visit a website.
+
+I entered the VANTHVERSE.
+```

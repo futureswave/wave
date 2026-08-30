@@ -16,7 +16,7 @@ export default function WhitelistPage() {
         aria-hidden
       >
         <Image
-          src="/images/gallery/background.png"
+          src="/images/optimized/background.webp"
           alt=""
           fill
           className="object-cover object-center"
@@ -27,13 +27,15 @@ export default function WhitelistPage() {
       <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
         {/* Header */}
         <div className="text-center mb-10">
-          <p className="text-xs font-mono tracking-widest uppercase text-white/30 mb-3">
-            Proof of Reputation
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-white/40 mb-3">
+            Join the early collective
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">
-            Request Access
+          <h1 className="text-4xl sm:text-5xl font-black uppercase tracking-display text-white mb-4">
+            Request access to
+            <br />
+            the Vanthverse
           </h1>
-          <p className="text-white/40 leading-relaxed max-w-md mx-auto">
+          <p className="text-white/55 leading-relaxed max-w-md mx-auto">
             VANTH access is invite-only. An Access Code lets you apply, but acceptance is not guaranteed.
           </p>
         </div>
@@ -52,8 +54,8 @@ export default function WhitelistPage() {
               <h3 className="text-xs font-mono text-white/30 uppercase tracking-wider mb-2">
                 Privacy Notice
               </h3>
-              <ul className="space-y-1 text-xs text-white/30 leading-relaxed">
-                <li>We store: wallet address, X username, Discord username, and application essays.</li>
+              <ul className="space-y-1 text-xs text-white/45 leading-relaxed">
+                <li>We store: wallet address, X username, and Discord username.</li>
                 <li>Purpose: Whitelist processing and eligibility review.</li>
                 <li>No email is collected. Data is not sold or shared with third parties.</li>
                 <li>Stored securely with no public read access.</li>

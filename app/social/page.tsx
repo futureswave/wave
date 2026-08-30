@@ -75,7 +75,7 @@ export default function SocialPage() {
                   {link.description}
                 </p>
 
-                <p className="text-white/20 text-xs font-mono">
+                <p className="text-white/45 text-xs font-mono">
                   {link.url || link.handle}
                 </p>
               </div>

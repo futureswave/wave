@@ -20,7 +20,7 @@ export default function VisionPage() {
         aria-hidden
       >
         <Image
-          src="/images/gallery/background.png"
+          src="/images/optimized/background.webp"
           alt=""
           fill
           className="object-cover object-center"
@@ -77,7 +77,7 @@ export default function VisionPage() {
                 )}
 
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="text-white/20 font-mono text-4xl font-black leading-none mb-2">{card.num}</p>
+                  <p className="text-white/35 font-mono text-4xl font-black leading-none mb-2">{card.num}</p>
                   <h3 className="text-white font-black text-xl tracking-wide mb-1">{card.title}</h3>
                   {isActive && (
                     <p className="text-white/50 text-xs leading-relaxed">{card.description}</p>

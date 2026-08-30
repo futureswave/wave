@@ -11,6 +11,8 @@
   --color-border: rgba(255,255,255,0.08);
   --color-foreground: #ffffff;
   --color-muted: #888888;
+  --color-signal: #7c3aed;
+  --color-signal-dim: #6d28d9;
   --color-neon-purple: #7c3aed;
   --color-neon-purple-dim: #6d28d9;
   --color-neon-cyan: #888888;
@@ -53,6 +55,17 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
   --animate-vision-modal: vision-modal 0.25s ease-out forwards;
+  --animate-scan: scan 6s linear infinite;
+  --animate-flicker: flicker 4s steps(1, end) infinite;
+  @keyframes scan {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(100%); }
+  }
+  @keyframes flicker {
+    0%, 92%, 96%, 100% { opacity: 1; }
+    94%                { opacity: 0.55; }
+    98%                { opacity: 0.8; }
+  }
   --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
   --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
   @keyframes vision-modal {
@@ -100,6 +113,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Lenis drives the scroll itself; native smooth scrolling fights it. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+html.lenis {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
 body {
   background: #0a0a0a;
   color: #ffffff;
@@ -129,6 +154,49 @@ body {
   );
   pointer-events: none;
   z-index: 1;
+}
+
+/* Display headings — PRD: bold, geometric, wide spacing */
+.tracking-display {
+  letter-spacing: 0.14em;
+}
+
+/* Film grain overlay. Apply to a positioned ancestor. */
+.film-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Horizontal sweep used by the boot sequence and portal panels. */
+.scan-sweep::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.045), transparent);
+  animation: var(--animate-scan);
+}
+
+/* Respect the user's motion preference across every decorative animation. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Custom scrollbar */

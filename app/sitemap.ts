@@ -1,14 +1,16 @@
 import type { MetadataRoute } from "next";
+import { getCharacters } from "@/lib/content/collection";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vanth.example.com";
 
 // Public, indexable routes (admin/api intentionally excluded).
 const ROUTES = [
   "",
-  "/about",
-  "/story",
+  "/collection",
+  "/universe",
   "/vision",
-  "/gallery",
+  "/collective",
+  "/about",
   "/faq",
   "/social",
   "/stake",
@@ -17,10 +19,12 @@ const ROUTES = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return ROUTES.map((route) => ({
+  const characterRoutes = getCharacters().map((c) => `/collection/${c.id}`);
+
+  return [...ROUTES, ...characterRoutes].map((route) => ({
     url: `${SITE_URL}${route}`,
     lastModified: now,
     changeFrequency: "weekly",
-    priority: route === "" ? 1 : 0.7,
+    priority: route === "" ? 1 : route.startsWith("/collection/") ? 0.5 : 0.7,
   }));
 }

@@ -4,6 +4,15 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
+// PRD 7.01 / 11 — the boot sequence. Each line unlocks at a progress threshold
+// so the log and the counter stay in step.
+const BOOT_LINES = [
+  { at: 0, text: "SYSTEM INITIALIZING..." },
+  { at: 35, text: "CONNECTING..." },
+  { at: 78, text: "ACCESS GRANTED." },
+  { at: 100, text: "WELCOME TO VANTHVERSE." },
+];
+
 export function IntroScreen() {
   const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -15,7 +24,7 @@ export function IntroScreen() {
     }
     setVisible(true);
 
-    const duration = 2200;
+    const duration = 2600;
     const interval = 16;
     const steps = duration / interval;
     let current = 0;
@@ -31,12 +40,14 @@ export function IntroScreen() {
         setTimeout(() => {
           setVisible(false);
           sessionStorage.setItem("vanth_intro_seen", "1");
-        }, 450);
+        }, 700);
       }
     }, interval);
 
     return () => clearInterval(timer);
   }, []);
+
+  const revealed = BOOT_LINES.filter((line) => progress >= line.at);
 
   return (
     <AnimatePresence>
@@ -45,14 +56,15 @@ export function IntroScreen() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center select-none"
+          className="fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center select-none overflow-hidden scan-sweep"
+          role="status"
+          aria-label="Entering the VANTHVERSE"
         >
-
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="relative flex flex-col items-center gap-10"
+            className="relative flex flex-col items-center gap-10 px-6"
           >
             {/* Logo */}
             <Image
@@ -64,6 +76,21 @@ export function IntroScreen() {
               priority
             />
 
+            {/* Boot log */}
+            <div className="h-24 w-56 sm:w-72 flex flex-col justify-end gap-1">
+              {revealed.map((line) => (
+                <motion.p
+                  key={line.text}
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-white/50"
+                >
+                  {line.text}
+                </motion.p>
+              ))}
+            </div>
+
             {/* Progress bar area */}
             <div className="w-56 sm:w-72 space-y-2">
               <div className="h-px bg-white/8 w-full overflow-hidden rounded-full">
@@ -73,10 +100,10 @@ export function IntroScreen() {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono text-white/25 tracking-[0.2em] uppercase">
-                  Initializing
+                <span className="text-[10px] font-mono text-white/35 tracking-[0.2em] uppercase">
+                  Initializing Vanthverse
                 </span>
-                <span className="text-[10px] font-mono text-white/25 tabular-nums">
+                <span className="text-[10px] font-mono text-white/35 tabular-nums">
                   {Math.round(progress)}%
                 </span>
               </div>

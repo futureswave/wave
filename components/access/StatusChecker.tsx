@@ -47,7 +47,7 @@ export function StatusChecker() {
           value={wallet}
           onChange={(e) => { setWallet(e.target.value); setState("idle"); }}
           placeholder="Your Ethereum wallet address (0x...)"
-          className="flex-1 bg-white/5 border border-white/10 rounded px-4 py-3 text-white placeholder:text-white/20 font-mono text-sm focus:outline-none focus:border-white/20 transition-colors"
+          className="flex-1 bg-white/5 border border-white/10 rounded px-4 py-3 text-white placeholder:text-white/35 font-mono text-sm focus:outline-none focus:border-white/20 transition-colors"
           onKeyDown={(e) => e.key === "Enter" && handleCheck()}
         />
         <button
@@ -70,7 +70,7 @@ export function StatusChecker() {
             <StatusBadge status={result.status} />
           </div>
           <p className="text-white/40 text-sm">{STATUS_COPY[result.status] ?? "Status unknown."}</p>
-          <p className="text-white/20 text-xs font-mono">
+          <p className="text-white/45 text-xs font-mono">
             Last updated:{" "}
             {new Date(result.updated_at).toLocaleDateString("en-US", {
               year: "numeric",
@@ -81,7 +81,7 @@ export function StatusChecker() {
 
           {result.status === "APPROVED" && result.invite_codes.length > 0 && (
             <div className="bg-white/[0.02] border border-white/5 rounded p-4 mt-2">
-              <p className="text-xs font-mono text-white/25 uppercase tracking-wider mb-1">
+              <p className="text-xs font-mono text-white/45 uppercase tracking-wider mb-1">
                 Your Invite Codes
               </p>
               <p className="text-white/30 text-xs mb-4">

@@ -14,7 +14,7 @@ export default function AboutPage() {
         aria-hidden
       >
         <Image
-          src="/images/gallery/background.png"
+          src="/images/optimized/background.webp"
           alt=""
           fill
           className="object-cover object-center"
@@ -26,7 +26,7 @@ export default function AboutPage() {
 
         {/* Minimal page header */}
         <div className="pt-16 pb-10 text-center">
-          <span className="text-[10px] tracking-[0.35em] text-white/25 uppercase font-medium mb-5 block">
+          <span className="text-[10px] tracking-[0.35em] text-white/45 uppercase font-medium mb-5 block">
             The Collective
           </span>
           <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-black tracking-wide text-white mb-6 leading-none">
@@ -46,7 +46,7 @@ export default function AboutPage() {
         <div className="mb-16">
           <div className="relative w-full aspect-[16/7] overflow-hidden rounded border border-white/[0.07] shadow-[0_8px_48px_rgba(0,0,0,0.7)]">
             <Image
-              src="/images/gallery/about.png"
+              src="/images/optimized/about.webp"
               fill
               sizes="(max-width: 768px) 100vw, 896px"
               className="object-cover object-center"

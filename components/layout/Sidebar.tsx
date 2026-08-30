@@ -8,11 +8,20 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ComingSoonBadge } from "@/components/ui/TBABadge";
 
+// PRD 6 — primary information architecture.
 const NAV_LINKS = [
   { href: "/", label: "Home" },
+  { href: "/collection", label: "Collection" },
+  { href: "/universe", label: "Universe" },
   { href: "/vision", label: "Vision" },
+  { href: "/collective", label: "The Collective" },
+];
+
+// Secondary links, surfaced only in the expanded drawer.
+const SECONDARY_LINKS = [
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
+  { href: "/social", label: "Official Links" },
 ];
 
 export function Sidebar() {
@@ -133,6 +142,23 @@ export function Sidebar() {
                     </Link>
                   </motion.div>
                 ))}
+
+                <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 pr-8">
+                  {SECONDARY_LINKS.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`font-mono text-xs tracking-widest uppercase transition-colors ${
+                        pathname === link.href
+                          ? "text-white/70"
+                          : "text-white/30 hover:text-white/60"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
               </nav>
 
               <div className="pb-8 pl-10 flex flex-col gap-3">
