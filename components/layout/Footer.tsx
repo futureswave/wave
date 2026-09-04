@@ -33,7 +33,6 @@ export function Footer() {
               <ul className="space-y-2">
                 {[
                   ["Collection", "/collection"],
-                  ["Universe", "/universe"],
                   ["Vision", "/vision"],
                   ["The Collective", "/collective"],
                   ["About", "/about"],
@@ -91,7 +90,7 @@ export function Footer() {
             © 2026 VANTH · All rights reserved
           </p>
           <p className="text-white/35 text-xs font-mono">
-            Mint Venue: TBA
+            Mint Venue: {SITE_CONFIG.mintVenue}
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
-import { validateEthereumWallet } from "@/lib/validation";
+import { validateSolanaWallet } from "@/lib/validation";
 
 export async function GET(req: NextRequest) {
   const wallet = req.nextUrl.searchParams.get("wallet")?.trim();
@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ found: false, error: "Wallet address is required." }, { status: 400 });
   }
 
-  const walletErr = validateEthereumWallet(wallet);
+  const walletErr = validateSolanaWallet(wallet);
   if (walletErr) {
     return NextResponse.json({ found: false, error: walletErr }, { status: 400 });
   }

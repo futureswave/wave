@@ -1,5 +1,5 @@
 import { ExternalLink } from "lucide-react";
-import { SOCIAL_LINKS } from "@/lib/config/links";
+import { SOCIAL_LINKS, SITE_CONFIG } from "@/lib/config/links";
 import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
 import { TBABadge } from "@/components/ui/TBABadge";
 
@@ -34,9 +34,9 @@ const links = [
   },
   {
     label: SOCIAL_LINKS.mintVenue.label,
-    description: "Minting platform details will be announced before launch.",
+    description: "VANTH mints on OpenSea. The exact collection link is published here before launch.",
     url: SOCIAL_LINKS.mintVenue.url,
-    handle: "TBA",
+    handle: SITE_CONFIG.mintVenue,
     available: false,
   },
 ];

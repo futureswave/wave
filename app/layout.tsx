@@ -22,7 +22,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vanth.example.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vanthverse.com";
 const DESCRIPTION =
   "Enter the VANTHVERSE — a collectible universe where anime, cyberpunk, and digital identity converge.";
 
@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     template: "%s — VANTH",
   },
   description: DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
     shortcut: "/icon.png",

@@ -19,14 +19,14 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { wallet_address, twitter_handle, discord_handle, ack_magiceden_only, captcha_token } = body;
+    const { wallet_address, twitter_handle, discord_handle, ack_opensea_only, captcha_token } = body;
 
     // Server-side validation (mirrors client)
     const validationErrors = validateWhitelistForm({
       wallet_address: wallet_address ?? "",
       twitter_handle: twitter_handle ?? "",
       discord_handle: discord_handle ?? "",
-      ack_magiceden_only: ack_magiceden_only ?? false,
+      ack_opensea_only: ack_opensea_only ?? false,
     });
 
     if (Object.keys(validationErrors).length > 0) {

@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { getFeaturedCharacters } from "@/lib/content/collection";
 import { CharacterCard } from "@/components/collection/CharacterCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { VISION_CARDS } from "@/lib/vision-cards";
 
 /** PRD 7.02 — THE FIRST GENERATION. */
 export function CollectionPreview() {
@@ -20,7 +21,9 @@ export function CollectionPreview() {
         {characters.map((character, i) => (
           <CharacterCard
             key={character.id}
-            character={character}
+            // The homepage preview shows the Vision artwork; the /collection
+            // pages keep each character's own gallery image.
+            character={{ ...character, image: VISION_CARDS[i].image }}
             priority={i < 3}
             sizes="(max-width: 768px) 50vw, 33vw"
           />

@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
  * official-links list can never drift from /social.
  */
 const OFFICIAL = [
-  { label: "Official Website", value: "vanth.xyz", href: null as string | null },
+  { label: "Official Website", value: "vanthverse.com", href: "https://vanthverse.com" as string | null },
   { label: "Official X", value: SOCIAL_LINKS.x.handle, href: SOCIAL_LINKS.x.url },
   { label: "Official Discord", value: "discord.gg/vanth", href: SOCIAL_LINKS.discord.url },
   {

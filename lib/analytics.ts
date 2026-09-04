@@ -9,7 +9,7 @@ type AnalyticsEvent =
   | "click_social_x"
   | "click_social_discord"
   | "click_gitbook"
-  | "click_magiceden"
+  | "click_opensea"
   | "wallet_connect_success"
   | "wallet_disconnect"
   | "view_gallery_lightbox"

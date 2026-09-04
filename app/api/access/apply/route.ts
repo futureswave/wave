@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHash } from "crypto";
 import { createServiceClient } from "@/lib/supabase";
-import { validateEthereumWallet, validateXHandle, validateDiscordHandle, normalizeXHandle } from "@/lib/validation";
+import { validateSolanaWallet, validateXHandle, validateDiscordHandle, normalizeXHandle } from "@/lib/validation";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 function hashIp(ip: string): string {
@@ -27,14 +27,14 @@ export async function POST(req: NextRequest) {
       essay_reputation,
       essay_value,
       reference_links,
-      ack_magiceden_only,
+      ack_opensea_only,
     } = body;
 
     if (!code || typeof code !== "string" || !code.trim()) {
       return NextResponse.json({ error: "Access code is required." }, { status: 400 });
     }
 
-    const walletErr = validateEthereumWallet(wallet_address ?? "");
+    const walletErr = validateSolanaWallet(wallet_address ?? "");
     if (walletErr) return NextResponse.json({ error: walletErr }, { status: 400 });
 
     const xErr = validateXHandle(twitter_handle ?? "");
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     const essayReputation = typeof essay_reputation === "string" ? essay_reputation : "";
     const essayValue = typeof essay_value === "string" ? essay_value : "";
 
-    if (!ack_magiceden_only) {
+    if (!ack_opensea_only) {
       return NextResponse.json({ error: "You must acknowledge the minting safety notice." }, { status: 400 });
     }
 

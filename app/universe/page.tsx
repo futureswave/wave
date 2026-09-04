@@ -6,10 +6,13 @@ import { DISTRICTS, FACTIONS, ORIGIN } from "@/lib/content/universe";
 import { DistrictMap } from "@/components/universe/DistrictMap";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
+// Temporarily hidden from navigation and search while this page is reworked.
+// The route still resolves so work can continue on it directly.
 export const metadata = {
   title: "Universe",
   description:
     "The VANTHVERSE: its origin, its districts, its factions, and the characters that move between them.",
+  robots: { index: false, follow: false },
 };
 
 const NAV = [

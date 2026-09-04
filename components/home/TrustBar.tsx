@@ -1,11 +1,13 @@
 import { TBABadge } from "@/components/ui/TBABadge";
 import { Shield, Zap, Store, Calendar } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/config/links";
 
-const items = [
-  { icon: Zap, label: "Chain" },
-  { icon: Store, label: "Mint Venue" },
-  { icon: Shield, label: "Supply" },
-  { icon: Calendar, label: "Mint Date" },
+// Values come from lib/config/links.ts; anything still null renders as TBA.
+const items: { icon: typeof Zap; label: string; value: string | null }[] = [
+  { icon: Zap, label: "Chain", value: SITE_CONFIG.chain },
+  { icon: Store, label: "Mint Venue", value: SITE_CONFIG.mintVenue },
+  { icon: Shield, label: "Supply", value: SITE_CONFIG.supply },
+  { icon: Calendar, label: "Mint Date", value: SITE_CONFIG.mintDate },
 ];
 
 export function TrustBar() {
@@ -21,7 +23,11 @@ export function TrustBar() {
               <item.icon className="w-4 h-4 text-white/25" />
               <div className="flex flex-col items-start">
                 <span className="text-[10px] text-white/20 uppercase tracking-widest leading-none mb-0.5 font-mono">{item.label}</span>
-                <TBABadge />
+                {item.value ? (
+                  <span className="text-sm font-semibold font-mono text-white/80 leading-none py-0.5">{item.value}</span>
+                ) : (
+                  <TBABadge />
+                )}
               </div>
             </div>
           ))}

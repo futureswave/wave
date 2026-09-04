@@ -30,8 +30,8 @@ export const SITE_CONFIG = {
   name: "VANTH",
   tagline: "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style.",
 
-  chain: "Ethereum",
-  mintVenue: "TBA",
+  chain: "Solana",
+  mintVenue: "OpenSea",
 
   supply: null, // TBA
   mintDate: null, // TBA

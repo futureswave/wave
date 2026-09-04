@@ -12,7 +12,7 @@ Built with Next.js 16 (App Router), React 19, Tailwind CSS v4, framer-motion, an
 - **Admin committee dashboard** (`/admin`) to review, score, approve/reject applications
   (HMAC-signed, expiring session cookie).
 
-Chain: **Ethereum (EVM)**. Wallet addresses are validated as `0x…` (42 chars).
+Chain: **Solana**. Wallet addresses are validated as base58 public keys (32-44 chars).
 
 ## Getting Started
 

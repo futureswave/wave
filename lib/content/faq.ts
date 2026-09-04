@@ -27,7 +27,7 @@ export const FAQS: FAQEntry[] = [
   },
   {
     q: "Which blockchain is VANTH on?",
-    a: "The blockchain details for VANTH are TBA. Follow official channels for announcements.",
+    a: "VANTH is built on Solana.",
   },
   {
     q: "What is the supply?",
@@ -39,16 +39,16 @@ export const FAQS: FAQEntry[] = [
   },
   {
     q: "Where do I mint?",
-    a: "Minting will happen exclusively on Magic Eden. Never mint from any other source or website. Always verify the contract address published on this website before interacting.",
+    a: "Minting will happen exclusively on OpenSea. Never mint from any other source or website. Always verify the contract address published on this website before interacting.",
     featured: true,
   },
   {
     q: "How can I join?",
-    a: "Use the Request Access page on this site. Fill in your Ethereum wallet address (MetaMask), X username, and Discord username. No wallet connection required — just the address.",
+    a: "Use the Request Access page on this site. Fill in your Solana wallet address (Phantom), X username, and Discord username. No wallet connection required — just the address.",
   },
   {
     q: "Do I need to connect my wallet to request access?",
-    a: "No. The form only requires your Ethereum wallet address as a text input. You do not need to connect your wallet to any site to join.",
+    a: "No. The form only requires your Solana wallet address as a text input. You do not need to connect your wallet to any site to join.",
   },
   {
     q: "Will there be holder benefits?",
@@ -74,11 +74,11 @@ export const FAQS: FAQEntry[] = [
   },
   {
     q: "What wallets are supported?",
-    a: "MetaMask is the recommended wallet for VANTH. It is supported on the Stake page (coming soon).",
+    a: "Phantom is the recommended wallet for VANTH. It is supported on the Stake page (coming soon).",
   },
   {
     q: "Will there be royalties?",
-    a: "Royalty structure is TBA. Details will be published before the collection launches on Magic Eden.",
+    a: "Royalty structure is TBA. Details will be published before the collection launches on OpenSea.",
   },
   {
     q: "Is the team public?",

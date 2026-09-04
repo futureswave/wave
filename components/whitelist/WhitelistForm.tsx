@@ -13,7 +13,7 @@ export function WhitelistForm() {
     wallet_address: "",
     twitter_handle: "",
     discord_handle: "",
-    ack_magiceden_only: false,
+    ack_opensea_only: false,
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
@@ -86,7 +86,7 @@ export function WhitelistForm() {
           <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Discord</a>{" "}
           for mint date announcements.
         </p>
-        <p className="text-amber-400 text-xs">Remember: Minting will only happen on Magic Eden. Never mint from another source.</p>
+        <p className="text-amber-400 text-xs">Remember: Minting will only happen on OpenSea. Never mint from another source.</p>
       </div>
     );
   }
@@ -126,7 +126,7 @@ export function WhitelistForm() {
       {/* Wallet */}
       <div>
         <label htmlFor="wallet_address" className="block text-sm font-semibold text-slate-300 mb-1.5">
-          Ethereum Wallet Address <span className="text-red-400">*</span>
+          Solana Wallet Address <span className="text-red-400">*</span>
         </label>
         <input
           id="wallet_address"
@@ -134,7 +134,7 @@ export function WhitelistForm() {
           type="text"
           value={form.wallet_address}
           onChange={handleChange}
-          placeholder="0x..."
+          placeholder="Your Solana wallet address"
           className={`w-full bg-[#10101e] border rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:ring-2 transition-colors font-mono ${
             errors.wallet_address
               ? "border-red-500/60 focus:ring-red-500/40"
@@ -207,22 +207,22 @@ export function WhitelistForm() {
 
       {/* Acknowledgement */}
       <div>
-        <label className={`flex items-start gap-3 cursor-pointer group ${errors.ack_magiceden_only ? "text-red-400" : ""}`}>
+        <label className={`flex items-start gap-3 cursor-pointer group ${errors.ack_opensea_only ? "text-red-400" : ""}`}>
           <input
             type="checkbox"
-            name="ack_magiceden_only"
-            checked={form.ack_magiceden_only}
+            name="ack_opensea_only"
+            checked={form.ack_opensea_only}
             onChange={handleChange}
             className="mt-0.5 w-4 h-4 rounded border-white/20 bg-[#10101e] accent-purple-500 cursor-pointer"
           />
-          <span className={`text-sm leading-relaxed ${errors.ack_magiceden_only ? "text-red-400" : "text-slate-400 group-hover:text-slate-300 transition-colors"}`}>
+          <span className={`text-sm leading-relaxed ${errors.ack_opensea_only ? "text-red-400" : "text-slate-400 group-hover:text-slate-300 transition-colors"}`}>
             I understand that minting happens on{" "}
-            <span className="font-semibold text-purple-400">Magic Eden only</span>. I will not mint from any other source.
+            <span className="font-semibold text-purple-400">OpenSea only</span>. I will not mint from any other source.
           </span>
         </label>
-        {errors.ack_magiceden_only && (
+        {errors.ack_opensea_only && (
           <p className="mt-1.5 text-red-400 text-xs flex items-center gap-1 pl-7">
-            <AlertCircle className="w-3 h-3" /> {errors.ack_magiceden_only}
+            <AlertCircle className="w-3 h-3" /> {errors.ack_opensea_only}
           </p>
         )}
       </div>

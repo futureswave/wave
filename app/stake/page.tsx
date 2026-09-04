@@ -7,40 +7,56 @@ import { ScamWarningBanner } from "@/components/ui/ScamWarningBanner";
 import { ComingSoonBadge, TBABadge } from "@/components/ui/TBABadge";
 import { trackEvent } from "@/lib/analytics";
 
+type PhantomProvider = {
+  isPhantom?: boolean;
+  connect: () => Promise<{ publicKey: { toString: () => string } }>;
+  disconnect: () => Promise<void>;
+};
+
+function getPhantom(): PhantomProvider | undefined {
+  return (window as unknown as { solana?: PhantomProvider }).solana;
+}
+
 function useWalletSimulator() {
   const [address, setAddress] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function connect() {
     setConnecting(true);
+    setError(null);
     try {
-      const win = window as unknown as { ethereum?: { request: (args: { method: string }) => Promise<string[]> } };
-      if (win.ethereum) {
-        const accounts = await win.ethereum.request({ method: "eth_requestAccounts" });
-        if (accounts[0]) {
-          setAddress(accounts[0]);
-          trackEvent("wallet_connect_success");
-        }
+      const provider = getPhantom();
+      if (provider?.isPhantom) {
+        const { publicKey } = await provider.connect();
+        setAddress(publicKey.toString());
+        trackEvent("wallet_connect_success");
       } else {
-        alert("MetaMask not detected. Please install the MetaMask browser extension first.");
+        setError("Phantom not detected. Install the Phantom browser extension first.");
       }
     } catch {
-      // User rejected or error
+      // User rejected the connection request
     } finally {
       setConnecting(false);
     }
   }
 
-  function disconnect() {
+  async function disconnect() {
+    try {
+      await getPhantom()?.disconnect();
+    } catch {
+      // Provider already disconnected
+    }
     setAddress(null);
+    setError(null);
     trackEvent("wallet_disconnect");
   }
 
-  return { address, connecting, connect, disconnect };
+  return { address, connecting, error, connect, disconnect };
 }
 
 const STAKING_STEPS = [
-  { icon: Wallet, label: "Connect", description: "Connect your MetaMask wallet" },
+  { icon: Wallet, label: "Connect", description: "Connect your Phantom wallet" },
   { icon: Grid3x3, label: "Select NFTs", description: "Choose which VANTH NFTs you want to stake" },
   { icon: TrendingUp, label: "Stake", description: "Stake your selected NFTs to start earning VNTH" },
   { icon: TrendingUp, label: "Track", description: "Monitor your staking rewards in real time" },
@@ -48,10 +64,10 @@ const STAKING_STEPS = [
 ];
 
 export default function StakePage() {
-  const { address, connecting, connect, disconnect } = useWalletSimulator();
+  const { address, connecting, error, connect, disconnect } = useWalletSimulator();
 
   function truncate(addr: string) {
-    return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+    return `${addr.slice(0, 4)}...${addr.slice(-4)}`;
   }
 
   return (
@@ -119,9 +135,14 @@ export default function StakePage() {
               disabled={connecting}
               className="flex items-center justify-between gap-3 w-full bg-white/3 border border-white/10 hover:border-white/20 hover:bg-white/5 rounded px-4 py-3 transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
             >
-              <span className="text-white font-semibold text-sm">MetaMask</span>
+              <span className="text-white font-semibold text-sm">Phantom</span>
               <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white transition-colors" />
             </button>
+            {error && (
+              <p role="alert" className="text-red-400 text-xs mt-3">
+                {error}
+              </p>
+            )}
           </div>
         )}
       </div>

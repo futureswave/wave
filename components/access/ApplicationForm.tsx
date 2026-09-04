@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Loader2, AlertCircle } from "lucide-react";
-import { validateEthereumWallet, validateXHandle, validateDiscordHandle } from "@/lib/validation";
+import { validateSolanaWallet, validateXHandle, validateDiscordHandle } from "@/lib/validation";
 
 interface Props {
   accessCode: string;
@@ -13,7 +13,7 @@ type FormState = {
   wallet_address: string;
   twitter_handle: string;
   discord_handle: string;
-  ack_magiceden_only: boolean;
+  ack_opensea_only: boolean;
 };
 
 export function ApplicationForm({ accessCode, onSuccess }: Props) {
@@ -21,7 +21,7 @@ export function ApplicationForm({ accessCode, onSuccess }: Props) {
     wallet_address: "",
     twitter_handle: "",
     discord_handle: "",
-    ack_magiceden_only: false,
+    ack_opensea_only: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "error">("idle");
@@ -34,14 +34,14 @@ export function ApplicationForm({ accessCode, onSuccess }: Props) {
 
   function validate(): boolean {
     const errs: Record<string, string> = {};
-    const walletErr = validateEthereumWallet(form.wallet_address);
+    const walletErr = validateSolanaWallet(form.wallet_address);
     if (walletErr) errs.wallet_address = walletErr;
     const xErr = validateXHandle(form.twitter_handle);
     if (xErr) errs.twitter_handle = xErr;
     const discordErr = validateDiscordHandle(form.discord_handle);
     if (discordErr) errs.discord_handle = discordErr;
-    if (!form.ack_magiceden_only) {
-      errs.ack_magiceden_only = "You must acknowledge this.";
+    if (!form.ack_opensea_only) {
+      errs.ack_opensea_only = "You must acknowledge this.";
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -94,12 +94,12 @@ export function ApplicationForm({ accessCode, onSuccess }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="sm:col-span-2">
           <label className="block text-sm font-semibold text-white/60 mb-1.5">
-            Ethereum Wallet Address <span className="text-white/40">*</span>
+            Solana Wallet Address <span className="text-white/40">*</span>
           </label>
           <input
             value={form.wallet_address}
             onChange={(e) => setField("wallet_address", e.target.value)}
-            placeholder="0x..."
+            placeholder="Your Solana wallet address"
             className={`${inputBase} font-mono ${errors.wallet_address ? inputErr : inputOk}`}
           />
           {errors.wallet_address && <p className="text-red-400 text-xs mt-1">{errors.wallet_address}</p>}
@@ -134,11 +134,11 @@ export function ApplicationForm({ accessCode, onSuccess }: Props) {
 
       {/* Acknowledgement */}
       <div>
-        <label className={`flex items-start gap-3 p-4 rounded border cursor-pointer transition-colors ${errors.ack_magiceden_only ? "border-red-500/30 bg-red-500/5" : "border-white/10 bg-white/[0.02] hover:border-white/20"}`}>
+        <label className={`flex items-start gap-3 p-4 rounded border cursor-pointer transition-colors ${errors.ack_opensea_only ? "border-red-500/30 bg-red-500/5" : "border-white/10 bg-white/[0.02] hover:border-white/20"}`}>
           <input
             type="checkbox"
-            checked={form.ack_magiceden_only}
-            onChange={(e) => setField("ack_magiceden_only", e.target.checked)}
+            checked={form.ack_opensea_only}
+            onChange={(e) => setField("ack_opensea_only", e.target.checked)}
             className="mt-0.5"
           />
           <span className="text-white/50 text-sm">
@@ -146,8 +146,8 @@ export function ApplicationForm({ accessCode, onSuccess }: Props) {
             I will never send funds to any address claiming to be VANTH without verifying first.
           </span>
         </label>
-        {errors.ack_magiceden_only && (
-          <p className="text-red-400 text-xs mt-1">{errors.ack_magiceden_only}</p>
+        {errors.ack_opensea_only && (
+          <p className="text-red-400 text-xs mt-1">{errors.ack_opensea_only}</p>
         )}
       </div>
 

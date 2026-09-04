@@ -1,12 +1,14 @@
 // Validation functions for whitelist form fields
 // Mirrors server-side validation in api/whitelist/submit/route.ts
 
-const EVM_ADDRESS_REGEX = /^0x[0-9a-fA-F]{40}$/;
+// Solana addresses are base58-encoded 32-byte public keys: 32-44 chars,
+// alphabet excludes 0, O, I and l. This is a format check, not a checksum.
+const SOLANA_ADDRESS_REGEX = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 
-export function validateEthereumWallet(address: string): string | null {
+export function validateSolanaWallet(address: string): string | null {
   const trimmed = address.trim();
   if (!trimmed) return "Wallet address is required.";
-  if (!EVM_ADDRESS_REGEX.test(trimmed)) return "Invalid Ethereum wallet address (must start with 0x and be 42 characters).";
+  if (!SOLANA_ADDRESS_REGEX.test(trimmed)) return "Invalid Solana wallet address (must be 32-44 base58 characters).";
   return null;
 }
 
@@ -45,24 +47,24 @@ export interface WhitelistFormData {
   wallet_address: string;
   twitter_handle: string;
   discord_handle: string;
-  ack_magiceden_only: boolean;
+  ack_opensea_only: boolean;
 }
 
 export interface FormErrors {
   wallet_address?: string;
   twitter_handle?: string;
   discord_handle?: string;
-  ack_magiceden_only?: string;
+  ack_opensea_only?: string;
 }
 
 export function validateWhitelistForm(data: WhitelistFormData): FormErrors {
   const errors: FormErrors = {};
-  const walletErr = validateEthereumWallet(data.wallet_address);
+  const walletErr = validateSolanaWallet(data.wallet_address);
   if (walletErr) errors.wallet_address = walletErr;
   const xErr = validateXHandle(data.twitter_handle);
   if (xErr) errors.twitter_handle = xErr;
   const discordErr = validateDiscordHandle(data.discord_handle);
   if (discordErr) errors.discord_handle = discordErr;
-  if (!data.ack_magiceden_only) errors.ack_magiceden_only = "You must acknowledge that minting happens on Magic Eden only.";
+  if (!data.ack_opensea_only) errors.ack_opensea_only = "You must acknowledge that minting happens on OpenSea only.";
   return errors;
 }
