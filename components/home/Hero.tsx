@@ -94,10 +94,10 @@ export function Hero() {
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mt-10 w-full sm:w-auto">
           <Link
-            href="/collection"
+            href="/vision"
             className="flex items-center justify-center gap-2 px-8 py-4 text-sm font-bold uppercase tracking-widest font-mono bg-white text-black hover:bg-white/90 transition-colors rounded"
           >
-            Explore Collection
+            Explore the Vision
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link

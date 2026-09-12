@@ -2,10 +2,13 @@ import Image from "next/image";
 import { getCharacters } from "@/lib/content/collection";
 import { CollectionExplorer } from "@/components/collection/CollectionExplorer";
 
+// Temporarily hidden from navigation and search while this page is reworked.
+// The route still resolves so work can continue on it directly.
 export const metadata = {
   title: "Collection",
   description:
     "The First Generation. Every VANTH carries a unique identity — sector, class, faction, and a record of its own.",
+  robots: { index: false, follow: false },
 };
 
 export default function CollectionPage() {

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
-import { CollectionPreview } from "@/components/home/CollectionPreview";
+// Hidden while /collection is being reworked:
+// import { CollectionPreview } from "@/components/home/CollectionPreview";
 import { WhatIsVanth } from "@/components/home/WhatIsVanth";
 // Hidden while /universe is being reworked:
 // import { UniversePortal } from "@/components/home/UniversePortal";
@@ -37,7 +38,7 @@ export default function HomePage() {
       <div className="relative z-10">
         <Hero />
         <TrustBar />
-        <CollectionPreview />
+        {/* <CollectionPreview /> */}
         <WhatIsVanth />
         {/* <UniversePortal /> */}
         <DigitalPassport />

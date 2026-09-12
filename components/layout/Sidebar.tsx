@@ -11,7 +11,6 @@ import { ComingSoonBadge } from "@/components/ui/TBABadge";
 // PRD 6 — primary information architecture.
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/collection", label: "Collection" },
   { href: "/vision", label: "Vision" },
   { href: "/collective", label: "The Collective" },
 ];

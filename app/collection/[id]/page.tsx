@@ -25,6 +25,8 @@ export async function generateMetadata({
       description: character.lore,
       images: [character.image],
     },
+    // Hidden from search while /collection is being reworked.
+    robots: { index: false, follow: false },
   };
 }
 
