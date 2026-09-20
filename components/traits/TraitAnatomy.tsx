@@ -6,6 +6,8 @@ import { ChevronDown } from "lucide-react";
 import { BaseFigure } from "./BaseFigure";
 import { GenderTypeControls } from "./GenderTypeControls";
 import { TraitList } from "./TraitList";
+import { splitByExclusivity } from "@/lib/content/traits";
+import { findThumb } from "@/lib/content/trait-layers";
 import type {
   Gender,
   TraitCategory,
@@ -257,7 +259,7 @@ export function TraitAnatomy({ categories }: Props) {
             <p className="mb-6 mt-2 max-w-2xl text-sm leading-relaxed text-white/45">
               {selectedCategory.blurb}
             </p>
-            <TraitList category={selectedCategory} gender={gender} />
+            <CategoryVariants category={selectedCategory} gender={gender} />
           </motion.section>
         </AnimatePresence>
       </div>
@@ -318,7 +320,7 @@ export function TraitAnatomy({ categories }: Props) {
                         <p className="mb-5 text-sm leading-relaxed text-white/45">
                           {category.blurb}
                         </p>
-                        <TraitList category={category} gender={gender} />
+                        <CategoryVariants category={category} gender={gender} />
                       </div>
                     </motion.div>
                   )}
@@ -329,5 +331,45 @@ export function TraitAnatomy({ categories }: Props) {
         </ul>
       </div>
     </div>
+  );
+}
+
+/**
+ * Read-only variant grid for one category, with the real trait thumbnails and
+ * a count that calls out anything only this gender has.
+ */
+function CategoryVariants({
+  category,
+  gender,
+}: {
+  category: TraitCategory;
+  gender: Gender;
+}) {
+  const variants = splitByExclusivity(category, gender);
+  const exclusiveCount = variants.filter((v) => v.exclusive).length;
+  const genderLabel = gender === "man" ? "Man" : "Women";
+
+  const items = variants.map(({ name, exclusive }) => ({
+    name,
+    exclusive,
+    thumb: findThumb(gender, category.id, name),
+  }));
+
+  return (
+    <TraitList
+      items={items}
+      caption={
+        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
+            {variants.length} variants · {genderLabel}
+          </span>
+          {exclusiveCount > 0 && (
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#a78bfa]/70">
+              {exclusiveCount} {genderLabel}-only
+            </span>
+          )}
+        </div>
+      }
+    />
   );
 }

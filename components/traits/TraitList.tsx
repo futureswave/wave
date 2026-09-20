@@ -1,64 +1,89 @@
 "use client";
 
-import { splitByExclusivity } from "@/lib/content/traits";
-import type { Gender, TraitCategory } from "@/lib/content/traits";
+export type TraitListItem = {
+  name: string;
+  /** 128px preview, when the artwork for this variant is known. */
+  thumb?: string | null;
+  /** True when only one gender has this variant — flagged in the anatomy panel. */
+  exclusive?: boolean;
+};
 
 type Props = {
-  category: TraitCategory;
-  gender: Gender;
+  items: TraitListItem[];
+  /** Line above the grid, e.g. "42 variants · Man". */
+  caption?: React.ReactNode;
+  /** Present when the grid is a picker rather than a read-only list. */
+  selected?: string;
+  onSelect?: (name: string) => void;
 };
 
 /**
- * Variant grid for one category. Shared between the desktop detail panel and
- * the mobile accordion, so it carries no layout chrome of its own.
+ * Grid of trait variants. Read-only in the anatomy panel, selectable in the
+ * character builder — the difference is just whether `onSelect` is passed.
  */
-export function TraitList({ category, gender }: Props) {
-  const variants = splitByExclusivity(category, gender);
-  const exclusiveCount = variants.filter((v) => v.exclusive).length;
-  const genderLabel = gender === "man" ? "Man" : "Women";
+export function TraitList({ items, caption, selected, onSelect }: Props) {
+  const picker = typeof onSelect === "function";
 
   return (
     <div>
-      <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-        <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
-          {variants.length} variants · {genderLabel}
-        </span>
-        {exclusiveCount > 0 && (
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#a78bfa]/70">
-            {exclusiveCount} {genderLabel}-only
-          </span>
-        )}
-      </div>
+      {caption && <div className="mb-4">{caption}</div>}
 
       <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-        {variants.map(({ name, exclusive }) => {
-          const none = name === "NONE";
-          return (
-            <li
-              key={name}
-              className={`group flex items-center gap-3 rounded-sm border px-3 py-2.5 transition-colors ${
-                exclusive
-                  ? "border-[#7c3aed]/35 bg-[#7c3aed]/[0.06] hover:border-[#7c3aed]/60"
-                  : "border-white/[0.07] bg-white/[0.02] hover:border-white/20"
-              }`}
-            >
-              {/* Thumbnail slot — monogram until the trait art ships. */}
+        {items.map((item) => {
+          const none = item.name === "NONE";
+          const isSelected = picker && item.name === selected;
+
+          const border = isSelected
+            ? "border-[#7c3aed] bg-[#7c3aed]/15"
+            : item.exclusive
+              ? "border-[#7c3aed]/35 bg-[#7c3aed]/[0.06] hover:border-[#7c3aed]/60"
+              : "border-white/[0.07] bg-white/[0.02] hover:border-white/20";
+
+          const body = (
+            <>
               <span
                 aria-hidden
-                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-white/[0.07] font-mono text-[11px] ${
-                  none ? "text-white/20" : "text-white/45"
-                } bg-[#0d0d0d]`}
+                className="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-white/[0.07] bg-[#0d0d0d] font-mono text-[11px] text-white/45"
               >
-                {none ? "—" : name.charAt(0).toUpperCase()}
+                {none || !item.thumb ? (
+                  none ? "—" : item.name.charAt(0).toUpperCase()
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.thumb}
+                    alt=""
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full scale-[2.1] object-cover object-[50%_28%]"
+                  />
+                )}
               </span>
               <span
                 className={`truncate text-sm ${
                   none ? "italic text-white/35" : "text-white/70"
                 } group-hover:text-white`}
-                title={name}
+                title={item.name}
               >
-                {none ? "None" : name}
+                {none ? "None" : item.name}
               </span>
+            </>
+          );
+
+          const className = `group flex w-full items-center gap-3 rounded-sm border px-3 py-2.5 text-left transition-colors ${border}`;
+
+          return (
+            <li key={item.name}>
+              {picker ? (
+                <button
+                  type="button"
+                  onClick={() => onSelect?.(item.name)}
+                  aria-pressed={isSelected}
+                  className={className}
+                >
+                  {body}
+                </button>
+              ) : (
+                <div className={className}>{body}</div>
+              )}
             </li>
           );
         })}

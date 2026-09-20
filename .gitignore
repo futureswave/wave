@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw trait artwork (~140 MB) — derivatives live in public/traits
+/man/
+/women/
