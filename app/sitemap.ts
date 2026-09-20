@@ -6,6 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vanthverse.com";
 const ROUTES = [
   "",
   "/vision",
+  "/traits",
   "/collective",
   "/about",
   "/faq",

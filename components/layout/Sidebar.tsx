@@ -12,6 +12,7 @@ import { ComingSoonBadge } from "@/components/ui/TBABadge";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/vision", label: "Vision" },
+  { href: "/traits", label: "Traits" },
   { href: "/collective", label: "The Collective" },
 ];
 
