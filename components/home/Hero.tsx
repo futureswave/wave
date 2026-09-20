@@ -8,8 +8,8 @@ import { Particles } from "@/components/ui/particles";
 import { ArrowRight } from "lucide-react";
 
 /**
- * PRD 7.01 — the first five seconds. Fullscreen artwork, cinematic parallax,
- * ENTER THE VANTHVERSE, and two ways into the universe.
+ * PRD 7.01 — the first five seconds. ENTER THE VANTHVERSE and two ways into
+ * the universe, over the site-wide background plate from app/page.tsx.
  */
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -20,8 +20,6 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Artwork drifts slower than the copy — the parallax depth cue.
-  const artY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const copyY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
   const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
@@ -30,22 +28,11 @@ export function Hero() {
       ref={ref}
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-transparent film-grain"
     >
-      {/* Character artwork plate */}
-      <motion.div
-        style={reduceMotion ? undefined : { y: artY }}
-        className="absolute inset-0 z-0"
+      {/* Darkening plate that settles the hero into the page background. */}
+      <div
+        className="absolute inset-0 z-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/60 to-[#0a0a0a]"
         aria-hidden
-      >
-        <Image
-          src="/images/gallery/1.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-top opacity-40 sm:opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/60 to-[#0a0a0a]" />
-      </motion.div>
+      />
 
       <Particles
         className="absolute inset-0 z-0"

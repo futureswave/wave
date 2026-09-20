@@ -5,7 +5,7 @@
 // the trait set changes, regenerate this file rather than editing it by hand.
 //
 // Follows the same shape as lib/content/collection.ts — exported types, a const
-// table, and small accessor functions consumed by the /traits page.
+// table, and small accessor functions consumed by the /collection page.
 
 export type Gender = "man" | "women";
 

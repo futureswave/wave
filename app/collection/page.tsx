@@ -1,18 +1,23 @@
 import Image from "next/image";
-import { getCharacters } from "@/lib/content/collection";
-import { CollectionExplorer } from "@/components/collection/CollectionExplorer";
+import { getTraitCategories, getTraitTotals } from "@/lib/content/traits";
+import { TraitAnatomy } from "@/components/traits/TraitAnatomy";
+import { NumberTicker } from "@/components/ui/number-ticker";
 
-// Temporarily hidden from navigation and search while this page is reworked.
-// The route still resolves so work can continue on it directly.
 export const metadata = {
-  title: "Collection",
+  title: "Collection — VANTH NFT",
   description:
-    "The First Generation. Every VANTH carries a unique identity — sector, class, faction, and a record of its own.",
-  robots: { index: false, follow: false },
+    "The anatomy of a VANTH. Ten trait categories, four types and two genders — every variant that makes up the First Generation.",
 };
 
 export default function CollectionPage() {
-  const characters = getCharacters();
+  const categories = getTraitCategories();
+  const totals = getTraitTotals();
+
+  const stats = [
+    { value: totals.categories, label: "Categories" },
+    { value: totals.genderSpecific, label: "Variants" },
+    { value: totals.types, label: "Types" },
+  ];
 
   return (
     <div className="relative">
@@ -21,30 +26,45 @@ export default function CollectionPage() {
         aria-hidden
       >
         <Image
-          src="/images/optimized/background.webp"
+          src="/images/optimized/background2.webp"
           alt=""
           fill
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[#0a0a0a]/85" />
+        <div className="absolute inset-0 bg-[#0a0a0a]/88" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <header className="mb-12">
-          <p className="text-xs font-mono tracking-[0.3em] uppercase text-white/40 mb-3">
-            The First Generation
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <header className="mb-14 text-center">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
+            Anatomy of a VANTH
           </p>
-          <h1 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-display mb-4">
+          <h1 className="mb-6 text-5xl font-black uppercase leading-none tracking-tight text-white sm:text-7xl">
             Collection
           </h1>
-          <p className="text-white/55 max-w-xl text-lg leading-relaxed">
-            Not a grid of assets. A register of characters — each one a
-            signature that held after the Fracture.
+          <p className="mx-auto max-w-xl text-base leading-relaxed text-white/45">
+            Every VANTH is assembled from ten layered categories. Pick a gender
+            and a type, then follow any line back to the part of the body it
+            belongs to.
           </p>
+
+          <div className="mt-10 flex items-start justify-center gap-10 sm:gap-16">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <NumberTicker
+                  value={stat.value}
+                  className="block text-3xl font-black tracking-tight text-white sm:text-4xl"
+                />
+                <span className="mt-1 block font-mono text-[10px] uppercase tracking-[0.25em] text-white/35">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </header>
 
-        <CollectionExplorer characters={characters} />
+        <TraitAnatomy categories={categories} />
       </div>
     </div>
   );

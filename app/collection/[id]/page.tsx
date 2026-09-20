@@ -65,7 +65,7 @@ export default async function CharacterPage({
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <Link
-          href="/collection"
+          href="/collection/archive"
           className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-white/45 hover:text-white transition-colors mb-10"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Collection
