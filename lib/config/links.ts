@@ -12,12 +12,6 @@ export const SOCIAL_LINKS = {
     url: "https://discord.gg/vanth",
     description: "Join our community",
   },
-  gitbook: {
-    meetVanth: {
-      label: "VANTH",
-      url: "https://vanth.gitbook.io/vanth",
-    },
-  },
 
   mintVenue: {
     label: "Mint Venue",
@@ -31,7 +25,7 @@ export const SITE_CONFIG = {
   tagline: "Vanth is a web3 focused project inspired by the best with an innovative and dynamic style.",
 
   chain: "Solana",
-  mintVenue: "OpenSea",
+  mintVenue: null as string | null, // TBA
 
   supply: null, // TBA
   mintDate: null, // TBA

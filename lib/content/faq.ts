@@ -39,7 +39,7 @@ export const FAQS: FAQEntry[] = [
   },
   {
     q: "Where do I mint?",
-    a: "Minting will happen exclusively on OpenSea. Never mint from any other source or website. Always verify the contract address published on this website before interacting.",
+    a: "The mint venue is TBA. It will be announced on this website and our official channels before launch. Never mint from any other source or website. Always verify the contract address published on this website before interacting.",
     featured: true,
   },
   {
@@ -78,7 +78,7 @@ export const FAQS: FAQEntry[] = [
   },
   {
     q: "Will there be royalties?",
-    a: "Royalty structure is TBA. Details will be published before the collection launches on OpenSea.",
+    a: "Royalty structure is TBA. Details will be published before the collection launches.",
   },
   {
     q: "Is the team public?",
@@ -86,7 +86,7 @@ export const FAQS: FAQEntry[] = [
   },
   {
     q: "Where will updates be posted?",
-    a: "All updates are posted on our official X account, Discord server, and GitBook documentation — and reflected on this website. See the Official Links page for verified URLs.",
+    a: "All updates are posted on our official X account and Discord server — and reflected on this website. See the Official Links page for verified URLs.",
   },
   {
     q: "Can the vision change?",

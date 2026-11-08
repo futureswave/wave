@@ -43,7 +43,7 @@ export function Evolution() {
               <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40 mb-2">
                 {phase.marker}
               </p>
-              <h3 className="text-xl font-black uppercase tracking-display text-white mb-4">
+              <h3 className="text-xl font-bold uppercase tracking-display text-white mb-4">
                 {phase.title}
               </h3>
               <ul className="space-y-1.5">

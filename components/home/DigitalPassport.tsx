@@ -39,7 +39,7 @@ export function DigitalPassport() {
             <span className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#0a0a0a] font-mono text-[11px] text-white/60">
               {layer.num}
             </span>
-            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-display text-white">
+            <h3 className="text-2xl sm:text-3xl font-bold uppercase tracking-display text-white">
               {layer.title}
             </h3>
             <p className="text-white/55 leading-relaxed mt-3 max-w-xl">

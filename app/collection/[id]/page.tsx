@@ -85,7 +85,7 @@ export default async function CharacterPage({
           </div>
 
           <div>
-            <h1 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-display">
+            <h1 className="text-4xl sm:text-6xl font-bold text-white uppercase tracking-display">
               VANTH {character.num}
             </h1>
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/40 mt-3">

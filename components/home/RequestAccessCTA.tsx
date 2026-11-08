@@ -21,7 +21,7 @@ export function RequestAccessCTA() {
         <p className="text-xs font-mono tracking-[0.3em] uppercase text-white/40 mb-4">
           Request Access
         </p>
-        <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-display leading-tight">
+        <h2 className="text-3xl sm:text-5xl font-bold text-white uppercase tracking-display leading-tight">
           Request access to
           <br />
           the Vanthverse

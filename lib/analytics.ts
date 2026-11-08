@@ -8,7 +8,6 @@ type AnalyticsEvent =
   | "submit_whitelist_duplicate"
   | "click_social_x"
   | "click_social_discord"
-  | "click_gitbook"
   | "click_opensea"
   | "wallet_connect_success"
   | "wallet_disconnect"

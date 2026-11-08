@@ -6,25 +6,27 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { VISION_CARDS } from "@/lib/vision-cards";
 import { VisionModal } from "@/components/ui/VisionModal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function RoadmapPreview() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 border-t border-white/5">
-      <div className="flex items-end justify-between mb-14">
-        <div>
-          <p className="text-xs font-mono tracking-widest uppercase text-white/30 mb-2">Where We&apos;re Headed</p>
-          <h2 className="text-3xl sm:text-5xl font-black text-white mb-2">Our Vision</h2>
-          <p className="text-white/35 text-base">Six pillars. One universe.</p>
-        </div>
-        <Link
-          href="/vision"
-          className="hidden sm:flex items-center gap-2 text-white/50 hover:text-white font-mono text-sm transition-colors group"
-        >
-          Explore Vision <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
-      </div>
+      <SectionHeading
+        eyebrow="Where We're Headed"
+        title="Our Vision"
+        lead="Six pillars. One universe."
+        align="left"
+        action={
+          <Link
+            href="/vision"
+            className="hidden sm:flex items-center gap-2 text-white/50 hover:text-white font-mono text-sm transition-colors group"
+          >
+            Explore Vision <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        }
+      />
 
       <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
         {VISION_CARDS.map((card, i) => (
@@ -43,7 +45,7 @@ export function RoadmapPreview() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-3">
               <p className="text-white/25 font-mono text-xs leading-none mb-0.5">{card.num}</p>
-              <p className="text-white font-black text-sm tracking-wide">{card.title}</p>
+              <p className="text-white font-bold text-sm tracking-wide">{card.title}</p>
             </div>
           </button>
         ))}

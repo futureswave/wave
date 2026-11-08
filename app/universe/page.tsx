@@ -45,7 +45,7 @@ export default function UniversePage() {
           <p className="text-xs font-mono tracking-[0.3em] uppercase text-white/40 mb-3">
             Enter the Universe
           </p>
-          <h1 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-display mb-5">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white uppercase tracking-display mb-5">
             The Vanthverse
           </h1>
           <p className="text-white/55 max-w-2xl text-lg leading-relaxed mb-8">
@@ -108,7 +108,7 @@ export default function UniversePage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 mb-2">
                     {chapter.number}
                   </p>
-                  <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-display text-white mb-5">
+                  <h3 className="text-2xl sm:text-3xl font-bold uppercase tracking-display text-white mb-5">
                     {chapter.title}
                   </h3>
                   <div className="space-y-4">
@@ -158,7 +158,7 @@ export default function UniversePage() {
                 key={faction.slug}
                 className="rounded-xl border border-white/8 bg-white/[0.02] p-6"
               >
-                <h3 className="text-xl font-black uppercase tracking-display text-white mb-1">
+                <h3 className="text-xl font-bold uppercase tracking-display text-white mb-1">
                   {faction.name}
                 </h3>
                 <p className="font-mono text-[11px] tracking-[0.15em] text-white/45 mb-4">

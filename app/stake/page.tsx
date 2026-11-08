@@ -88,7 +88,7 @@ export default function StakePage() {
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-2 mb-4">
-          <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white">Stake</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-wide text-white">Stake</h1>
           <ComingSoonBadge />
         </div>
         <p className="text-white/40 leading-relaxed">

@@ -57,7 +57,7 @@ export function UniversePortal() {
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 mb-3">
                 {gate.caption}
               </p>
-              <p className="text-2xl font-black uppercase tracking-display text-white/80 group-hover:text-white transition-colors">
+              <p className="text-2xl font-bold uppercase tracking-display text-white/80 group-hover:text-white transition-colors">
                 {gate.label}
               </p>
               <span

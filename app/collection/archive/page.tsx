@@ -36,7 +36,7 @@ export default function CollectionArchivePage() {
           <p className="text-xs font-mono tracking-[0.3em] uppercase text-white/40 mb-3">
             The First Generation
           </p>
-          <h1 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-display mb-4">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white uppercase tracking-display mb-4">
             Archive
           </h1>
           <p className="text-white/55 max-w-xl text-lg leading-relaxed">

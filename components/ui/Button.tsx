@@ -17,9 +17,9 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-white text-black hover:bg-white/90 transition-colors duration-200",
+    "bg-white text-black hover:bg-white/90 hover:shadow-[0_0_24px_rgba(124,58,237,0.35)] active:translate-y-px transition-[background-color,box-shadow,transform] duration-200",
   secondary:
-    "border border-white/15 text-white/70 hover:border-white/30 hover:text-white transition-all duration-200",
+    "border border-white/15 text-white/70 hover:border-signal/60 hover:bg-signal/[0.06] hover:text-white active:translate-y-px transition-[border-color,background-color,color,transform] duration-200",
   ghost:
     "text-white/50 hover:text-white transition-colors duration-200",
   disabled:
@@ -27,9 +27,9 @@ const variants = {
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-sm rounded",
-  md: "px-6 py-3 text-sm rounded",
-  lg: "px-8 py-4 text-base rounded",
+  sm: "px-4 py-2 text-sm rounded-sm",
+  md: "px-6 py-3 text-sm rounded-sm",
+  lg: "px-8 py-4 text-base rounded-sm",
 };
 
 export function Button({
@@ -43,7 +43,7 @@ export function Button({
   type = "button",
   target,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 font-semibold ${variants[disabled ? "disabled" : variant]} ${sizes[size]} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 font-semibold tracking-wide ${variants[disabled ? "disabled" : variant]} ${sizes[size]} ${className}`;
 
   if (href && !disabled) {
     return (

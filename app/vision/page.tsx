@@ -31,7 +31,7 @@ export default function VisionPage() {
       <div className="relative z-10">
       {/* Hero */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 text-center">
-        <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">Our Vision</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-wide text-white mb-4">Our Vision</h1>
         <p className="text-white/40 max-w-xl mx-auto leading-relaxed">
           Six pillars that define where Vanth is headed — and what we are building for our holders.
         </p>
@@ -77,8 +77,8 @@ export default function VisionPage() {
                 )}
 
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p className="text-white/35 font-mono text-4xl font-black leading-none mb-2">{card.num}</p>
-                  <h3 className="text-white font-black text-xl tracking-wide mb-1">{card.title}</h3>
+                  <p className="text-white/35 font-mono text-4xl font-bold leading-none mb-2">{card.num}</p>
+                  <h3 className="text-white font-bold text-xl tracking-wide mb-1">{card.title}</h3>
                   {isActive && (
                     <p className="text-white/50 text-xs leading-relaxed">{card.description}</p>
                   )}

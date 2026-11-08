@@ -65,6 +65,6 @@ export function validateWhitelistForm(data: WhitelistFormData): FormErrors {
   if (xErr) errors.twitter_handle = xErr;
   const discordErr = validateDiscordHandle(data.discord_handle);
   if (discordErr) errors.discord_handle = discordErr;
-  if (!data.ack_opensea_only) errors.ack_opensea_only = "You must acknowledge that minting happens on OpenSea only.";
+  if (!data.ack_opensea_only) errors.ack_opensea_only = "You must acknowledge that minting happens only on the official venue announced on vanthverse.com.";
   return errors;
 }

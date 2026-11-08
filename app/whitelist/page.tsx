@@ -30,7 +30,7 @@ export default function WhitelistPage() {
           <p className="text-xs font-mono tracking-[0.3em] uppercase text-white/40 mb-3">
             Join the early collective
           </p>
-          <h1 className="text-4xl sm:text-5xl font-black uppercase tracking-display text-white mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold uppercase tracking-display text-white mb-4">
             Request access to
             <br />
             the Vanthverse

@@ -56,7 +56,7 @@ export function AdminDashboard({ initialApplications }: Props) {
       <div className="border-b border-white/5 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-black tracking-[0.2em] text-white font-mono">VANTH</span>
+            <span className="text-sm font-bold tracking-[0.2em] text-white font-mono">VANTH</span>
             <span className="text-white/15 text-sm">/</span>
             <span className="text-sm text-white/40 font-mono">admin</span>
           </div>
@@ -83,7 +83,7 @@ export function AdminDashboard({ initialApplications }: Props) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         {/* Page title */}
         <div className="mb-8">
-          <h1 className="text-2xl font-black text-white mb-1">Applications</h1>
+          <h1 className="text-2xl font-bold text-white mb-1">Applications</h1>
           <p className="text-white/30 text-sm font-mono">
             {stats.new > 0
               ? `${stats.new} new application${stats.new > 1 ? "s" : ""} awaiting review`
@@ -104,7 +104,7 @@ export function AdminDashboard({ initialApplications }: Props) {
                 <span className="text-xs font-mono text-white/30 uppercase tracking-wider">{stat.label}</span>
                 <stat.icon className={`w-3.5 h-3.5 ${stat.color}`} />
               </div>
-              <p className={`text-2xl font-black ${stat.color}`}>{stat.value}</p>
+              <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
             </div>
           ))}
         </div>

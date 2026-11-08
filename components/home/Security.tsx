@@ -13,7 +13,7 @@ const OFFICIAL = [
   { label: "Official Discord", value: "discord.gg/vanth", href: SOCIAL_LINKS.discord.url },
   {
     label: "Official Mint",
-    value: SITE_CONFIG.mintVenue,
+    value: SITE_CONFIG.mintVenue ?? "TBA",
     href: SOCIAL_LINKS.mintVenue.url,
   },
 ];
@@ -34,7 +34,7 @@ export function Security() {
         {OFFICIAL.map((item) => (
           <li
             key={item.label}
-            className="rounded border border-white/8 bg-white/[0.02] px-5 py-4"
+            className="rounded-sm border border-white/8 bg-white/[0.02] px-5 py-4 transition-colors hover:border-white/20"
           >
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/40 mb-1.5">
               {item.label}
@@ -55,9 +55,9 @@ export function Security() {
         ))}
       </ul>
 
-      <div className="rounded border border-white/15 bg-white/[0.04] p-6">
+      <div className="rounded-sm border border-signal/30 bg-signal/[0.05] p-6">
         <div className="flex items-start gap-3">
-          <ShieldAlert className="w-5 h-5 text-white/60 shrink-0 mt-0.5" />
+          <ShieldAlert className="w-5 h-5 text-[#a78bfa] shrink-0 mt-0.5" />
           <div>
             <p className="font-bold text-white mb-2 font-mono text-sm uppercase tracking-widest">
               Never trust unofficial links

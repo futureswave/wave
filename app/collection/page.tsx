@@ -41,7 +41,7 @@ export default function CollectionPage() {
           <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
             Anatomy of a VANTH
           </p>
-          <h1 className="mb-6 text-5xl font-black uppercase leading-none tracking-tight text-white sm:text-7xl">
+          <h1 className="mb-6 text-5xl font-bold uppercase leading-none tracking-tight text-white sm:text-7xl">
             Collection
           </h1>
           <p className="mx-auto max-w-xl text-base leading-relaxed text-white/45">
@@ -55,7 +55,7 @@ export default function CollectionPage() {
               <div key={stat.label} className="text-center">
                 <NumberTicker
                   value={stat.value}
-                  className="block text-3xl font-black tracking-tight text-white sm:text-4xl"
+                  className="block text-3xl font-bold tracking-tight text-white sm:text-4xl"
                 />
                 <span className="mt-1 block font-mono text-[10px] uppercase tracking-[0.25em] text-white/35">
                   {stat.label}

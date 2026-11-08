@@ -12,14 +12,14 @@ export function Footer() {
           <div className="flex-1 max-w-xs">
             <div className="flex items-center gap-2 mb-3">
               <Image src="/images/gallery/logo.png" width={24} height={24} alt="VANTH" className="opacity-70" />
-              <span className="text-lg font-black tracking-[0.2em] text-white/80 font-mono">VANTH</span>
+              <span className="text-lg font-bold tracking-[0.2em] text-white/80 font-mono">VANTH</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed mb-4">
               {SITE_CONFIG.tagline}
             </p>
             <Link
               href="/whitelist"
-              className="inline-flex items-center px-4 py-2 text-xs font-bold bg-white text-black hover:bg-white/90 transition-colors rounded"
+              className="inline-flex items-center px-4 py-2 text-xs font-bold tracking-wide bg-white text-black hover:bg-white/90 hover:shadow-[0_0_24px_rgba(124,58,237,0.35)] transition-[background-color,box-shadow] rounded-sm"
             >
               Request Access
             </Link>
@@ -63,12 +63,6 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href={SOCIAL_LINKS.gitbook.meetVanth.url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors">
-                    <ExternalLink className="w-3 h-3" /> GitBook
-                  </a>
-                </li>
-                <li>
                   <Link href="/social" className="text-white/50 hover:text-white text-sm transition-colors">
                     Official Links
                   </Link>
@@ -89,7 +83,7 @@ export function Footer() {
             © 2026 VANTH · All rights reserved
           </p>
           <p className="text-white/35 text-xs font-mono">
-            Mint Venue: {SITE_CONFIG.mintVenue}
+            Mint Venue: {SITE_CONFIG.mintVenue ?? "TBA"}
           </p>
         </div>
       </div>

@@ -44,7 +44,7 @@ export function WhatIsVanth() {
           >
             <div className="p-7">
               <pillar.icon className="w-8 h-8 text-white/70 mb-5" />
-              <h3 className="text-xl font-black text-white uppercase tracking-display mb-3">
+              <h3 className="text-xl font-bold text-white uppercase tracking-display mb-3">
                 {pillar.title}
               </h3>
               <p className="text-white/55 leading-relaxed">{pillar.description}</p>

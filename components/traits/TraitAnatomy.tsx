@@ -5,9 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { BaseFigure } from "./BaseFigure";
 import { GenderTypeControls } from "./GenderTypeControls";
-import { TraitList } from "./TraitList";
 import { splitByExclusivity } from "@/lib/content/traits";
-import { findThumb } from "@/lib/content/trait-layers";
 import type {
   Gender,
   TraitCategory,
@@ -222,7 +220,7 @@ export function TraitAnatomy({ categories }: Props) {
                 {item.label}
               </span>
               <span
-                className={`block text-4xl font-black leading-none tracking-tight transition-colors ${
+                className={`block text-4xl font-bold leading-none tracking-tight transition-colors ${
                   isActive ? "text-white" : "text-white/70"
                 }`}
               >
@@ -253,7 +251,7 @@ export function TraitAnatomy({ categories }: Props) {
             transition={{ duration: 0.25 }}
             className="mt-12 rounded-sm border border-white/[0.07] bg-[#111]/60 p-8 backdrop-blur-sm"
           >
-            <h2 className="text-3xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-3xl font-bold uppercase tracking-tight text-white">
               {selectedCategory.label}
             </h2>
             <p className="mb-6 mt-2 max-w-2xl text-sm leading-relaxed text-white/45">
@@ -296,7 +294,7 @@ export function TraitAnatomy({ categories }: Props) {
                     >
                       {category.label}
                     </span>
-                    <span className="text-2xl font-black leading-none text-white">
+                    <span className="text-2xl font-bold leading-none text-white">
                       {category.traits[gender].length}
                     </span>
                   </span>
@@ -335,8 +333,8 @@ export function TraitAnatomy({ categories }: Props) {
 }
 
 /**
- * Read-only variant grid for one category, with the real trait thumbnails and
- * a count that calls out anything only this gender has.
+ * Variant counts for one category: the total for this gender, and how many of
+ * those only this gender has.
  */
 function CategoryVariants({
   category,
@@ -349,27 +347,36 @@ function CategoryVariants({
   const exclusiveCount = variants.filter((v) => v.exclusive).length;
   const genderLabel = gender === "man" ? "Man" : "Women";
 
-  const items = variants.map(({ name, exclusive }) => ({
-    name,
-    exclusive,
-    thumb: findThumb(gender, category.id, name),
-  }));
+  const counts = [
+    { value: variants.length, label: `Variants · ${genderLabel}`, accent: false },
+    ...(exclusiveCount > 0
+      ? [{ value: exclusiveCount, label: `${genderLabel}-only`, accent: true }]
+      : []),
+  ];
 
   return (
-    <TraitList
-      items={items}
-      caption={
-        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/40">
-            {variants.length} variants · {genderLabel}
-          </span>
-          {exclusiveCount > 0 && (
-            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#a78bfa]/70">
-              {exclusiveCount} {genderLabel}-only
-            </span>
-          )}
+    <div className="flex flex-wrap gap-3">
+      {counts.map((count) => (
+        <div
+          key={count.label}
+          className={`min-w-[9rem] rounded-sm border px-4 py-3 ${
+            count.accent
+              ? "border-signal/35 bg-signal/[0.06]"
+              : "border-white/[0.07] bg-white/[0.02]"
+          }`}
+        >
+          <p className="text-3xl font-bold leading-none tracking-tight text-white">
+            {count.value}
+          </p>
+          <p
+            className={`mt-2 font-mono text-[10px] uppercase tracking-[0.25em] ${
+              count.accent ? "text-[#a78bfa]/80" : "text-white/40"
+            }`}
+          >
+            {count.label}
+          </p>
         </div>
-      }
-    />
+      ))}
+    </div>
   );
 }

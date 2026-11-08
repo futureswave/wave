@@ -33,7 +33,7 @@ export default function CollectivePage() {
           <p className="text-xs font-mono tracking-[0.3em] uppercase text-white/40 mb-3">
             The Collective
           </p>
-          <h1 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-display mb-5">
+          <h1 className="text-4xl sm:text-6xl font-bold text-white uppercase tracking-display mb-5">
             The Collective
             <br />
             is forming
@@ -74,7 +74,7 @@ export default function CollectivePage() {
         </section>
 
         <section className="border-t border-white/5 mt-16 pt-16 text-center">
-          <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-display mb-8">
+          <h2 className="text-3xl sm:text-5xl font-bold text-white uppercase tracking-display mb-8">
             Enter the Discord
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

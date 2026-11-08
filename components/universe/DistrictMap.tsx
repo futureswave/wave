@@ -66,7 +66,7 @@ export function DistrictMap({ districts }: { districts: District[] }) {
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 mb-2">
             {active.tagline}
           </p>
-          <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-display text-white mb-4">
+          <h3 className="text-2xl sm:text-3xl font-bold uppercase tracking-display text-white mb-4">
             {active.name}
           </h3>
           <p className="text-white/60 leading-relaxed max-w-2xl">

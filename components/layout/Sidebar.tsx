@@ -115,7 +115,7 @@ export function Sidebar() {
                   height={36}
                   className="w-9 h-9 object-contain"
                 />
-                <span className="text-sm font-black tracking-[0.3em] text-white/60 font-mono">
+                <span className="text-sm font-bold tracking-[0.3em] text-white/60 font-mono">
                   VANTH
                 </span>
               </Link>
@@ -131,7 +131,7 @@ export function Sidebar() {
                     <Link
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className={`block text-4xl font-black tracking-tight leading-tight transition-colors duration-150 ${
+                      className={`block text-4xl font-bold tracking-tight leading-tight transition-colors duration-150 ${
                         pathname === link.href
                           ? "text-white"
                           : "text-white/25 hover:text-white/70"

@@ -37,7 +37,7 @@ export default function AdminLoginPage() {
           <div className="w-12 h-12 rounded bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
             <Lock className="w-5 h-5 text-white/40" />
           </div>
-          <h1 className="text-2xl font-black text-white">Admin</h1>
+          <h1 className="text-2xl font-bold text-white">Admin</h1>
           <p className="text-white/30 text-sm mt-1 font-mono">VANTH Committee Dashboard</p>
         </div>
 

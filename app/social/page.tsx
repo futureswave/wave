@@ -26,17 +26,10 @@ const links = [
     available: true,
   },
   {
-    label: "GitBook",
-    description: "Documentation: project overview, lore, roadmap, and more.",
-    url: SOCIAL_LINKS.gitbook.meetVanth.url,
-    handle: SOCIAL_LINKS.gitbook.meetVanth.url,
-    available: true,
-  },
-  {
     label: SOCIAL_LINKS.mintVenue.label,
-    description: "VANTH mints on OpenSea. The exact collection link is published here before launch.",
+    description: "The official mint venue is TBA. The exact link is published here before launch.",
     url: SOCIAL_LINKS.mintVenue.url,
-    handle: SITE_CONFIG.mintVenue,
+    handle: SITE_CONFIG.mintVenue ?? "TBA",
     available: false,
   },
 ];
@@ -45,7 +38,7 @@ export default function SocialPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-wide text-white mb-4">
           Official Links
         </h1>
         <p className="text-white/40 max-w-lg mx-auto leading-relaxed">

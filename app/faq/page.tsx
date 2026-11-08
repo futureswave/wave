@@ -52,7 +52,7 @@ export default function FAQPage() {
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-black tracking-wide text-white mb-4">FAQ</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-wide text-white mb-4">FAQ</h1>
         <p className="text-white/55 max-w-lg mx-auto">
           Common questions answered. If you have a question not covered here, ask in our Discord.
         </p>

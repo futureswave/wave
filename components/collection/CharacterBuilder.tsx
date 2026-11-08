@@ -117,7 +117,7 @@ export function CharacterBuilder() {
         <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
           Build your own
         </p>
-        <h2 className="mb-3 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
+        <h2 className="mb-3 text-3xl font-bold uppercase tracking-tight text-white sm:text-4xl">
           Character Lab
         </h2>
         <p className="max-w-xl text-sm leading-relaxed text-white/45">

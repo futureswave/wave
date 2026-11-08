@@ -59,8 +59,8 @@ export function VisionModal({ card, onClose }: VisionModalProps) {
           </button>
 
           <div className="absolute bottom-0 left-0 right-0 p-6">
-            <p className="text-white/20 font-mono text-5xl font-black leading-none mb-3">{card.num}</p>
-            <h3 className="text-white font-black text-2xl tracking-wide mb-2">{card.title}</h3>
+            <p className="text-white/20 font-mono text-5xl font-bold leading-none mb-3">{card.num}</p>
+            <h3 className="text-white font-bold text-2xl tracking-wide mb-2">{card.title}</h3>
             <p className="text-white/60 text-sm leading-relaxed">{card.description}</p>
           </div>
         </div>

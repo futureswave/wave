@@ -86,7 +86,7 @@ export function WhitelistForm() {
           <a href={SOCIAL_LINKS.discord.url} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Discord</a>{" "}
           for mint date announcements.
         </p>
-        <p className="text-amber-400 text-xs">Remember: Minting will only happen on OpenSea. Never mint from another source.</p>
+        <p className="text-amber-400 text-xs">Remember: Minting will only happen on the official venue announced on vanthverse.com. Never mint from another source.</p>
       </div>
     );
   }
@@ -216,8 +216,8 @@ export function WhitelistForm() {
             className="mt-0.5 w-4 h-4 rounded border-white/20 bg-[#10101e] accent-purple-500 cursor-pointer"
           />
           <span className={`text-sm leading-relaxed ${errors.ack_opensea_only ? "text-red-400" : "text-slate-400 group-hover:text-slate-300 transition-colors"}`}>
-            I understand that minting happens on{" "}
-            <span className="font-semibold text-purple-400">OpenSea only</span>. I will not mint from any other source.
+            I understand that minting happens{" "}
+            <span className="font-semibold text-purple-400">only on the official venue announced on vanthverse.com</span>. I will not mint from any other source.
           </span>
         </label>
         {errors.ack_opensea_only && (

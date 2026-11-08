@@ -33,12 +33,12 @@ export function SectionHeading({
             {eyebrow}
           </p>
         )}
-        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-display uppercase">
+        <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-display uppercase leading-[1.05] text-balance">
           {title}
         </h2>
         {lead && (
           <p
-            className={`text-white/55 text-lg leading-relaxed mt-4 ${
+            className={`text-white/55 text-base sm:text-lg leading-relaxed mt-4 text-pretty ${
               centered ? "max-w-2xl mx-auto" : ""
             }`}
           >

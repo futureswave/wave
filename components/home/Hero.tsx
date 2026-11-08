@@ -68,7 +68,7 @@ export function Hero() {
           priority
         />
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-display uppercase leading-[1.05]">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-display uppercase leading-[1.05]">
           Enter the
           <br />
           Vanthverse

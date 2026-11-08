@@ -29,7 +29,7 @@ export default function AboutPage() {
           <span className="text-[10px] tracking-[0.35em] text-white/45 uppercase font-medium mb-5 block">
             The Collective
           </span>
-          <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-black tracking-wide text-white mb-6 leading-none">
+          <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold tracking-wide text-white mb-6 leading-none">
             About VANTH
           </h1>
           <div className="flex items-center justify-center gap-3 mb-7">
