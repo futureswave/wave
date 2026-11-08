@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { getTraitCategories, getTraitTotals } from "@/lib/content/traits";
 import { TraitAnatomy } from "@/components/traits/TraitAnatomy";
-import { CharacterBuilder } from "@/components/collection/CharacterBuilder";
 import { NumberTicker } from "@/components/ui/number-ticker";
 
 export const metadata = {
@@ -46,8 +45,8 @@ export default function CollectionPage() {
           </h1>
           <p className="mx-auto max-w-xl text-base leading-relaxed text-white/45">
             Every VANTH is assembled from ten layered categories. Pick a gender
-            and a type, build one live, then follow any line back to the part of
-            the body it belongs to.
+            and a type, then follow any line back to the part of the body it
+            belongs to.
           </p>
 
           <div className="mt-10 flex items-start justify-center gap-10 sm:gap-16">
@@ -64,10 +63,6 @@ export default function CollectionPage() {
             ))}
           </div>
         </header>
-
-        <CharacterBuilder />
-
-        <div className="my-20 h-px bg-white/[0.06]" />
 
         <TraitAnatomy categories={categories} />
       </div>

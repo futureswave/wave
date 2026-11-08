@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { LogOut, RefreshCw, Users, Clock, CheckCircle, XCircle } from "lucide-react";
+import Link from "next/link";
+import { FlaskConical, LogOut, RefreshCw, Users, Clock, CheckCircle, XCircle } from "lucide-react";
 import { ApplicationRow, type Application } from "./ApplicationRow";
 
 const STATUS_TABS = ["ALL", "SUBMITTED", "UNDER_REVIEW", "PENDING", "APPROVED", "REJECTED", "FLAGGED"];
@@ -61,6 +62,13 @@ export function AdminDashboard({ initialApplications }: Props) {
             <span className="text-sm text-white/40 font-mono">admin</span>
           </div>
           <div className="flex items-center gap-4">
+            <Link
+              href="/admin/lab"
+              className="flex items-center gap-1.5 text-white/30 hover:text-white text-xs font-mono transition-colors"
+            >
+              <FlaskConical className="w-3.5 h-3.5" />
+              Character Lab
+            </Link>
             <button
               onClick={handleRefresh}
               disabled={refreshing}
