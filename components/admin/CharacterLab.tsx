@@ -87,14 +87,24 @@ export function CharacterLab({ data }: { data: LabData }) {
     .join(", ");
 
   function randomize() {
+    const pick = (list: TraitVariant[]) => list[Math.floor(Math.random() * list.length)];
+
+    // Type is a trait like any other, so a roll can change the whole figure.
+    // Roll it first: which Eyes/Mouths exist depends on it, and rolling the
+    // rest against the old Type could pick an expression the new one lacks.
+    const typeVariants = getVariants(gender, "type", type);
+    const nextType = typeVariants.length ? (pick(typeVariants).name as VanthType) : type;
+
     const next: Selection = {};
     for (const category of categories) {
-      const variants = getVariants(gender, category.id, type);
-      if (!variants.length) continue;
-      next[category.id] = variants[Math.floor(Math.random() * variants.length)].name;
+      if (category.id === "type") {
+        next.type = nextType;
+        continue;
+      }
+      const variants = getVariants(gender, category.id, nextType);
+      if (variants.length) next[category.id] = pick(variants).name;
     }
-    // Type is a trait like any other, so a roll can change the whole figure.
-    if (next.type) setType(next.type as VanthType);
+    setType(nextType);
     setSelection(next);
   }
 

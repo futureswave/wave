@@ -46,6 +46,29 @@ in it and are placed by what they are:
 Those two positions are the only inferred entries. If a women character ever
 looks wrong around the eyes or mouth, they are the first thing to check.
 
+## Pairing (back/front)
+
+Files that belong to one trait share a file name across layer folders —
+`Aura ARKA/Inferno.png` + `Aura ON/Inferno.png`, `Hands/Ember Bow.png` +
+`Hands IPLER/Ember Bow.png`, and so on. `pruneOrphans()` in the build script
+then enforces two rules:
+
+- **Broken pairs fail the build.** `Aura ARKA/ON`, `Facewear ARKA*/ON*`,
+  `Hands ARKA/ON` and `Outfit/Outfit YAKALAR` must always come as both halves.
+  A missing or misnamed file stops the script instead of shipping half a trait.
+- **Orphans are dropped.** `Eyes SAC ON` (the eyelash tip drawn over the hair)
+  and `Eyes GLOW SIMSEKLER` are not split per Type, so they reach all four
+  Types. A Type with no matching `Eyes/{Type}/{name}.png` (Aegis has no Happy,
+  Cyberborn no Wink, neither has the glows) would get an eye-less variant.
+  Those are removed, and the script lists every one it drops.
+- **Eyes have no NONE.** The `NONE` in `Eyes GLOW SIMSEKLER` only means "no
+  glow". The Eyes layer itself has no NONE file, so an eyeless face was never
+  generated and the builder does not offer one.
+
+Picker thumbnails use the category's main layer (`Eyes`, `Hair`, `Hands`…),
+not the topmost one, which for women is often a sliver (`Eyes SAC ON`,
+`Hair AGIZ ON`).
+
 ## The spreadsheet is not authoritative
 
 `NFT_Trait_Listesi_Kategori_Sayilari.xlsx` lists which layers make up each trait,

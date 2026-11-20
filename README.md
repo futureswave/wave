@@ -31,12 +31,17 @@ Create `.env.local` (see the placeholders already in that file):
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
 | `SUPABASE_SERVICE_ROLE_KEY` | Server-only key used by API routes (bypasses RLS) |
-| `ADMIN_PASSWORD` | Password for the `/admin` login |
-| `ADMIN_SECRET` | HMAC signing secret for the admin session cookie (**required in production**) |
+| `ADMIN_PASSWORD_HASH` | scrypt hash of the `/admin` password — generate with `node scripts/hash-admin-password.mjs` (never store the plain password) |
+| `ADMIN_SECRET` | HMAC signing secret for the admin session cookie, 32+ chars (**required in production**) |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL (used by metadata, robots, sitemap) |
 | `TURNSTILE_SECRET_KEY` | *(optional)* Cloudflare Turnstile secret for whitelist captcha |
 
-> In production the app **refuses to sign tokens** if `ADMIN_SECRET` is missing.
+> In production the app **refuses to sign tokens** if `ADMIN_SECRET` is missing or
+> shorter than 32 characters. To rotate the admin password, run
+> `node scripts/hash-admin-password.mjs --write` — it prints a new 32-character
+> password once, writes `ADMIN_PASSWORD_HASH` + a fresh `ADMIN_SECRET` to
+> `.env.local`, and signs every existing admin session out. Copy both values to
+> Vercel as well.
 
 ## Database (Supabase)
 

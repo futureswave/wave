@@ -95,6 +95,7 @@ const LAYER_ORDER = [
 
 
 const VANTH_TYPES = ["Aegis", "Cyberborn", "Frostbite", "Human"];
+const NONE = "NONE";
 
 // --- helpers ---------------------------------------------------------------
 
@@ -123,7 +124,7 @@ async function convert(src, out, { size, quality }) {
   return true;
 }
 
-/** Web path for a file under public/. */
+/** URL of a file under private/traits, served by the admin-gated route. */
 const webPath = (abs) =>
   "/api/admin/traits/" +
   path.relative(OUT_LAYERS, abs).split(path.sep).map(encodeURIComponent).join("/");
@@ -369,11 +370,110 @@ function byName(a, b) {
 }
 
 /**
- * The layer whose thumbnail best represents a variant: the topmost one, which
- * for a glasses/mask/aura pair is the front half rather than the hidden back.
+ * Layers that best represent a category in a 128px preview, most preferred
+ * first. The topmost layer is a bad default: for women it is often a sliver —
+ * `Eyes SAC ON` is a single eyelash tip, `Hair AGIZ ON` one strand over the
+ * mouth — so the picker showed near-empty tiles.
  */
+const THUMB_LAYERS = {
+  eyes: ["Eyes", "Eyes GLOW SIMSEKLER"],
+  hair: ["Hair", "Hair ARKA"],
+  mouths: ["Mouths"],
+  outfit: ["Outfit"],
+  hands: ["Hands", "Hands ON"],
+  facewear: ["Facewear ONgozluk", "Facewear ONmask"],
+  aura: ["Aura ON"],
+};
+
 function thumbLayer(variant) {
+  for (const id of THUMB_LAYERS[variant.category] ?? []) {
+    const hit = variant.layers.find((l) => l.layer === id);
+    if (hit) return hit;
+  }
   return variant.layers[variant.layers.length - 1];
+}
+
+// --- pairing ---------------------------------------------------------------
+
+/**
+ * The layer a variant cannot exist without. Layers that are NOT split per Type
+ * (`Eyes SAC ON`, `Eyes GLOW SIMSEKLER`) are fanned out to all four Types, so
+ * without this check a Type that never had e.g. a "Happy" eye drawn still got
+ * a "Happy" variant made of nothing but an eyelash tip or a glow.
+ */
+const REQUIRED_LAYER = {
+  type: "Type",
+  background: "Background",
+  earrings: "Earrings",
+  eyes: "Eyes",
+  mouths: "Mouths",
+  hair: "Hair",
+  outfit: "Outfit",
+};
+
+/** Back/front halves that must always travel together. */
+const PAIRS = [
+  ["Aura ARKA", "Aura ON"],
+  ["Facewear ARKAgozluk", "Facewear ONgozluk"],
+  ["Facewear ARKAmask", "Facewear ONmask"],
+  ["Hands ARKA", "Hands ON"],
+  ["Outfit", "Outfit YAKALAR"],
+];
+
+/** Layers that only make sense on top of another one (bow strings need a bow). */
+const DEPENDS_ON = { "Hands IPLER": "Hands", "Eyes SAC ON": "Eyes", "Hair AGIZ ON": "Hair", "Hair ARKA": "Hair" };
+
+/**
+ * Drops variants that would render half a trait and fails the build when a
+ * back/front pair is broken, so a missing file can never ship silently.
+ */
+function pruneOrphans(variants) {
+  const kept = [];
+  const dropped = [];
+  const broken = [];
+
+  for (const v of variants) {
+    const ids = new Set(v.layers.map((l) => l.layer));
+    const label = `${v.gender}/${v.category}/${v.type}/${v.name}`;
+
+    // An eyeless face was never generated: the Eyes layer has no NONE file,
+    // the NONE here is only the empty glow overlay.
+    if (v.category === "eyes" && v.name === NONE) {
+      dropped.push(`${label} (no eyes at all)`);
+      continue;
+    }
+
+    if (v.name !== NONE) {
+      const required = REQUIRED_LAYER[v.category];
+      if (required && !ids.has(required)) {
+        dropped.push(`${label} (only ${[...ids].join(" + ")}, no ${required} drawn for ${v.type})`);
+        continue;
+      }
+      const orphan = Object.entries(DEPENDS_ON).find(([layer, base]) => ids.has(layer) && !ids.has(base));
+      if (orphan) {
+        dropped.push(`${label} (${orphan[0]} without ${orphan[1]})`);
+        continue;
+      }
+    }
+
+    for (const [back, front] of PAIRS) {
+      if (ids.has(back) !== ids.has(front)) {
+        broken.push(`${label}: has ${ids.has(back) ? back : front} but not ${ids.has(back) ? front : back}`);
+      }
+    }
+    kept.push(v);
+  }
+
+  if (dropped.length) {
+    console.log(`  ${dropped.length} unpaired variants dropped:`);
+    for (const line of dropped) console.log(`    - ${line}`);
+  }
+  if (broken.length) {
+    throw new Error(
+      "Broken back/front pairs — a file is missing or misnamed:\n  " + broken.join("\n  "),
+    );
+  }
+  return kept;
 }
 
 // --- main ------------------------------------------------------------------
@@ -409,7 +509,7 @@ async function main() {
   console.log(`  ${written} files written, ${files.length * 2 - written} already current`);
 
   console.log("Building manifest...");
-  const variants = buildVariants(files);
+  const variants = pruneOrphans(buildVariants(files));
   for (const variant of variants) {
     for (const layer of variant.layers) layer.web = outFor.get(layer.src).web;
     variant.thumb = outFor.get(thumbLayer(variant).src).thumb;
