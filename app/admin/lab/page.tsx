@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default async function AdminLabPage() {
   if (!(await isAdminAuthenticated())) {
-    redirect("/admin/login");
+    redirect("/admin/login?next=/admin/lab");
   }
 
   const buildable = getBuildableCategories();
