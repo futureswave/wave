@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { validateSolanaWallet } from "@/lib/validation";
-import { buildSignInMessage, verifySolanaSignature } from "@/lib/verse/solana";
+import { buildSignInMessage, requestOrigin, verifySolanaSignature } from "@/lib/verse/solana";
 import { signVerseToken, VERSE_COOKIE, verseCookieOptions } from "@/lib/verse/session";
 import { periodKey } from "@/lib/verse/periods";
 
@@ -40,7 +40,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Sign-in request expired. Please try again." }, { status: 401 });
   }
 
-  const message = buildSignInMessage(wallet, nonce, new Date(challenge.issued_at).toISOString());
+  const origin = requestOrigin(req.headers);
+  if (!origin) return NextResponse.json({ error: "Invalid request origin." }, { status: 400 });
+  // Same host as the nonce request (same page), so the rebuilt text matches what was signed.
+  const message = buildSignInMessage(wallet, nonce, new Date(challenge.issued_at).toISOString(), origin);
   const signature = Buffer.from(signatureB64, "base64");
   if (!verifySolanaSignature(wallet, message, signature)) {
     return NextResponse.json({ error: "Signature could not be verified." }, { status: 401 });

@@ -46,16 +46,51 @@ export function verifySolanaSignature(wallet: string, message: string, signature
   }
 }
 
-/** The exact text the wallet signs. Rebuilt server-side from stored values. */
-export function buildSignInMessage(wallet: string, nonce: string, issuedAt: string): string {
+export interface SignInOrigin {
+  /** Host (with port if any), e.g. "vanthverse.com" or "localhost:3000". */
+  domain: string;
+  /** Full origin, e.g. "https://vanthverse.com". */
+  uri: string;
+}
+
+const HOST_RE = /^[a-z0-9.-]+(:\d{1,5})?$/i;
+
+/**
+ * The origin the wallet will see in the sign-in message. Wallets (Phantom)
+ * check that the SIWS domain matches the page requesting the signature, so it
+ * must come from the actual request host rather than a hard-coded domain.
+ */
+export function requestOrigin(headers: Headers): SignInOrigin | null {
+  const host = (headers.get("x-forwarded-host") ?? headers.get("host") ?? "").split(",")[0].trim();
+  if (!HOST_RE.test(host)) return null;
+  const proto = (headers.get("x-forwarded-proto") ?? "").split(",")[0].trim()
+    || (host.startsWith("localhost") || host.startsWith("127.0.0.1") ? "http" : "https");
+  if (proto !== "http" && proto !== "https") return null;
+  return { domain: host, uri: `${proto}://${host}` };
+}
+
+/**
+ * The exact text the wallet signs, in Sign-In With Solana (SIWS / CAIP-122)
+ * format. Wallets parse messages that start with "<domain> wants you to sign
+ * in…" strictly: the statement must be a single line and URI / Version /
+ * Chain ID / Nonce / Issued At must follow in this order. Rebuilt server-side
+ * from stored values on verify.
+ */
+export function buildSignInMessage(
+  wallet: string,
+  nonce: string,
+  issuedAt: string,
+  origin: SignInOrigin,
+): string {
   return [
-    "vanthverse.com wants you to sign in with your Solana account:",
+    `${origin.domain} wants you to sign in with your Solana account:`,
     wallet,
     "",
-    "Sign in to the VANTH Verse registry.",
-    "This is NOT a transaction: it costs nothing and moves no assets.",
-    "VANTH will never ask for your seed phrase or private key.",
+    "Sign in to the VANTH Verse registry. This is not a transaction: it costs nothing and moves no assets.",
     "",
+    `URI: ${origin.uri}`,
+    "Version: 1",
+    "Chain ID: mainnet",
     `Nonce: ${nonce}`,
     `Issued At: ${issuedAt}`,
   ].join("\n");

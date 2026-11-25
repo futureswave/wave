@@ -3,7 +3,7 @@ import { randomBytes } from "crypto";
 import { createServiceClient } from "@/lib/supabase";
 import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { validateSolanaWallet } from "@/lib/validation";
-import { buildSignInMessage } from "@/lib/verse/solana";
+import { buildSignInMessage, requestOrigin } from "@/lib/verse/solana";
 
 const NONCE_TTL_MS = 5 * 60 * 1000;
 
@@ -18,6 +18,8 @@ export async function POST(req: NextRequest) {
   if (validateSolanaWallet(wallet)) {
     return NextResponse.json({ error: "Invalid wallet address." }, { status: 400 });
   }
+  const origin = requestOrigin(req.headers);
+  if (!origin) return NextResponse.json({ error: "Invalid request origin." }, { status: 400 });
 
   const nonce = randomBytes(16).toString("hex");
   const issuedAt = new Date();
@@ -37,5 +39,5 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Database error." }, { status: 500 });
   }
 
-  return NextResponse.json({ nonce, message: buildSignInMessage(wallet, nonce, issuedAt.toISOString()) });
+  return NextResponse.json({ nonce, message: buildSignInMessage(wallet, nonce, issuedAt.toISOString(), origin) });
 }
