@@ -35,6 +35,17 @@ Create `.env.local` (see the placeholders already in that file):
 | `ADMIN_SECRET` | HMAC signing secret for the admin session cookie, 32+ chars (**required in production**) |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL (used by metadata, robots, sitemap) |
 | `TURNSTILE_SECRET_KEY` | *(optional)* Cloudflare Turnstile secret for whitelist captcha |
+| `VERSE_SESSION_SECRET` | *(optional)* HMAC secret for the `/verse` wallet session, 32+ chars. If unset, a key is derived from `ADMIN_SECRET` |
+| `HELIUS_API_KEY` | *(optional)* Helius key for the on-chain VANTH holder check |
+| `VANTH_COLLECTION_ADDRESS` | *(optional)* VANTH collection address. Holder quests show "Opens after mint" until this and `HELIUS_API_KEY` are set |
+
+### Verse (leaderboard & quests)
+
+`/verse` hosts the public leaderboard, quest board, Vanth Passport and scoring rules;
+`/admin/verse` manages quests, proof reviews, XP adjustments and seasons. Schema and
+pilot seed live in `supabase/migrations/0002_verse.sql`. XP is an append-only ledger
+(`verse_xp_events`); rankings are computed from it by `verse_leaderboard()`. The seeded
+pilot season starts as `draft` — activate it from `/admin/verse → Seasons` to launch.
 
 > In production the app **refuses to sign tokens** if `ADMIN_SECRET` is missing or
 > shorter than 32 characters. To rotate the admin password, run

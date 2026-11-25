@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { href: "/vision", label: "Vision" },
   { href: "/collection", label: "Collection" },
   { href: "/collective", label: "The Collective" },
+  { href: "/verse", label: "Verse" },
 ];
 
 // Secondary links, surfaced only in the expanded drawer.
@@ -22,6 +23,10 @@ const SECONDARY_LINKS = [
   { href: "/faq", label: "FAQ" },
   { href: "/social", label: "Official Links" },
 ];
+
+function isActive(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -57,7 +62,7 @@ export function Sidebar() {
               href={link.href}
               title={link.label}
               className={`w-1 h-1 rounded-full transition-all duration-200 ${
-                pathname === link.href
+                isActive(pathname, link.href)
                   ? "bg-white scale-150"
                   : "bg-white/20 hover:bg-white/50"
               }`}
@@ -132,7 +137,7 @@ export function Sidebar() {
                       href={link.href}
                       onClick={() => setOpen(false)}
                       className={`block text-4xl font-bold tracking-tight leading-tight transition-colors duration-150 ${
-                        pathname === link.href
+                        isActive(pathname, link.href)
                           ? "text-white"
                           : "text-white/25 hover:text-white/70"
                       }`}

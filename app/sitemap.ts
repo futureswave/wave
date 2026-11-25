@@ -13,6 +13,9 @@ const ROUTES = [
   "/social",
   "/stake",
   "/whitelist",
+  "/verse",
+  "/verse/quests",
+  "/verse/rules",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

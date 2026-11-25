@@ -11,6 +11,10 @@ type AnalyticsEvent =
   | "click_opensea"
   | "wallet_connect_success"
   | "wallet_disconnect"
+  | "verse_wallet_signin"
+  | "verse_quest_complete"
+  | "verse_quest_submit"
+  | "verse_leaderboard_search"
   | "view_gallery_lightbox"
   | "scroll_depth_50"
   | "scroll_depth_90";

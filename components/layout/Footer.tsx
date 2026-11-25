@@ -33,6 +33,8 @@ export function Footer() {
               <ul className="space-y-2">
                 {[
                   ["Vision", "/vision"],
+                  ["Verse Leaderboard", "/verse"],
+                  ["Quests", "/verse/quests"],
                   ["The Collective", "/collective"],
                   ["About", "/about"],
                   ["FAQ", "/faq"],

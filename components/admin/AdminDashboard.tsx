@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FlaskConical, LogOut, RefreshCw, Users, Clock, CheckCircle, XCircle } from "lucide-react";
+import { FlaskConical, Trophy, LogOut, RefreshCw, Users, Clock, CheckCircle, XCircle } from "lucide-react";
 import { ApplicationRow, type Application } from "./ApplicationRow";
 
 const STATUS_TABS = ["ALL", "SUBMITTED", "UNDER_REVIEW", "PENDING", "APPROVED", "REJECTED", "FLAGGED"];
@@ -62,6 +62,13 @@ export function AdminDashboard({ initialApplications }: Props) {
             <span className="text-sm text-white/40 font-mono">admin</span>
           </div>
           <div className="flex items-center gap-4">
+            <Link
+              href="/admin/verse"
+              className="flex items-center gap-1.5 text-white/30 hover:text-white text-xs font-mono transition-colors"
+            >
+              <Trophy className="w-3.5 h-3.5" />
+              Verse
+            </Link>
             <Link
               href="/admin/lab"
               className="flex items-center gap-1.5 text-white/30 hover:text-white text-xs font-mono transition-colors"
